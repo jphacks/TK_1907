@@ -1,0 +1,13 @@
+cpu = 2
+
+[app]
+  contractAddress    = ""
+
+[db]
+  projectId = "marine-dev"
+
+[node]
+  ethereumEndpoint = "https://ropsten.infura.io/v3/21a0bbd84cf24419be9b457e6399e15d"
+
+[storage]
+  storageBucket = "marine-dev.appspot.com"
