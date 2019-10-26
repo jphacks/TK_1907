@@ -3,21 +3,21 @@ pragma solidity 0.5.12;
 contract ComicAccount  {
 
   bool public initialized = false;
-  address public payable uploader;
+  address payable public uploader;
   event Initialized();
 
   constructor() public {}
 
   // The fallback function for this contract.
   function() external payable {
-    require(msg.data.length == 0, "msg.data is not empty.");
-    emit Funded(address(this).balance);
+    // TODO 収益分配のロジックを書く
   }
 
-  function initialize(uploader address payable) public {
+  function initialize(address payable _uploader) public {
     require(!initialized, "This contract has already been initialized.");
 
-    address zeroAddress = address(0);
+    //address zeroAddress = address(0);
+    _uploader;
 
     //for (uint i = 0; i < _owners.length; i++) {
       //require(_owners[i] != zeroAddress, "Owner address cannot be zero address.");
