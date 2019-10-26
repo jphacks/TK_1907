@@ -20,7 +20,13 @@ import (
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/database"
 )
 
-const batchLimit = 500
+const (
+	batchLimit = 500
+)
+
+var (
+	increment = firestore.Increment(1)
+)
 
 // New ...
 func New(cfg database.Config) (database.Database, error) {
@@ -41,6 +47,34 @@ func New(cfg database.Config) (database.Database, error) {
 type Firestore struct {
 	client *firestore.Client
 	config database.Config
+}
+
+// GetTitle ...
+func (f *Firestore) GetTitle(contractAddr string) (string, error) {
+	bookRef := f.client.Doc(fmt.Sprintf("Books/%s", contractAddr))
+	docSnap, err := bookRef.Get(context.Background())
+	if err != nil {
+		if status.Code(err) != codes.NotFound {
+			return "", err
+		}
+	}
+	var book database.Book
+	if err := docSnap.DataTo(&book); err != nil {
+		return "", err
+	}
+
+	return book.Title, nil
+}
+
+// IncreasePV ...
+func (f *Firestore) IncreasePV(contractAddr string) error {
+	bookRef := f.client.Doc(fmt.Sprintf("Books/%s", contractAddr))
+	if _, err := bookRef.Update(context.Background(), []firestore.Update{
+		{Path: "PV", Value: firestore.Increment(1)},
+	}); err != nil {
+		return err
+	}
+	return nil
 }
 
 // SetPages ...
@@ -98,9 +132,11 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 			batch.Set(txRef, struct {
 				PageNumber int64
 				URL        string
+				WrappedURL string
 			}{
 				PageNumber: page.(database.PageInfo).Page,
 				URL:        page.(database.PageInfo).StorageURL,
+				WrappedURL: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%d/%d", contractAddr, chapterNum, page.(database.PageInfo).Page),
 			})
 		}
 
