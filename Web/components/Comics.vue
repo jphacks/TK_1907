@@ -41,7 +41,7 @@ export default {
   overflow-x: scroll;
 }
 #auchives .wrapper_contents_archives {
-  width: 800px;
+  min-width: 800px;
   padding: 0;
   margin: 0 auto;
 }
