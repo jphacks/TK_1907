@@ -126,6 +126,9 @@ export default {
         .then(response => {
           console.log("response data", response);
           this.loading = false;
+          this.$Modal.success({
+            title: "アップロード成功"
+          });
         })
         .catch(error => {
           console.log("response error", error);
