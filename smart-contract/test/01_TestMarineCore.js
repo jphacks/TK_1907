@@ -1,38 +1,23 @@
 const MarineCore = artifacts.require("MarineCore");
-const ethabi = require("ethereumjs-abi");
-const {
-  vmExceptionTextRevertWithReason,
-  vmExceptionTextRevert,
-  makeDepositInEther,
-  maxGasLimit,
-} = require("./utils/utils.js");
 
 contract("01_TestMarineCore", async (accounts) => {
-  it("does not raise an error without any arguments", async () => {
+  it("can deploy comic account", async () => {
     try {
-      await MultiSigMofNFactory.new();
+      await MarineCore.new();
       assert(true);
     } catch(e) {
       assert(false, "Unexpected error in constructor")
     }
   });
-  //contract("", async () => {
-    //it("does not raise an error without any arguments", async () => {
-      //try {
-        //await MultiSigMofNFactory.new();
-        //assert(true);
-      //} catch(e) {
-        //assert(false, "Unexpected error in constructor")
-      //}
-    //});
 
-    //it("raises an error with a argument", async () => {
-      //try {
-        //await MultiSigMofNFactory.new(accounts[1]);
-        //assert(false, "expected error in constructor")
-      //} catch(e) {
-        //assert.equal(e.message, "Invalid number of parameters for \"undefined\". Got 1 expected 0!");
-      //}
-    //});
-  //});
+  it("can get deployment address", async () => {
+    try {
+      const core = await MarineCore.new();
+      const deploymentAddr = await core.getDeploymentAddress(0, accounts[0]);
+      const tx = await core.createComicAccount(0);
+      assert.strictEqual(deploymentAddr, tx.receipt.logs[0].args[0]);
+    } catch(e) {
+      assert(false, "Unexpected error in constructor")
+    }
+  });
 });

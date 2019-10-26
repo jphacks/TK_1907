@@ -30,7 +30,6 @@ contract ComicAccount  {
 
   // The fallback function for this contract.
   function() external payable {
-    // TODO refactor
     balanceOf[uint256(Recipients.Creator)] = msg.value;
     if (uploader != address(0)) {
       balanceOf[uint256(Recipients.Uploader)] += msg.value.div(10).mul(1);
