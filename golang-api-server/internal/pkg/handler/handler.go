@@ -5,6 +5,7 @@ import (
 	"context"
 	"net/http"
 	"path/filepath"
+	"regexp"
 	"strconv"
 
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/database"
@@ -84,12 +85,11 @@ func UploadImage(db database.Database, s storage.Storage, eth ethereum.Ethereum)
 			defer close(in)
 			for _, file := range files {
 				fileName := filepath.Base(file.Name)
-				if ma, _ := filepath.Match(`\..*`, fileName); ma {
-					break
-				}
-				switch filepath.Ext(fileName) {
-				case ".jpg", ".jpeg":
-					in <- file
+				if ma, _ := regexp.MatchString(`^\.\S*$`, fileName); !ma {
+					switch filepath.Ext(fileName) {
+					case ".jpg", ".jpeg":
+						in <- file
+					}
 				}
 			}
 		}(inChan, r.File)
@@ -140,14 +140,14 @@ func UploadImage(db database.Database, s storage.Storage, eth ethereum.Ethereum)
 // GetImage ...
 func GetImage(db database.Database, s storage.Storage) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		bookId := c.Param("addr")
+		bookID := c.Param("addr")
 		chapter := c.Param("chapter")
 		page := c.Param("page")
-		if bookId == "" ||
+		if bookID == "" ||
 			chapter == "" ||
 			page == "" {
 			err := xerrors.New("invalid argument")
-			logger.Error("Invalid Argument", zap.Error(err), zap.String("addr", bookId), zap.String("chapter", chapter), zap.String("page", page))
+			logger.Error("Invalid Argument", zap.Error(err), zap.String("addr", bookID), zap.String("chapter", chapter), zap.String("page", page))
 			return err
 		}
 
@@ -160,7 +160,7 @@ func GetImage(db database.Database, s storage.Storage) echo.HandlerFunc {
 			return err
 		}
 
-		title, err := db.GetTitle(bookId)
+		title, err := db.GetTitle(bookID)
 		if err != nil {
 			logger.Error("error occuered in GetTitle", zap.Error(err))
 			return err
@@ -180,7 +180,7 @@ func GetImage(db database.Database, s storage.Storage) echo.HandlerFunc {
 				logger.Error("error occuered in GetImage", zap.Error(err))
 				return err
 			}
-			if err := db.IncreasePV(bookId); err != nil {
+			if err := db.IncreasePV(bookID); err != nil {
 				logger.Error("error occuered in IncreasePV", zap.Error(err))
 				return err
 			}
