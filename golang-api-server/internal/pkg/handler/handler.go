@@ -36,16 +36,16 @@ func UploadImage(db database.Database, s storage.Storage, eth ethereum.Ethereum)
 	return func(c echo.Context) error {
 		title := c.FormValue("title")
 		chapter := c.FormValue("chapter")
-		signedTx := c.FormValue("signedTx")
+		summary := c.FormValue("summary")
 		sender := c.FormValue("sender")
 		nonce := c.FormValue("nonce")
 		if title == "" ||
 			chapter == "" ||
-			signedTx == "" ||
+			summary == "" ||
 			sender == "" ||
 			nonce == "" {
 			err := xerrors.New("invalid argument")
-			logger.Error("Invalid Argument", zap.Error(err), zap.String("Title", title), zap.String("Chapter", chapter), zap.String("SignedTx", signedTx), zap.String("Sender", sender), zap.String("Nonce", nonce))
+			logger.Error("Invalid Argument", zap.Error(err), zap.String("Title", title), zap.String("Chapter", chapter), zap.String("Summary", summary), zap.String("Sender", sender), zap.String("Nonce", nonce))
 			return err
 		}
 
@@ -129,7 +129,7 @@ func UploadImage(db database.Database, s storage.Storage, eth ethereum.Ethereum)
 			pages = append(pages, out)
 		}
 
-		if err := db.SetPages(contractAddr, title, chapter, pages); err != nil {
+		if err := db.SetPages(contractAddr, title, chapter, summary, pages); err != nil {
 			logger.Error("error occuered in SetPages", zap.Error(err))
 			return err
 		}
