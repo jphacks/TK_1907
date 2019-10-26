@@ -20,6 +20,7 @@ import (
 
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/config"
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/database"
+	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/ethereum"
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/node"
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/router"
 )
@@ -33,10 +34,11 @@ func main() {
 	flag.Parse()
 
 	var cfg = struct {
-		CPU     int
-		DB      database.Config
-		Node    node.Config
-		Storage storage.Config
+		CPU      int
+		DB       database.Config
+		Node     node.Config
+		Storage  storage.Config
+		Ethereum ethereum.Config
 	}{}
 	config.MustNew(*confFilePath, &cfg)
 	logger.Info("Config was loaded.", zap.Any("config", cfg))
@@ -51,7 +53,12 @@ func main() {
 	if err != nil {
 		logger.Panic("Error", zap.Error(err))
 	}
-	e := router.Init(db, s)
+	eth, err := ethereum.New(cfg.Ethereum.Endpoint)
+	defer eth.Close()
+	if err != nil {
+		logger.Panic("Error", zap.Error(err))
+	}
+	e := router.Init(db, s, eth)
 
 	go func() {
 		if err := e.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))); err != nil {

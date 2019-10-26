@@ -16,6 +16,7 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
 
+	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/ethereum"
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/logger"
 	"go.uber.org/zap"
 
@@ -30,7 +31,7 @@ func HealthCheck() echo.HandlerFunc {
 }
 
 // UploadImage ...
-func UploadImage(db database.Database, s storage.Storage) echo.HandlerFunc {
+func UploadImage(db database.Database, s storage.Storage, eth ethereum.Ethereum) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		title := c.FormValue("title")
 		chapter := c.FormValue("chapter")
@@ -47,8 +48,12 @@ func UploadImage(db database.Database, s storage.Storage) echo.HandlerFunc {
 			return err
 		}
 
-		// TODO ContractAddress導出
-		contractAddr := "0x00000000000000000000"
+		salt, _ := strconv.ParseUint(nonce, 10, 64)
+		contractAddr, err := ethereum.GetDeploymentAddress(eth, salt, sender)
+		if err != nil {
+			logger.Error("GetDeploymentAddress failed", zap.Error(err))
+			return err
+		}
 
 		file, err := c.FormFile("file")
 		if err != nil {
