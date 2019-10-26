@@ -91,6 +91,7 @@ export default {
       }
     }
   },
+  middleware: 'authenticated',
   data() {
     return {
       comic: {},

@@ -7,9 +7,50 @@
         </a>
       </h1>
     </div>
+    <Login @click="login" />
   </header>
 </template>
 
+
+<script>
+import firebase from "@/plugins/firebase";
+import "firebase/auth";
+
+export default {
+  components: {
+    Login: () => import("./Login")
+  },
+  methods: {
+    async login() {
+      var provider = new firebase.auth.TwitterAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(result => {
+          //   commit(
+          //     "login",
+          //     result.credential.accessToken,
+          //     result.credential.secret,
+          //     result.user
+          //   );
+          this.$router.push("/upload");
+        })
+        .catch(error => {
+          console.error(error);
+          // TODO: display error message
+          // this.error = { ...error };
+
+          // {
+          //   code,
+          //   message,
+          //   email, // The email of the user's account used.
+          //   credential, // The firebase.auth.AuthCredential type that was used.
+          // }
+        });
+    }
+  }
+};
+</script>
 
 <style>
 @charset "UTF-8";
@@ -46,16 +87,8 @@ header .rapper_form_header {
   display: flex;
   align-items: center;
 }
-header .input_key_header {
-  border: none;
-  border-radius: 4px;
-  appearance: none;
-  height: 41px;
-  padding: 4px 10px;
-  background: #fff;
-  width: 500px;
-}
-header .button_go_header {
+
+header .button_login_header {
   background: #fff100;
   height: 40px;
   font-family: "Oswald", sans-serif;

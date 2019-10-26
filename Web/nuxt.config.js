@@ -22,6 +22,19 @@ export default {
    */
   loading: { color: "#3B8070" },
   /*
+   ** environment varials
+   */
+  env: {
+    API_KEY: "AIzaSyDDQlPaf74PVMQhYtVvlr9EZ8e9nuaW2K8",
+    AUTH_DOMAIN: "marine-dev.firebaseapp.com",
+    DATABASE_URL: "https://marine-dev.firebaseio.com",
+    PROJECT_ID: "marine-dev",
+    STORAGE_BUCKET: "marine-dev.appspot.com",
+    MESSAGING_SENDER: "23225479459",
+    APP_ID: "1:23225479459:web:88c0b15d099ee08c1fdc96",
+    MEASUREMENT_ID: "G-7BE66T8Z8F"
+  },
+  /*
    ** Build configuration
    */
   build: {

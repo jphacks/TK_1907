@@ -64,6 +64,11 @@ export default {
 };
 </script>
 
+<script>
+export default {
+  middleware: 'authenticated'
+}
+</script>
 
 <style>
 @charset "UTF-8";

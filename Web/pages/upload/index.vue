@@ -35,7 +35,8 @@
 export default {
   components: {
     FileUpload: () => import("~/components/FileUpload.vue")
-  }
+  },
+  middleware: 'authenticated'
   // TODO: サーバと繋がったらコメント外す
   // beforeCreate() {
   //   if (!this.$store.state.isLogin) {

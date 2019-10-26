@@ -13,7 +13,6 @@
         <p class="description_top">
           Next Gen Completely Transparent & Fair Comic Platform
         </p>
-        <login />
       </div>
     </section>
 
@@ -114,7 +113,6 @@
 <script>
 export default {
   components: {
-    Login: () => import("~/components/Login.vue"),
     Comics: () => import("~/components/Comics.vue")
   }
 };
