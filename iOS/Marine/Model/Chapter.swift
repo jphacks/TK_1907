@@ -29,11 +29,12 @@ class Chapter: Identifiable {
     }
 
     typealias Identity = String
-    var identity: Identity = UUID().uuidString
+    var identity: Identity
     var title: String
     var thumbnail: String
 
-    init(title: String, thumbnail: String) {
+    init(identifier: String, title: String, thumbnail: String) {
+        self.identity = identifier
         self.title = title
         self.thumbnail = thumbnail
     }
@@ -42,6 +43,7 @@ class Chapter: Identifiable {
         guard let dictionary = document.data() as? [String : Any],
             let title = dictionary["Title"] as? String,
             let thumbnail = dictionary["Thumbnail"] as? String else { return nil }
+        self.identity = document.documentID
         self.title = title
         self.thumbnail = thumbnail
     }
