@@ -21,7 +21,7 @@ struct BookQueryResult {
     }
 }
 
-final class Book: Identifiable {
+class Book: Identifiable {
 
     static func == (lhs: Book, rhs: Book) -> Bool {
         return lhs.identity == rhs.identity
@@ -29,12 +29,15 @@ final class Book: Identifiable {
 
     typealias Identity = String
     var identity: Identity = UUID().uuidString
+    var title: String
 
-    init() {
-
+    init(title: String) {
+        self.title = title
     }
 
     init?(document: DocumentSnapshot) {
-
+        guard let dictionary = document.data() as? [String : Any],
+            let title = dictionary["Title"] as? String else { return nil }
+        self.title = title
     }
 }
