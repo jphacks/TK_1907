@@ -1,9 +1,7 @@
-//const MultiSigMofNFactory = artifacts.require("./MultiSigMofNFactory.sol");
-//const ForwarderFactory = artifacts.require("./ForwarderFactory.sol");
+const MarineCore = artifacts.require("./MarineCore.sol");
 
 module.exports = async (deployer, network, accounts) => {
   deployer.then(async () => {
-    //await deployer.deploy(MultiSigMofNFactory);
-    //await deployer.deploy(ForwarderFactory);
+    await deployer.deploy(MarineCore);
   })
 };

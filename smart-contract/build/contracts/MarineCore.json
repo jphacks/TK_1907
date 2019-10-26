@@ -4680,9 +4680,16 @@
     "name": "solc",
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x12fa65dfA4B70A013ea491ede97a7138e53e6623",
+      "transactionHash": "0x6cd734e8a429e11fe55902fdd5797ba55b9df9ceafccc375fe9b115634359288"
+    }
+  },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-10-26T03:04:51.633Z",
+  "updatedAt": "2019-10-26T03:10:57.858Z",
   "devdoc": {
     "methods": {
       "reclaimEther()": {
