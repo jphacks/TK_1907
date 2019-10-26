@@ -48,6 +48,14 @@ extension HomeViewController: StoryboardView {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
 
+        collectionView.rx.modelSelected(CellItem.self)
+            .subscribe(onNext: { cellItem in
+                if case let CellItem.book(book) = cellItem {
+                    
+                }
+            })
+            .disposed(by: disposeBag)
+
         // STATE
         let dataSource = createDataSource(reactor: reactor)
         reactor.state.asObservable()

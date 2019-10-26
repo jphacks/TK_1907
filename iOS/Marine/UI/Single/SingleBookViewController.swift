@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import ReactorKit
+import RxCocoa
+import RxDataSources
+import RxSwift
+import SwinjectStoryboard
 
-final class SingleBookViewController: UIViewController {
+final class SingleBookViewController: UIViewController, StoryboardInstantiate {
+
+    static var storyboardName: StoryboardName = .single
 
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
