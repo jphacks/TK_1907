@@ -7,15 +7,24 @@
 //
 
 import ReactorKit
-import RxDataSource
+import RxDataSources
 import RxSwift
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
+
+    var disposeBag: DisposeBag = DisposeBag()
+    
+    @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+}
+
+extension HomeViewController: StoryboardView {
+    func bind(reactor: HomeViewReactor) {
+        
     }
 }

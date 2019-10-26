@@ -14,7 +14,7 @@
 		114B92512363D579007DE4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 114B924F2363D579007DE4A4 /* Main.storyboard */; };
 		114B92532363D57A007DE4A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 114B92522363D57A007DE4A4 /* Assets.xcassets */; };
 		114B92562363D57A007DE4A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 114B92542363D57A007DE4A4 /* LaunchScreen.storyboard */; };
-		6FBF51D166A2A4E5E07989AE /* Pods_Marine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9230D73A0E20059D9CABBC78 /* Pods_Marine.framework */; };
+		E9EC47885DC7038B3E102953 /* Pods_Marine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94451D3B24745EF47C578302 /* Pods_Marine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +27,9 @@
 		114B92522363D57A007DE4A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		114B92552363D57A007DE4A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		114B92572363D57A007DE4A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D3DF9CFFCB5214C8D92DFAE /* Pods-Marine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marine.release.xcconfig"; path = "Target Support Files/Pods-Marine/Pods-Marine.release.xcconfig"; sourceTree = "<group>"; };
-		9230D73A0E20059D9CABBC78 /* Pods_Marine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D07AA009EAE95CA82AE9898 /* Pods-Marine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marine.debug.xcconfig"; path = "Target Support Files/Pods-Marine/Pods-Marine.debug.xcconfig"; sourceTree = "<group>"; };
+		2115B27A63AA51501BA388BD /* Pods-Marine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marine.debug.xcconfig"; path = "Target Support Files/Pods-Marine/Pods-Marine.debug.xcconfig"; sourceTree = "<group>"; };
+		94451D3B24745EF47C578302 /* Pods_Marine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D791D4AB253062BD2D8B7ADB /* Pods-Marine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marine.release.xcconfig"; path = "Target Support Files/Pods-Marine/Pods-Marine.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FBF51D166A2A4E5E07989AE /* Pods_Marine.framework in Frameworks */,
+				E9EC47885DC7038B3E102953 /* Pods_Marine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +92,7 @@
 				114B92482363D579007DE4A4 /* Marine */,
 				114B92472363D579007DE4A4 /* Products */,
 				389C0B16069C27C6F0BFC815 /* Pods */,
-				E30CFF4D7EA9C2AA0CDB18D1 /* Frameworks */,
+				CE6DBF5E8E2B905DB63C39B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,16 +120,16 @@
 		389C0B16069C27C6F0BFC815 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9D07AA009EAE95CA82AE9898 /* Pods-Marine.debug.xcconfig */,
-				2D3DF9CFFCB5214C8D92DFAE /* Pods-Marine.release.xcconfig */,
+				2115B27A63AA51501BA388BD /* Pods-Marine.debug.xcconfig */,
+				D791D4AB253062BD2D8B7ADB /* Pods-Marine.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E30CFF4D7EA9C2AA0CDB18D1 /* Frameworks */ = {
+		CE6DBF5E8E2B905DB63C39B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9230D73A0E20059D9CABBC78 /* Pods_Marine.framework */,
+				94451D3B24745EF47C578302 /* Pods_Marine.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,11 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 114B925A2363D57A007DE4A4 /* Build configuration list for PBXNativeTarget "Marine" */;
 			buildPhases = (
-				CF2513650717D9F9CF6D0FE0 /* [CP] Check Pods Manifest.lock */,
+				25481A77CCCD3F23D4DC5766 /* [CP] Check Pods Manifest.lock */,
 				114B92422363D579007DE4A4 /* Sources */,
 				114B92432363D579007DE4A4 /* Frameworks */,
 				114B92442363D579007DE4A4 /* Resources */,
-				6EFE5133776555FB3C34BE65 /* [CP] Embed Pods Frameworks */,
+				5F71AB6FF7D549A2756058FF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,24 +203,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6EFE5133776555FB3C34BE65 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Marine/Pods-Marine-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Marine/Pods-Marine-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Marine/Pods-Marine-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF2513650717D9F9CF6D0FE0 /* [CP] Check Pods Manifest.lock */ = {
+		25481A77CCCD3F23D4DC5766 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -240,6 +223,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F71AB6FF7D549A2756058FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marine/Pods-Marine-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marine/Pods-Marine-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Marine/Pods-Marine-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -394,7 +394,7 @@
 		};
 		114B925B2363D57A007DE4A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D07AA009EAE95CA82AE9898 /* Pods-Marine.debug.xcconfig */;
+			baseConfigurationReference = 2115B27A63AA51501BA388BD /* Pods-Marine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -413,7 +413,7 @@
 		};
 		114B925C2363D57A007DE4A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D3DF9CFFCB5214C8D92DFAE /* Pods-Marine.release.xcconfig */;
+			baseConfigurationReference = D791D4AB253062BD2D8B7ADB /* Pods-Marine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
