@@ -4,10 +4,10 @@
     <section id="detail">
       <div class="wrapper_contents_detail">
         <div class="thumbnail_book_detail">
-          <img :src="'https://ipfs.io/ipfs/' + comic.imageHashes[0]" />
+          <img :src="comics[0].thumbnail" />
         </div>
         <div class="info_detail">
-          <h2 class="title_book_detail">{{ comic.title }}</h2>
+          <h2 class="title_book_detail">{{ comics[0].title }}</h2>
           <p class="description_book_detail">
             黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!
           </p>
@@ -27,11 +27,11 @@
     </section>
 
     <!-- archives -->
-    <section id="archives">
+    <!-- <section id="archives">
       <ul class="wrapper_contents_archives">
         <li
           class="each_book_archives"
-          v-for="(hash, index) in comic.imageHashes"
+          v-for="(hash, index) in comic"
           :key="index"
         >
           <article class="thumbnail_archives">
@@ -39,12 +39,15 @@
           </article>
         </li>
       </ul>
-    </section>
+    </section> -->
   </div>
 </template>
 
 
 <script>
+import { db } from "~/plugins/firebase";
+import { mapState } from "vuex";
+
 // import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
 // const config = {
@@ -57,20 +60,31 @@
 // Neon.add.network(privateNet);
 
 export default {
-  created() {
-    for (let i = 0; i < this.$store.state.comics.length; i++) {
-      if (this.$route.params.id === this.$store.state.comics[i]["hash"]) {
-        this.comic = this.$store.state.comics[i];
-        break;
-      }
-    }
-  },
   data() {
     return {
       comic: {},
       address: ""
     };
   },
+  asyncData(context) {
+    var chapters = [];
+    db.collection("Books")
+      .doc(`${context.route.params.id}`)
+      .collection("Chapters")
+      .get()
+      .then(querySnapShot => {
+        querySnapShot.forEach(chapter => {
+          const chap = {
+            chapterNumber: chapter.data().ChapterNumber,
+            thumbnail: chapter.data().Thumbnail,
+            title: chapter.data().Title
+          };
+          chapters = [...chapters, chap];
+        });
+        return { comic: chapters };
+      });
+  },
+  computed: mapState(["comics"]),
   methods: {
     vote() {
       let account = new wallet.Account(this.$store.state.privateKey);

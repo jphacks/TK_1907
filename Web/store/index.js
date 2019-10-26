@@ -12,41 +12,43 @@ export const mutations = {
   login(state, token, secret, user) {
     state.token = token;
     state.secret = secret;
-    state.user = { ...user };
+    state.user = user;
     state.isLogin = true;
   },
   logout(state) {
-    state.token = '';
-    state.secret = '';
+    state.token = "";
+    state.secret = "";
     state.user = null;
     state.isLogin = false;
   },
   setComics(state, comics) {
     state.comics = comics;
+  },
+  addComic(state, comic) {
+    state.comics = [...state.comics, comic];
   }
 };
 
 export const actions = {
-  login({ commit }, user) {
-    commit('login', user)
+  login({ commit }, token, secret, user) {
+    commit("login", token, secret, user);
   },
   async logout({ commit }) {
-    await firebase.auth().signOut().then(() => {
-      commit('logout');
-    }).catch(error => {
-      // TODO: display error message
-      console.error(error);
-    });
+    await firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        commit("logout");
+      })
+      .catch(error => {
+        // TODO: display error message
+        console.error(error);
+      });
   },
-  async getComics({ commit }) {
-    let comics = null;
-    try {
-      comics = (await db.collection('Books')).data();
-    } catch(error) {
-      // TODO: display error message
-      console.error(error);
-    }
-    commit('setComics', comics);
-    return comics;
+  setComics({ commit }, comics) {
+    commit("setComics", comics);
+  },
+  addComic({ commit }, comic) {
+    commit("addComic", comic);
   }
-}
+};

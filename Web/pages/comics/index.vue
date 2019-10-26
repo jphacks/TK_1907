@@ -24,12 +24,7 @@ export default {
   components: {
     Comics: () => import("~/components/Comics.vue")
   },
-  // TODO: サーバと繋がったらコメント外す
-  // beforeCreate() {
-  //   if (!this.$store.state.isLogin) {
-  //     this.$router.push("/");
-  //   }
-  // },
+  middleware: "comics",
   methods: {
     goUpload() {
       this.$router.push("/upload");
@@ -40,8 +35,8 @@ export default {
 
 <script>
 export default {
-  middleware: 'authenticated'
-}
+  middleware: "authenticated"
+};
 </script>
 
 <style>

@@ -7,15 +7,7 @@
 
 <script>
 export default {
-  components: {
-    FileUpload: () => import("~/components/FileUpload.vue")
-  }
-  // TODO: サーバと繋がったらコメント外す
-  // beforeCreate() {
-  //   if (!this.$store.state.isLogin) {
-  //     this.$router.push("/");
-  //   }
-  // },
+  components: { FileUpload: () => import("~/components/FileUpload.vue") }
 };
 </script>
 

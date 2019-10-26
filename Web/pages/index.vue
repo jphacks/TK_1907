@@ -88,7 +88,8 @@
 export default {
   components: {
     Comics: () => import("~/components/Comics.vue")
-  }
+  },
+  middleware: "comics"
 };
 </script>
 

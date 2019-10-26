@@ -7,8 +7,8 @@
         :key="index"
       >
         <article class="thumbnail_archives">
-          <div @click="goDetail(comic.hash)">
-            <img :src="'https://ipfs.io/ipfs/' + comic.imageHashes[0]" />
+          <div @click="goDetail(comic.id)">
+            <img :src="comic.thumbnail" />
           </div>
         </article>
       </li>
@@ -20,18 +20,18 @@
 <script>
 import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
-async function getComics(shash) {
-  const props = {
-    scriptHash: shash, // Scripthash for the contract
-    operation: "getData", // name of operation to perform.
-    args: [] // any optional arguments to pass in. If null, use empty array.
-  };
-  let script = Neon.create.script(props);
-  let res = await rpc.Query.invokeScript(Neon.create.script(props)).execute(
-    "http://localhost:30333"
-  );
-  return JSON.parse("[" + u.hexstring2str(res.result.stack[0].value) + "]");
-}
+// async function getComics(shash) {
+//   const props = {
+//     scriptHash: shash, // Scripthash for the contract
+//     operation: "getData", // name of operation to perform.
+//     args: [] // any optional arguments to pass in. If null, use empty array.
+//   };
+//   let script = Neon.create.script(props);
+//   let res = await rpc.Query.invokeScript(Neon.create.script(props)).execute(
+//     "http://localhost:30333"
+//   );
+//   return JSON.parse("[" + u.hexstring2str(res.result.stack[0].value) + "]");
+// }
 
 export default {
   // async beforeCreate() {
@@ -39,8 +39,8 @@ export default {
   //   this.$store.commit("setComics", comics);
   // },
   methods: {
-    goDetail(hash) {
-      this.$router.push("/comics/" + hash);
+    goDetail(id) {
+      this.$router.push("/comics/" + id);
     }
   }
 };
