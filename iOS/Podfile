@@ -1,0 +1,60 @@
+platform :ios, '11.0'
+use_frameworks!
+
+def install_pods
+
+    # Firebase
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/Firestore'
+    pod 'Firebase/Analytics'
+    pod 'Fabric', '~> 1.10.2'
+    pod 'Crashlytics', '~> 3.13.4'
+    pod 'Firebase/DynamicLinks'
+
+    # Store
+    pod 'RealmSwift'
+
+    # Data
+    pod 'AlamofireImage', '~> 3.5'
+
+    # DI
+    pod 'Swinject', '2.6.0'
+    pod 'SwinjectAutoregistration', '2.6.0'
+    pod 'SwinjectStoryboard'
+    
+    # Rx
+    pod 'ReactorKit'
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'RxOptional'
+    pod 'RxViewController'
+    pod 'RxDataSources'
+    pod 'RxRealm'
+    
+    # Rx * Firebase
+    pod 'RxFirebase/Firestore'
+    pod 'RxFirebase/Storage'
+    pod 'RxFirebase/Auth'
+    
+    # UI / UX
+    pod 'lottie-ios'
+    pod 'XLPagerTabStrip'
+    pod 'IQKeyboardManagerSwift'
+    # pod 'TapticEngine'
+    pod 'OneSignal', '>= 2.11.0', '< 3.0'
+    pod 'CropViewController'
+    pod 'FaveButton'
+    pod 'WaterfallLayout', '~> 0.1'
+    pod 'ImageSlideshow', '~> 1.8.1'
+    pod "ImageSlideshow/Kingfisher"
+
+    # LICENSE
+    pod 'AcknowList'
+end
+
+target 'Marine' do
+  install_pods
+end
