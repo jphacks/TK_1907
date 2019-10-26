@@ -12,17 +12,17 @@ contract ComicAccount  {
   mapping(address => uint256) public acquiredVotes;
 
   struct Status {
-    bool alreadyVoted,
+    bool alreadyVoted;
     address votedTo;
   }
   mapping(address => Status) public votingStatus;
 
   enum Recipients {
-    Uploder,
+    Uploader,
     Creator,
-    Voter,
+    Voter
   }
-  mapping(Recipients => uint256) public balanceOf;
+  mapping(uint256 => uint256) public balanceOf;
 
   event Initialized();
 
@@ -31,13 +31,13 @@ contract ComicAccount  {
   // The fallback function for this contract.
   function() external payable {
     // TODO refactor
-    balanceOf[Recipients.Creator] = msg.value;
+    balanceOf[uint256(Recipients.Creator)] = msg.value;
     if (uploader != address(0)) {
-      balanceOf[Recipients.Uploder] += msg.value.div(10).mul(1);
-      balanceOf[Recipients.Creator] -= msg.value.div(10).mul(1);
+      balanceOf[uint256(Recipients.Uploader)] += msg.value.div(10).mul(1);
+      balanceOf[uint256(Recipients.Creator)] -= msg.value.div(10).mul(1);
     }
-    balanceOf[Recipients.Voter] += msg.value.div(10).mul(1);
-    balanceOf[Recipients.Creator] -= msg.value.div(10).mul(1);
+    balanceOf[uint256(Recipients.Voter)] += msg.value.div(10).mul(1);
+    balanceOf[uint256(Recipients.Creator)] -= msg.value.div(10).mul(1);
   }
 
   function initialize(address payable _uploader) public {
@@ -58,40 +58,37 @@ contract ComicAccount  {
 
   function beCandidate() public {
     require(!isCandidate[msg.sender], "msg.sender is already a candidate");
-    isCandidate[msg.sender] = true
+    isCandidate[msg.sender] = true;
     candidates.push(msg.sender);
   }
 
-  function getCurrentCreator() public (address) {
-    require(candidates.length != 0, "there is no candidates")
+  function getCurrentCreator() public view returns (address) {
+    require(candidates.length != 0, "there is no candidates");
     uint256 highest = 0;
     address creator;
     for(uint256 i = 0; i < candidates.length; i++) {
       uint256 amount = acquiredVotes[candidates[i]];
-      if highest < amount {
+      if (highest < amount) {
         highest = amount;
         creator = candidates[i];
       }
     }
-    require(creator != address(0), "creator address is zero address")
+    require(creator != address(0), "creator address is zero address");
     return creator;
   }
 
   function withdraw() public {
-    require(uploader != address(0), "uploader is not yet defined")
+    require(uploader != address(0), "uploader is not yet defined");
     address creator = getCurrentCreator();
     if (uploader == msg.sender) {
-      msg.sender.tranfer(balanceOf[Recipients.Uploder]);
+      msg.sender.transfer(balanceOf[uint256(Recipients.Uploader)]);
     }
     if (creator == msg.sender) {
-      msg.sender.tranfer(balanceOf[Recipients.Creator]);
-    }
-    if (creator == msg.sender) {
-      msg.sender.tranfer(balanceOf[Recipients.Creator]);
+      msg.sender.transfer(balanceOf[uint256(Recipients.Creator)]);
     }
     if (votingStatus[msg.sender].votedTo == creator) {
-      uint256 amount = balanceOf[Recipients.Voter].div(acquiredVotes[creator]);
-      msg.sender.tranfer(amount);
+      uint256 amount = balanceOf[uint256(Recipients.Voter)].div(acquiredVotes[creator]);
+      msg.sender.transfer(amount);
     }
   }
 }
