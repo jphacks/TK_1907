@@ -6,6 +6,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Anja Eliane accent002.ttf">
+            <string>AnjaElianeaccent-Nornal</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,12 +21,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="434" height="126"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header-image" translatesAutoresizingMaskIntoConstraints="NO" id="9Ub-BI-vMZ">
-                        <rect key="frame" x="5" y="0.0" width="423" height="126"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="9Ub-BI-vMZ">
+                        <rect key="frame" x="5" y="0.0" width="424" height="126"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="YiN-pK-BIR">
+                        <rect key="frame" x="116.5" y="52" width="201.5" height="32.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Marine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfb-uW-tW6">
+                                <rect key="frame" x="0.0" y="0.0" width="106" height="32.5"/>
+                                <fontDescription key="fontDescription" name="AnjaElianeaccent-Nornal" family="Anja Eliane accent" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ってなに？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yza-lu-P14">
+                                <rect key="frame" x="112" y="0.0" width="89.5" height="32.5"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="YiN-pK-BIR" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="fpj-3I-oml"/>
+                <constraint firstItem="YiN-pK-BIR" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="hK9-ek-Yjb"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="434" height="126"/>
             <connections>
@@ -31,6 +57,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="header-image" width="1179" height="340"/>
+        <image name="launch" width="1080" height="1920"/>
     </resources>
 </document>
