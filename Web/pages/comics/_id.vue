@@ -48,17 +48,6 @@
 import { db } from "~/plugins/firebase";
 import { mapState } from "vuex";
 
-// import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
-
-// const config = {
-//   name: "http://127.0.0.1:30333",
-//   extra: {
-//     neoscan: "http://127.0.0.1:4000/api/main_net"
-//   }
-// };
-// const privateNet = new rpc.Network(config);
-// Neon.add.network(privateNet);
-
 export default {
   data() {
     return {

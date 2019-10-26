@@ -18,7 +18,6 @@
 
 
 <script>
-import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
 // async function getComics(shash) {
 //   const props = {
