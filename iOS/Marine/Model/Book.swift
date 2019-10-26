@@ -44,6 +44,10 @@ class Book: Identifiable {
             let thumbnail = dictionary["Thumbnail"] as? String else { return nil }
         self.identity = document.documentID
         self.title = title
-        self.thumbnail = thumbnail
+        if let encodedUrl = thumbnail.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed) {
+            self.thumbnail = encodedUrl
+        } else {
+            self.thumbnail = ""
+        }
     }
 }
