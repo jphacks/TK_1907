@@ -39,7 +39,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQ1-8g-cva">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="320"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hru-BJ-mHS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hru-BJ-mHS">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="320"/>
                                     </imageView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVT-cv-Saz">
@@ -51,13 +51,13 @@
                                         <blurEffect style="dark"/>
                                     </visualEffectView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PYf-4M-ssI">
-                                        <rect key="frame" x="26" y="72" width="133.5" height="176"/>
+                                        <rect key="frame" x="32" y="82" width="133.5" height="176"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="PYf-4M-ssI" secondAttribute="height" multiplier="25:33" id="pTt-iZ-hwE"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOS-R2-txc">
-                                        <rect key="frame" x="171.5" y="150" width="230.5" height="20"/>
+                                        <rect key="frame" x="177.5" y="160" width="224.5" height="20"/>
                                         <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -65,7 +65,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="PYf-4M-ssI" firstAttribute="leading" secondItem="oQ1-8g-cva" secondAttribute="leading" constant="26" id="0cn-RF-dSc"/>
+                                    <constraint firstItem="PYf-4M-ssI" firstAttribute="leading" secondItem="oQ1-8g-cva" secondAttribute="leading" constant="32" id="0cn-RF-dSc"/>
                                     <constraint firstItem="iOS-R2-txc" firstAttribute="leading" secondItem="PYf-4M-ssI" secondAttribute="trailing" constant="12" id="1eQ-2e-SEL"/>
                                     <constraint firstItem="hru-BJ-mHS" firstAttribute="top" secondItem="oQ1-8g-cva" secondAttribute="top" id="32w-U8-3GP"/>
                                     <constraint firstAttribute="bottom" secondItem="fVT-cv-Saz" secondAttribute="bottom" id="4rA-I8-VQR"/>
@@ -74,10 +74,10 @@
                                     <constraint firstAttribute="height" constant="320" id="Fe7-30-otn"/>
                                     <constraint firstItem="hru-BJ-mHS" firstAttribute="leading" secondItem="oQ1-8g-cva" secondAttribute="leading" id="MTF-FO-vQP"/>
                                     <constraint firstItem="fVT-cv-Saz" firstAttribute="top" secondItem="oQ1-8g-cva" secondAttribute="top" id="VJL-yl-ozB"/>
-                                    <constraint firstItem="PYf-4M-ssI" firstAttribute="top" secondItem="oQ1-8g-cva" secondAttribute="top" constant="72" id="euP-OZ-es5"/>
+                                    <constraint firstItem="PYf-4M-ssI" firstAttribute="top" secondItem="oQ1-8g-cva" secondAttribute="top" constant="82" id="euP-OZ-es5"/>
                                     <constraint firstAttribute="trailing" secondItem="hru-BJ-mHS" secondAttribute="trailing" id="iad-qX-kgW"/>
                                     <constraint firstAttribute="trailing" secondItem="fVT-cv-Saz" secondAttribute="trailing" id="jLs-1I-Hwj"/>
-                                    <constraint firstAttribute="bottom" secondItem="PYf-4M-ssI" secondAttribute="bottom" constant="72" id="oj5-ev-ZKE"/>
+                                    <constraint firstAttribute="bottom" secondItem="PYf-4M-ssI" secondAttribute="bottom" constant="62" id="oj5-ev-ZKE"/>
                                     <constraint firstAttribute="bottom" secondItem="hru-BJ-mHS" secondAttribute="bottom" id="xYG-rc-IE3"/>
                                     <constraint firstAttribute="trailing" secondItem="iOS-R2-txc" secondAttribute="trailing" constant="12" id="z7N-UP-0N6"/>
                                 </constraints>

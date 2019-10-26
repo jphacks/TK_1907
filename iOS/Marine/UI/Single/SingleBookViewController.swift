@@ -30,8 +30,6 @@ final class SingleBookViewController: UIViewController, StoryboardInstantiate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +76,25 @@ extension SingleBookViewController: StoryboardView {
                     AppDelegate.instance().showActivityIndicator(fullScreen: false)
                 } else {
                     AppDelegate.instance().dismissActivityIndicator()
+                }
+            })
+            .disposed(by: disposeBag)
+
+        reactor.state.asObservable()
+            .map { $0.book }
+            .subscribe(onNext: { book in
+                self.bookTitleLabel.text = book.title
+                if let url = URL(string: book.thumbnail) {
+                    self.thumbnailImageView.af_setImage(
+                        withURL: url,
+                        placeholderImage: nil,
+                        imageTransition: .crossDissolve(0.2)
+                    )
+                    self.backgroundImageView.af_setImage(
+                        withURL: url,
+                        placeholderImage: nil,
+                        imageTransition: .crossDissolve(0.2)
+                    )
                 }
             })
             .disposed(by: disposeBag)

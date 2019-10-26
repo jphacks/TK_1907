@@ -47,7 +47,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Marine" id="4aU-sC-Rxx"/>
+                    <navigationItem key="navigationItem" title="Marine" id="4aU-sC-Rxx">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Q01-6f-sit"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="gjj-4q-khX" id="1Nc-Rv-r8X"/>
                     </connections>
