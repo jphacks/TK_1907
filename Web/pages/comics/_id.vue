@@ -12,15 +12,8 @@
             黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!
           </p>
           <div class="wrapper_form_header">
-            <input
-              class="input_key_header"
-              type=""
-              name=""
-              placeholder="Enter address here."
-              v-model="address"
-            />
-            <button class="button_upload_header" @click="vote">Vote</button>
-            <button class="withdraw" @click="withdraw">Withdraw</button>
+            <Button @click="vote" title="投票する" />
+            <Button @click="candidate" title="立候補する" />
           </div>
         </div>
       </div>
@@ -49,6 +42,9 @@ import { db } from "~/plugins/firebase";
 import { mapState } from "vuex";
 
 export default {
+  components: {
+    Button: () => import("~/components/atoms/Button")
+  },
   data() {
     return {
       comic: {},

@@ -17,7 +17,7 @@
     </section>
 
     <!-- comics -->
-    <comics />
+    <Comics :comics="comics" />
 
     <!-- introduction -->
     <section id="introduction">
@@ -85,11 +85,13 @@
 
 
 <script>
+import { mapState } from "vuex";
 export default {
   components: {
     Comics: () => import("~/components/Comics.vue")
   },
-  middleware: "comics"
+  middleware: "comics",
+  computed: mapState(["comics"])
 };
 </script>
 
