@@ -56,13 +56,10 @@
 
 
 <script>
-import AddressUpload from "~/components/AddressUpload.vue";
-import Comics from "~/components/Comics.vue";
-
 export default {
   components: {
-    AddressUpload,
-    Comics
+    AddressUpload: () => import("~/components/AddressUpload.vue"),
+    Comics: () => import("~/components/Comics.vue")
   },
   // TODO: サーバと繋がったらコメント外す
   // beforeCreate() {

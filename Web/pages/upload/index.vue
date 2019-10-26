@@ -46,13 +46,10 @@
 
 
 <script>
-import AddressUpload from "~/components/AddressUpload.vue";
-import FileUpload from "~/components/FileUpload.vue";
-
 export default {
   components: {
-    AddressUpload,
-    FileUpload
+    AddressUpload: () => import("~/components/AddressUpload.vue"),
+    FileUpload: () => import("~/components/FileUpload.vue")
   }
   // TODO: サーバと繋がったらコメント外す
   // beforeCreate() {

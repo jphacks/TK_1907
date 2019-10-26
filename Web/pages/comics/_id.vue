@@ -73,7 +73,6 @@
 
 
 <script>
-import AddressUpload from "~/components/AddressUpload.vue";
 import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
 const config = {
@@ -87,7 +86,7 @@ Neon.add.network(privateNet);
 
 export default {
   components: {
-    AddressUpload
+    AddressUpload: () => import("~/components/AddressUpload.vue")
   },
   created() {
     for (let i = 0; i < this.$store.state.comics.length; i++) {

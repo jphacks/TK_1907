@@ -84,11 +84,9 @@ Gives the author the profit that it was originally unable to obtain due to the p
 </template>
 
 <script>
-import Login from "~/components/Login.vue";
-
 export default {
   components: {
-    Login
+    Login: () => import("~/components/Login.vue")
   }
 };
 </script>
