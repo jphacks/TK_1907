@@ -64,17 +64,23 @@ extension HomeViewController: StoryboardView {
     private func createDataSource(reactor: HomeViewReactor) -> RxCollectionViewSectionedAnimatedDataSource<CustomSection> {
         return RxCollectionViewSectionedAnimatedDataSource<CustomSection>.init(animationConfiguration: AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade), configureCell: { [weak self] dataSource, table, indexPath, item in
             guard let self = self else { return UICollectionViewCell() }
-            guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
-            guard case let CellItem.book(book) = item else { return UICollectionViewCell() }
-            cell.bookTitleLabel.text = book.title
-            if let url = URL(string: book.thumbnail) {
-                cell.thumbnailImageView.af_setImage(
-                    withURL: url,
-                    placeholderImage: nil,
-                    imageTransition: .crossDissolve(0.2)
-                )
+            if case let CellItem.book(book) = item {
+                guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
+                cell.bookTitleLabel.text = book.title
+                if let url = URL(string: book.thumbnail) {
+                    cell.thumbnailImageView.af_setImage(
+                        withURL: url,
+                        placeholderImage: nil,
+                        imageTransition: .crossDissolve(0.2)
+                    )
+                }
+                return cell
+            } else if case CellItem.header = item {
+                guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "HomeHeaderCell", for: indexPath) as? HomeHeaderCollectionViewCell else { return UICollectionViewCell() }
+                return cell
             }
-            return cell
+
+            return UICollectionViewCell()
         })
     }
 }

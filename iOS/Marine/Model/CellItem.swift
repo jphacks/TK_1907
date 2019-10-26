@@ -20,9 +20,12 @@ enum CellItem: IdentifiableType, Equatable {
         switch self {
         case let .book(book):
             return book.identity
+        case .header:
+            return "HomeHeader"
         }
     }
     case book(Book)
+    case header
 }
 
 typealias CustomSection = AnimatableSectionModel<SectionID, CellItem>
