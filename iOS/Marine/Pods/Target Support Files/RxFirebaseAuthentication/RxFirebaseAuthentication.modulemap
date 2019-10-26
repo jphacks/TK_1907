@@ -1,0 +1,6 @@
+framework module RxFirebaseAuthentication {
+  umbrella header "RxFirebaseAuthentication-umbrella.h"
+
+  export *
+  module * { export * }
+}

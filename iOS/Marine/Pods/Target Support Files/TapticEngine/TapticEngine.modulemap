@@ -1,0 +1,6 @@
+framework module TapticEngine {
+  umbrella header "TapticEngine-umbrella.h"
+
+  export *
+  module * { export * }
+}
