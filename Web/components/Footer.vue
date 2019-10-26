@@ -1,21 +1,21 @@
 <template>
   <footer>
     <div class="wrapper_contents_footer">
-      <span class="copyright">©2018 Marine All Rights Reserved.</span>
+      <span class="copyright">©2019 Marine All Rights Reserved.</span>
       <h2 class="logo_footer">
-        <a href="">
+        <a href>
           <img src="~/assets/logo_header.png" title="Marine" alt="ロゴ画像" />
         </a>
       </h2>
       <div class="wrapper_right_footer">
         <ul class="sns_footer">
           <li class="each_sns">
-            <a href="">
+            <a href>
               <i class="fab fa-twitter"></i>
             </a>
           </li>
           <li class="each_sns">
-            <a href="">
+            <a href>
               <i class="fab fa-facebook-f"></i>
             </a>
           </li>

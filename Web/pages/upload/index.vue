@@ -24,13 +24,19 @@ export default {
   justify-content: center;
 }
 #detail .wrapper_contents_detail {
-  display: flex;
   margin: 0 auto;
   width: 800px;
 }
 #detail .info_detail {
   width: 100%;
-  display: flex;
+  padding-top: 60px;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+}
+#detail .upload_steps {
+  width: 100%;
+  display: block;
   flex-direction: column;
   justify-content: center;
 }

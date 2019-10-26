@@ -4,13 +4,24 @@ export default {
    */
   head: {
     titleTemplate: "%s - marine",
-    meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "Nuxt.js project" }
+    meta: [{
+        charset: "utf-8"
+      },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1"
+      },
+      {
+        hid: "description",
+        name: "description",
+        content: "Nuxt.js project"
+      }
     ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+    link: [{
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Oswald:400,700"
@@ -20,7 +31,9 @@ export default {
   /*
    ** Customize the progress bar color
    */
-  loading: { color: "#3B8070" },
+  loading: {
+    color: "#3B8070"
+  },
   /*
    ** environment varials
    */
@@ -41,7 +54,9 @@ export default {
     /*
      ** Run ESLint on save
      */
-    extend(config, { isDev }) {
+    extend(config, {
+      isDev
+    }) {
       if (isDev && process.isClient) {
         config.module.rules.push({
           enforce: "pre",
@@ -52,10 +67,14 @@ export default {
       }
     }
   },
+  plugins: [{
+    src: '~plugins/iview.js',
+    ssr: true
+  }],
   modules: [
     // Simple usage
     "nuxt-buefy",
-
+    "@nuxtjs/axios",
     [
       "nuxt-buefy",
       {
