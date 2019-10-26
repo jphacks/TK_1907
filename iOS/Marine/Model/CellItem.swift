@@ -38,6 +38,7 @@ protocol Identifiable: IdentifiableType, Equatable {
 enum SectionID: String, IdentifiableType {
     case homeHeader
     case books
+    case chapters
     var identity: String {
         return self.rawValue
     }

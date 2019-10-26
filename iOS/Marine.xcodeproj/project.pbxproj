@@ -28,6 +28,7 @@
 		11AA8CC62364482D00666218 /* SingleBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA8CC52364482D00666218 /* SingleBookViewController.swift */; };
 		11AA8CC923644BCD00666218 /* BookPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA8CC823644BCD00666218 /* BookPresentable.swift */; };
 		11AA8CCB23644CE100666218 /* Storyboard+Instantiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA8CCA23644CE100666218 /* Storyboard+Instantiate.swift */; };
+		11AA8CCD23644D4500666218 /* SingleBookViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA8CCC23644D4500666218 /* SingleBookViewReactor.swift */; };
 		E9EC47885DC7038B3E102953 /* Pods_Marine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94451D3B24745EF47C578302 /* Pods_Marine.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		11AA8CC52364482D00666218 /* SingleBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleBookViewController.swift; sourceTree = "<group>"; };
 		11AA8CC823644BCD00666218 /* BookPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPresentable.swift; sourceTree = "<group>"; };
 		11AA8CCA23644CE100666218 /* Storyboard+Instantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Instantiate.swift"; sourceTree = "<group>"; };
+		11AA8CCC23644D4500666218 /* SingleBookViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleBookViewReactor.swift; sourceTree = "<group>"; };
 		2115B27A63AA51501BA388BD /* Pods-Marine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marine.debug.xcconfig"; path = "Target Support Files/Pods-Marine/Pods-Marine.debug.xcconfig"; sourceTree = "<group>"; };
 		94451D3B24745EF47C578302 /* Pods_Marine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D791D4AB253062BD2D8B7ADB /* Pods-Marine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marine.release.xcconfig"; path = "Target Support Files/Pods-Marine/Pods-Marine.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				11AA8CC52364482D00666218 /* SingleBookViewController.swift */,
+				11AA8CCC23644D4500666218 /* SingleBookViewReactor.swift */,
 			);
 			path = Single;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				11AA8CC62364482D00666218 /* SingleBookViewController.swift in Sources */,
 				114B924A2363D579007DE4A4 /* AppDelegate.swift in Sources */,
 				114B924C2363D579007DE4A4 /* SceneDelegate.swift in Sources */,
+				11AA8CCD23644D4500666218 /* SingleBookViewReactor.swift in Sources */,
 				1141FAE32363E5340031DC24 /* HomeViewController.swift in Sources */,
 				1102EAA72363ECA300845DC2 /* CellItem.swift in Sources */,
 			);
