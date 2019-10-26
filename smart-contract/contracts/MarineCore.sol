@@ -10,8 +10,8 @@ contract MarineCore {
 
   bytes32 private contractCodeHash;
 	mapping(address => uint256) public comicViews;
-	uint256 totalViews;
-  ComicAccount[] comics;
+	uint256 public totalViews;
+  ComicAccount[] public comics;
 
   constructor() public {
     contractCodeHash = keccak256(
@@ -20,11 +20,13 @@ contract MarineCore {
   }
 
   function() external payable {
-		for (uint256 i = 0; i < comics.length; i++) {
+    for (uint256 i = 0; i < comics.length; i++) {
       address payable comic = address(comics[i]);
-			uint256 reward = msg.value.div(totalViews).mul(comicViews[comic]);
-			comic.transfer(reward);
-		}
+      uint256 reward = msg.value.div(totalViews).mul(comicViews[comic]);
+      (bool success, bytes memory _) = comic.call.value(reward).gas(200000)("");
+      require(success, "ether transfer failed");
+      _;
+    }
   }
 
   function createComicAccount(uint256 _salt) public returns (address) {

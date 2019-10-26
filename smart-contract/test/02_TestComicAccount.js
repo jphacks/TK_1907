@@ -10,7 +10,7 @@ const {
   deposit,
 } = require("./utils/utils.js");
 
-contract.only("02_TestComicAccount", async (accounts) => {
+contract("02_TestComicAccount", async (accounts) => {
   let comicAccount;
   beforeEach(async () => {
     try {
@@ -106,7 +106,7 @@ contract.only("02_TestComicAccount", async (accounts) => {
     }
   });
 
-  it.only("can accept ether", async () => {
+  it("can accept ether", async () => {
     try {
       await comicAccount.beCandidate({from: accounts[1]});
       await comicAccount.vote(accounts[1], {from: accounts[2]});
