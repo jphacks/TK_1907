@@ -53,7 +53,12 @@ func main() {
 	if err != nil {
 		logger.Panic("Error", zap.Error(err))
 	}
-	e := router.Init(db, s)
+	eth, err := ethereum.New(cfg.Ethereum.Endpoint)
+	defer eth.Close()
+	if err != nil {
+		logger.Panic("Error", zap.Error(err))
+	}
+	e := router.Init(db, s, eth)
 
 	go func() {
 		if err := e.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))); err != nil {

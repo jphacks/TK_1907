@@ -1,10 +1,12 @@
 package ethereum
 
 import (
+	"context"
 	"encoding/hex"
 	"fmt"
 	"strings"
 
+	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"golang.org/x/crypto/sha3"
 	"golang.org/x/xerrors"
@@ -13,14 +15,10 @@ import (
 // Const
 const (
 	// Methods
-	GetDeploymentAddressMethod        string = "getDeploymentAddress(uint256,address)"
-	CreateWalletMethod                string = "createWallet(uint256,address[],uint256)"
-	CreateForwarderMethod             string = "createForwarder(uint256,address)"
-	GenerateMessageToSignMethod       string = "generateMessageToSign(address,uint256,address,uint256)"
-	GenerateERC721MessageToSignMethod string = "generateMessageToSign(address,address,uint256,uint256)"
-	SpendMethod                       string = "spend(address,uint256,address,uint8[],bytes32[],bytes32[])"
-	SpendERC721Method                 string = "spend(address,address,uint256,uint8,bytes32,bytes32,uint8,bytes32,bytes32)"
-	FlushMethod                       string = "flush()"
+	GetDeploymentAddressMethod string = "getDeploymentAddress(uint256,address)"
+
+	// Contract Address
+	MarineCoreContractAddress string = "0x803e9aD57c90d48FA9F9e3F11dEd6970B9c52D09"
 
 	// Utils
 	abiLength = 64
@@ -32,11 +30,8 @@ type Config struct {
 	Endpoint string
 }
 
-// Factory ...
-type Factory string
-
 // GetDeploymentAddress ...
-func (f Factory) GetDeploymentAddress(client Client, salt uint64, senderAddr string) (string, error) {
+func GetDeploymentAddress(eth Ethereum, salt uint64, senderAddr string) (string, error) {
 	data := fmt.Sprintf("0x%s", GetMethodID(GetDeploymentAddressMethod))
 
 	//concatenate salt to data
@@ -49,33 +44,17 @@ func (f Factory) GetDeploymentAddress(client Client, salt uint64, senderAddr str
 	}
 	data += encodedSenderAddr
 
-	param := []interface{}{
-		map[string]interface{}{
-			"to":   f,
-			"data": data,
-		},
-		"latest",
-	}
+	toAddress := common.HexToAddress(MarineCoreContractAddress)
+	resp, err := eth.Call(context.Background(), ethereum.CallMsg{
+		//From     common.Address  // the sender of the 'transaction'
+		To: &toAddress,
+		//Gas      uint64          // if 0, the call executes with near-infinite gas
+		//GasPrice *big.Int        // wei <-> gas exchange ratio
+		//Value    *big.Int        // amount of wei sent along with the call
+		Data: common.FromHex(data),
+	})
 
-	resp, err := client.Call("eth_call", param)
-	if err != nil {
-		return "", xerrors.Errorf("client.Call: %w", err)
-	}
-
-	if resp.Error != nil {
-		return "", xerrors.New(resp.Error.Message)
-	}
-
-	var result string
-	resp.GetObject(&result)
-
-	deploymentAddr, err := ParseAbi(result, "address")
-	if err != nil {
-		return "", xerrors.Errorf("ParseAbi: %w", err)
-	}
-	checkSumDeploymentAddr := common.HexToAddress(deploymentAddr).Hex()
-
-	return checkSumDeploymentAddr, nil
+	return common.BytesToAddress(resp).Hex(), nil
 }
 
 // GetMethodID ...
@@ -128,37 +107,4 @@ func EncodeAddressParameter(address string) (string, error) {
 	}
 	encodedAddress := fmt.Sprintf("%064s", hexString)
 	return encodedAddress, nil
-}
-
-// GetCreateWalletTxData ...
-func GetCreateWalletTxData(salt uint64, ownerAddrs []string, signerNum uint64) ([]byte, error) {
-	data := fmt.Sprintf("0x%s", GetMethodID(CreateWalletMethod))
-
-	//concatenate salt to data
-	data += fmt.Sprintf("%064x", salt)
-
-	//concatenate the location of second argument to data
-	data += fmt.Sprintf("%064x", abiBytes*3)
-
-	//concatenate signerNum to data
-	data += fmt.Sprintf("%064x", signerNum)
-
-	//concatenate array length to data
-	data += fmt.Sprintf("%064x", len(ownerAddrs))
-
-	//concatenate owners addresses to data
-	for _, v := range ownerAddrs {
-		encodedOwnerAddr, err := EncodeAddressParameter(v)
-		if err != nil {
-			return nil, xerrors.Errorf("wrap: %w", err)
-		}
-		data += encodedOwnerAddr
-	}
-
-	dataByte, err := hex.DecodeString(data[2:])
-	if err != nil {
-		return nil, xerrors.Errorf("wrap: %w", err)
-	}
-
-	return dataByte, nil
 }

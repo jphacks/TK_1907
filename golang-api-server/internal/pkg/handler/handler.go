@@ -48,12 +48,12 @@ func UploadImage(db database.Database, s storage.Storage, eth ethereum.Ethereum)
 			return err
 		}
 
-		// TODO ContractAddress導出
-		// TODO coreのコントラクトをハードコードする
-		// TODO createComicAccount
-		// TODO getDeploymentAddress
-		// TODO +extra setViews
-		contractAddr := "0x00000000000000000000"
+		salt, _ := strconv.ParseUint(nonce, 10, 64)
+		contractAddr, err := ethereum.GetDeploymentAddress(eth, salt, sender)
+		if err != nil {
+			logger.Error("GetDeploymentAddress failed", zap.Error(err))
+			return err
+		}
 
 		file, err := c.FormFile("file")
 		if err != nil {

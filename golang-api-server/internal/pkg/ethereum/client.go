@@ -8,31 +8,31 @@ import (
 	"golang.org/x/xerrors"
 )
 
-// Client ...
-type Client interface {
-	Call(method string, params interface{}) (*RPCResponse, error)
+// Ethereum ...
+type Ethereum interface {
+	Call(ctx context.Context, msg ethereum.CallMsg) ([]byte, error)
 	Close()
 }
 
-// Ethereum ...
-type Ethereum struct {
+// Client ...
+type Client struct {
 	client *ethclient.Client
 }
 
-// NewEthereum ...
-func NewEthereum(endpoint string) (*Ethereum, error) {
+// New ...
+func New(endpoint string) (*Client, error) {
 	client, err := ethclient.Dial(endpoint)
 	if err != nil {
 		return nil, err
 	}
-	return &Ethereum{
+	return &Client{
 		client: client,
 	}, nil
 }
 
 // Call ...
-func (e *Ethereum) Call(ctx context.Context, method string, msg ethereum.CallMsg) ([]byte, error) {
-	hex, err := e.client.CallContract(ctx, msg, nil)
+func (c *Client) Call(ctx context.Context, msg ethereum.CallMsg) ([]byte, error) {
+	hex, err := c.client.CallContract(ctx, msg, nil)
 	if err != nil {
 		return nil, xerrors.Errorf("rpc.Call: %w", err)
 	}
@@ -40,7 +40,6 @@ func (e *Ethereum) Call(ctx context.Context, method string, msg ethereum.CallMsg
 }
 
 // Close ...
-func (e *Ethereum) Close() {
-	e.client.Close()
-	// TODO defer client.Close()
+func (c *Client) Close() {
+	c.client.Close()
 }
