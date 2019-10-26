@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/GincoInc/go-util/assert"
+	"github.com/google/go-cmp/cmp"
 )
 
 var (
@@ -27,7 +27,9 @@ func TestNewEthereum(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			_, err := New(tt.endpoint)
-			assert.Cmp(t, tt.err, err)
+			if diff := cmp.Diff(tt.err, err); diff != "" {
+				t.Errorf("differs: (-ext +act)\n%s", diff)
+			}
 		})
 	}
 }
@@ -52,9 +54,13 @@ func TestGetDeploymentAddress(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			client, err := New(tt.endpoint)
-			assert.Cmp(t, tt.err, err)
+			if diff := cmp.Diff(tt.err, err); diff != "" {
+				t.Errorf("differs: (-ext +act)\n%s", diff)
+			}
 			_, err = GetDeploymentAddress(client, tt.nonce, tt.sender)
-			assert.Cmp(t, tt.err, err)
+			if diff := cmp.Diff(tt.err, err); diff != "" {
+				t.Errorf("differs: (-ext +act)\n%s", diff)
+			}
 		})
 	}
 }
