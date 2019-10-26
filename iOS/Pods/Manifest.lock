@@ -206,7 +206,6 @@ PODS:
     - Swinject (~> 2.6)
   - SwinjectStoryboard (2.2.0):
     - Swinject (~> 2.6)
-  - TapticEngine (1.2.0)
   - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
@@ -240,7 +239,6 @@ DEPENDENCIES:
   - Swinject (= 2.6.0)
   - SwinjectAutoregistration (= 2.6.0)
   - SwinjectStoryboard
-  - TapticEngine
   - XLPagerTabStrip
 
 SPEC REPOS:
@@ -297,7 +295,6 @@ SPEC REPOS:
     - Swinject
     - SwinjectAutoregistration
     - SwinjectStoryboard
-    - TapticEngine
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -353,9 +350,8 @@ SPEC CHECKSUMS:
   Swinject: 48a96cda93633cf2860697b4ce76ab5db9ebaca2
   SwinjectAutoregistration: 93a908f7543c401b0c315305ac0ae501efdbce89
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
-  TapticEngine: ed6f5b4a2e9aa46d4e8fa69a72a7a0b6719bf8ac
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 2124f3a1d366e19d18c511c1214b2477c22091f2
+PODFILE CHECKSUM: 1372122260221fc7b3770256ca982a2f07cfb0a3
 
 COCOAPODS: 1.7.5

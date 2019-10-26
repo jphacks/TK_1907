@@ -43,7 +43,7 @@ def install_pods
     pod 'lottie-ios'
     pod 'XLPagerTabStrip'
     pod 'IQKeyboardManagerSwift'
-    pod 'TapticEngine'
+    # pod 'TapticEngine'
     pod 'OneSignal', '>= 2.11.0', '< 3.0'
     pod 'CropViewController'
     pod 'FaveButton'
