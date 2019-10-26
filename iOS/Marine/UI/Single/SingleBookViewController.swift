@@ -60,7 +60,12 @@ extension SingleBookViewController: StoryboardView {
         collectionView.rx.modelSelected(CellItem.self)
             .subscribe(onNext: { cellItem in
                 if case let CellItem.chapter(chapter) = cellItem {
-                    
+                    let viewerViewController = ViewerViewController.instantiate()
+                    viewerViewController.bookId = reactor.currentState.book.identity
+                    viewerViewController.chapterId = chapter.identity
+                    viewerViewController.modalTransitionStyle = .partialCurl
+                    viewerViewController.modalPresentationStyle = .fullScreen
+                    self.present(viewerViewController, animated: true, completion: nil)
                 }
             })
             .disposed(by: disposeBag)

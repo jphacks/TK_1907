@@ -118,17 +118,28 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q52-no-sNj">
+                                <rect key="frame" x="181" y="788" width="52" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="EfJ-v3-aPa"/>
+                                    <constraint firstAttribute="height" constant="52" id="lcF-3p-tXv"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="pws-Gd-79X" firstAttribute="bottom" secondItem="Q52-no-sNj" secondAttribute="bottom" constant="22" id="4S1-xn-Mkl"/>
                             <constraint firstItem="EqJ-re-2ZV" firstAttribute="bottom" secondItem="pws-Gd-79X" secondAttribute="bottom" id="7vO-CH-1IK"/>
                             <constraint firstItem="EqJ-re-2ZV" firstAttribute="top" secondItem="pws-Gd-79X" secondAttribute="top" id="EKd-xM-hSJ"/>
                             <constraint firstItem="pws-Gd-79X" firstAttribute="trailing" secondItem="EqJ-re-2ZV" secondAttribute="trailing" id="VZz-xC-XsW"/>
+                            <constraint firstItem="Q52-no-sNj" firstAttribute="centerX" secondItem="qz5-2e-KX2" secondAttribute="centerX" id="rTr-lL-Ozb"/>
                             <constraint firstItem="EqJ-re-2ZV" firstAttribute="leading" secondItem="pws-Gd-79X" secondAttribute="leading" id="uJ0-l6-ROI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pws-Gd-79X"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="Q52-no-sNj" id="Hx7-ex-n5M"/>
                         <outlet property="imageSlideShow" destination="EqJ-re-2ZV" id="Jxr-GF-h2l"/>
                     </connections>
                 </viewController>
@@ -137,4 +148,7 @@
             <point key="canvasLocation" x="966.66666666666674" y="127.90178571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="50" height="50"/>
+    </resources>
 </document>

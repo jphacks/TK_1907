@@ -49,6 +49,7 @@ def install_pods
     pod 'FaveButton'
     pod 'WaterfallLayout', '~> 0.1'
     pod 'ImageSlideshow', '~> 1.8.1'
+    pod "ImageSlideshow/Kingfisher"
 
     # LICENSE
     pod 'AcknowList'
