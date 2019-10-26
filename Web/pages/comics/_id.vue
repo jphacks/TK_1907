@@ -73,69 +73,76 @@
 
 
 <script>
-import AddressUpload from '~/components/AddressUpload.vue'
-import Neon, {api, rpc, wallet, u} from '@cityofzion/neon-js'
+import AddressUpload from "~/components/AddressUpload.vue";
+import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
 const config = {
-  name: 'http://127.0.0.1:30333',
+  name: "http://127.0.0.1:30333",
   extra: {
-    neoscan: 'http://127.0.0.1:4000/api/main_net'
+    neoscan: "http://127.0.0.1:4000/api/main_net"
   }
-}
-const privateNet = new rpc.Network(config)
-Neon.add.network(privateNet)
+};
+const privateNet = new rpc.Network(config);
+Neon.add.network(privateNet);
 
 export default {
   components: {
-    AddressUpload,
+    AddressUpload
   },
   created() {
     for (let i = 0; i < this.$store.state.comics.length; i++) {
       if (this.$route.params.id === this.$store.state.comics[i]["hash"]) {
-          this.comic = this.$store.state.comics[i]
-          break
+        this.comic = this.$store.state.comics[i];
+        break;
       }
     }
   },
   data() {
     return {
       comic: {},
-      address: ''
-    }
+      address: ""
+    };
   },
-  methods :{
+  methods: {
     vote() {
-      let account = new wallet.Account(this.$store.state.privateKey)
+      let account = new wallet.Account(this.$store.state.privateKey);
       Neon.doInvoke({
         net: "http://127.0.0.1:30333",
         script: Neon.create.script({
           scriptHash: this.$store.state.scriptHash, // Scripthash for the contract
-          operation: 'vote', // name of operation to perform.
-          args: [u.str2hexstring(this.$route.params.id), u.str2hexstring(account.address)]
+          operation: "vote", // name of operation to perform.
+          args: [
+            u.str2hexstring(this.$route.params.id),
+            u.str2hexstring(account.address)
+          ]
         }),
         account: account,
         gas: 1
-      }).then(res => {
-        console.log(res);
-      }).catch(e => {
-        console.log(e);
-      });
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
     withdraw() {
       Neon.doInvoke({
         net: "http://127.0.0.1:30333",
         script: Neon.create.script({
           scriptHash: this.$store.state.scriptHash, // Scripthash for the contract
-          operation: 'withdraw', // name of operation to perform.
+          operation: "withdraw", // name of operation to perform.
           args: [u.str2hexstring(this.$route.params.id)]
         }),
         account: new wallet.Account(this.$store.state.privateKey),
         gas: 1
-      }).then(res => {
-        console.log(res);
-      }).catch(e => {
-        console.log(e);
-      });
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }
 };
@@ -151,7 +158,7 @@ header {
   position: fixed;
   width: 100%;
   background: #000;
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, .3);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
 }
 header .logo_header {
   width: 120px;
@@ -188,7 +195,7 @@ header .rapper_form_header {
 header .button_go_header {
   background: #fff100;
   height: 40px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
@@ -252,7 +259,7 @@ header .balance_header {
   border-radius: 4px;
   height: 320px;
   overflow: hidden;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, .2);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
   background: #f5f5f5;
 }
 #detail .info_detail {
@@ -286,13 +293,13 @@ header .balance_header {
   font-size: 13px;
   padding: 4px 10px;
   background: #fff;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, .1);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
   width: 350px;
 }
 #detail .button_upload_header {
   background: #1e5ccc;
   height: 40px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
@@ -303,7 +310,7 @@ header .balance_header {
   font-weight: bold;
   border: none;
   margin-left: 20px;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, .1);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
 }
 #detail .wrapper_form_header {
   margin-top: 50px;
@@ -313,7 +320,7 @@ header .balance_header {
   color: #aaa;
   padding: 11px 0;
   font-size: 15px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   border-radius: 4px;
   text-align: center;
   margin-top: 40px;
@@ -324,7 +331,7 @@ header .balance_header {
   padding: 0px 0 160px;
 }
 #archives .wrapper_contents_archives {
-  letter-spacing: -.4em;
+  letter-spacing: -0.4em;
   width: 800px;
   margin: 0 auto;
 }
@@ -342,7 +349,7 @@ header .balance_header {
   margin-bottom: 4%;
 }
 #archives .thumbnail_archives {
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, .2);
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 480px;
   background-color: #f5f5f5;
@@ -408,26 +415,26 @@ footer .sns_footer {
   align-items: center;
 }
 footer .each_sns {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 footer .each_sns:last-child {
-    margin-right: 0px;
+  margin-right: 0px;
 }
 footer .each_sns > a {
-    display: block;
+  display: block;
 }
 footer .each_sns > a:hover .fa-twitter {
-    color: #55acee;
+  color: #55acee;
 }
 footer .each_sns > a:hover .fa-facebook-f {
-    color: #3B5998;
+  color: #3b5998;
 }
 footer .fa-twitter {
-    font-size: 21px;
-    color: #ccc;
+  font-size: 21px;
+  color: #ccc;
 }
 footer .fa-facebook-f {
-    font-size: 19px;
-    color: #ccc;
+  font-size: 19px;
+  color: #ccc;
 }
 </style>

@@ -84,13 +84,13 @@ Gives the author the profit that it was originally unable to obtain due to the p
 </template>
 
 <script>
-import Login from '~/components/Login.vue'
+import Login from "~/components/Login.vue";
 
 export default {
   components: {
     Login
   }
-}
+};
 </script>
 
 <style>
@@ -102,7 +102,7 @@ header {
   position: fixed;
   width: 100%;
   background: #000;
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, .3);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
 }
 header .logo_header {
   width: 120px;
@@ -149,7 +149,7 @@ header .input_key_header {
 header .button_go_header {
   background: #fff100;
   height: 40px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
@@ -163,7 +163,7 @@ header .button_go_header {
 header .button_upload_header {
   background: #1e5ccc;
   height: 40px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
@@ -178,9 +178,9 @@ header .button_upload_header {
 
 /* top */
 #top {
-  background-image: url('~/assets/background_top.jpg');
+  background-image: url("~/assets/background_top.jpg");
   width: 100%;
-	background-attachment: fixed;
+  background-attachment: fixed;
   position: relative;
   height: 100vh;
   display: -webkit-flex;
@@ -194,11 +194,11 @@ header .button_upload_header {
   background-position: center;
 }
 #top .wrapper_contents_top {
-	margin-top: 65px;
+  margin-top: 65px;
 }
 #top .catch_top {
-	width: 300px;
-	margin: 0 auto;
+  width: 300px;
+  margin: 0 auto;
 }
 #top .description_top {
   width: 500px;
@@ -207,7 +207,7 @@ header .button_upload_header {
   margin-top: 30px;
   color: #fff;
   text-align: center;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 /* introduction */
@@ -215,40 +215,40 @@ header .button_upload_header {
   padding: 120px 0;
 }
 #introduction .title_introduction {
-	width: 400px;
-	margin: 0 auto;
+  width: 400px;
+  margin: 0 auto;
 }
 #introduction .icon_introduction {
-	width: 160px;
-	height: 160px;
-	margin: 0 auto;
-	border-radius: 50%;
-	background: #f6f6f6;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #f6f6f6;
 }
 #introduction .each_title_introduction {
-	text-align: center;
-	font-weight: bold;
-	font-size: 18px;
-	margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
 }
 #introduction .wrapper_contents_introduction {
-	display: -webkit-flex;
-	display: flex;
-	width: 980px;
-	margin: 60px auto 90px;
+  display: -webkit-flex;
+  display: flex;
+  width: 980px;
+  margin: 60px auto 90px;
 }
 #introduction .each_ex_introduction {
-	width: 290px;
-	border-top: solid 1px #ddd;
-	border-left: solid 1px #ddd;
-	border-right: solid 1px #ddd;
+  width: 290px;
+  border-top: solid 1px #ddd;
+  border-left: solid 1px #ddd;
+  border-right: solid 1px #ddd;
   border-bottom: solid 6px #ddd;
   margin-right: auto;
   border-radius: 4px;
   padding: 20px;
 }
 #introduction .each_ex_introduction:last-child {
-	margin-right: 0px;
+  margin-right: 0px;
 }
 #introduction .description_introduction {
   font-size: 13px;
@@ -311,27 +311,27 @@ footer .sns_footer {
   align-items: center;
 }
 footer .each_sns {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 footer .each_sns:last-child {
-    margin-right: 0px;
+  margin-right: 0px;
 }
 footer .each_sns > a {
-    display: block;
+  display: block;
 }
 footer .each_sns > a:hover .fa-twitter {
-    color: #55acee;
+  color: #55acee;
 }
 footer .each_sns > a:hover .fa-facebook-f {
-    color: #3B5998;
+  color: #3b5998;
 }
 footer .fa-twitter {
-    font-size: 21px;
-    color: #ccc;
+  font-size: 21px;
+  color: #ccc;
 }
 footer .fa-facebook-f {
-    font-size: 19px;
-    color: #ccc;
+  font-size: 19px;
+  color: #ccc;
 }
 
 /*---------------------------------------------------------------*\
@@ -365,5 +365,4 @@ $980px
     min-width: 980px;
   }
 }
-
 </style>
