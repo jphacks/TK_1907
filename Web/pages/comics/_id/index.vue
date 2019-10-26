@@ -8,12 +8,14 @@
         </div>
         <div class="info_detail">
           <h2 class="title_book_detail">{{ comics[0].title }}</h2>
+          <h2 class="balance_detail"> 総残高 {{ balance }} ETH </h2>
           <p class="description_book_detail">
-            黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!
+          <!--{{ comics[0].description }}-->
           </p>
           <div class="wrapper_form_header">
             <Button @click="vote" title="投票する" />
-            <Button @click="candidate" title="ログインして立候補する" />
+            <Button @click="candidate" title="立候補する" />
+            <Button @click="withdraw" title="引き出す" />
           </div>
         </div>
       </div>
@@ -52,6 +54,7 @@ export default {
       contractAddress: "",
       address: "",
       web3: null,
+      balance: 0,
     };
   },
   middleware: "comics",
@@ -80,6 +83,9 @@ export default {
       console.log(provider)
       const web3 = new Web3(provider)
       this.web3 = web3;
+      const balance = await web3.eth.getBalance(this.contractAddress);
+      const balanceInEther = web3.utils.fromWei(balance, "ether");
+      this.balance = balanceInEther;
     }
   },
   // middleware: "web3",
@@ -191,12 +197,17 @@ export default {
 #detail .title_book_detail {
   font-size: 28px;
 }
+#detail .balance_detail {
+  font-size: 20px;
+  text-align: center;
+}
 #detail .description_book_detail {
   font-size: 14px;
   color: #888;
   margin-top: 16px;
 }
 #detail .rapper_form_header {
+  margin-left: 50px;
   display: flex;
   align-items: center;
 }
