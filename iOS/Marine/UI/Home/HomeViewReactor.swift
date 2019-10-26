@@ -67,6 +67,9 @@ final class HomeViewReactor: Reactor {
             newState.booksSection.items = books.map(CellItem.book)
             newState.lastSnapshot = lastSnapshot
             newState.hasNext = hasNext
+        case let .setFirstLoading(isLoading: isLoading):
+            newState.isFirstLoading = isLoading
+            newState.isLoading = isLoading
         default:
             break;
         }

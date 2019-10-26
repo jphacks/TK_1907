@@ -10,8 +10,23 @@ import UIKit
 
 final class BookCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var thumbnailImageView: UIImageView! {
+        didSet {
+            thumbnailImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+            thumbnailImageView.layer.cornerRadius = 8
+        }
+    }
     @IBOutlet weak var bookTitleLabel: UILabel!
+    @IBOutlet weak var containerView: UIView! {
+        didSet {
+            containerView.layer.cornerRadius = 8
+            containerView.layer.masksToBounds = false
+            containerView.layer.shadowOffset = CGSize(width: 2, height: 2)
+            containerView.layer.shadowRadius = 3
+            containerView.layer.shadowOpacity = 0.3
+            containerView.layer.borderColor = UIColor.lightGray.cgColor
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

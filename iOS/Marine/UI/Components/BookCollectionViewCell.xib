@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,12 +27,12 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cj-bR-RFa">
                                 <rect key="frame" x="8" y="328" width="211" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="MarineBlue"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ahs-BP-Fg9" firstAttribute="top" secondItem="QF5-m0-3Dj" secondAttribute="top" id="0j0-R7-73e"/>
                             <constraint firstItem="9cj-bR-RFa" firstAttribute="leading" secondItem="QF5-m0-3Dj" secondAttribute="leading" constant="8" id="CBP-Z8-M9X"/>
@@ -56,14 +55,10 @@
             <size key="customSize" width="239" height="393"/>
             <connections>
                 <outlet property="bookTitleLabel" destination="9cj-bR-RFa" id="EZr-Xj-TLl"/>
+                <outlet property="containerView" destination="QF5-m0-3Dj" id="Cqr-ut-nlB"/>
                 <outlet property="thumbnailImageView" destination="ahs-BP-Fg9" id="WWL-ke-Vbw"/>
             </connections>
             <point key="canvasLocation" x="-34" y="36"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <namedColor name="MarineBlue">
-            <color red="0.10980392156862745" green="0.36862745098039218" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

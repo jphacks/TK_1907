@@ -15,6 +15,7 @@
 		1102EAAD2363F10700845DC2 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1102EAAC2363F10700845DC2 /* HomeHeaderView.swift */; };
 		1102EAAF2363F8C100845DC2 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAAE2363F8C100845DC2 /* loading.json */; };
 		1102EAB12363F96B00845DC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAB02363F96B00845DC2 /* GoogleService-Info.plist */; };
+		1102EAB3236403C400845DC2 /* Anja Eliane accent002.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAB2236403C400845DC2 /* Anja Eliane accent002.ttf */; };
 		1141FAE32363E5340031DC24 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1141FAE22363E5340031DC24 /* HomeViewController.swift */; };
 		1141FAE52363E5490031DC24 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1141FAE42363E5490031DC24 /* HomeViewReactor.swift */; };
 		114B924A2363D579007DE4A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B92492363D579007DE4A4 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		1102EAAC2363F10700845DC2 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		1102EAAE2363F8C100845DC2 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		1102EAB02363F96B00845DC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1102EAB2236403C400845DC2 /* Anja Eliane accent002.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anja Eliane accent002.ttf"; sourceTree = "<group>"; };
 		1141FAE22363E5340031DC24 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1141FAE42363E5490031DC24 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
 		114B92462363D579007DE4A4 /* Marine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 				1102EAAE2363F8C100845DC2 /* loading.json */,
 				114B92572363D57A007DE4A4 /* Info.plist */,
 				1102EAB02363F96B00845DC2 /* GoogleService-Info.plist */,
+				1102EAB2236403C400845DC2 /* Anja Eliane accent002.ttf */,
 			);
 			path = Marine;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				114B92562363D57A007DE4A4 /* LaunchScreen.storyboard in Resources */,
 				1102EAB12363F96B00845DC2 /* GoogleService-Info.plist in Resources */,
 				1102EAAB2363F0F000845DC2 /* BookCollectionViewCell.xib in Resources */,
+				1102EAB3236403C400845DC2 /* Anja Eliane accent002.ttf in Resources */,
 				114B92532363D57A007DE4A4 /* Assets.xcassets in Resources */,
 				114B92512363D579007DE4A4 /* Main.storyboard in Resources */,
 				1102EAAF2363F8C100845DC2 /* loading.json in Resources */,

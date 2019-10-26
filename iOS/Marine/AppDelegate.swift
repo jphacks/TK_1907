@@ -62,7 +62,7 @@ extension AppDelegate {
             loadingView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
             loadingView.layer.masksToBounds = true
             loadingView.center = CGPoint(x: (container?.frame.size.width)! / 2, y: (container?.frame.size.height)! / 2)
-            loadingView.animation = Animation.named("loader")
+            loadingView.animation = Animation.named("loading")
             loadingView.loopMode = .loop
             loadingView.animationSpeed = 1.5
             loadingView.play()
