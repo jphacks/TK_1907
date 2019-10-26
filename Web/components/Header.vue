@@ -6,8 +6,8 @@
           <img src="~/assets/logo_header.png" title="SANCHO" alt="SANCHOロゴ" />
         </a>
       </h1>
+      <LinkButton to="upload" title="upload" />
     </div>
-    <Login @click="login" />
   </header>
 </template>
 
@@ -18,7 +18,7 @@ import "firebase/auth";
 
 export default {
   components: {
-    Login: () => import("./Login")
+    LinkButton: () => import("./atoms/Button/LinkButton")
   },
   methods: {
     async login() {
@@ -52,10 +52,7 @@ export default {
 };
 </script>
 
-<style>
-@charset "UTF-8";
-
-/* header */
+<style scoped>
 header {
   z-index: 9999;
   position: fixed;
@@ -76,31 +73,18 @@ header .logo_header img {
   height: auto;
 }
 header .wrapper_contents_header {
-  width: 1300px;
-  display: flex;
+  width: 100vw;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
   margin: 0px auto;
-  padding: 11px 0;
+  padding: 11px 11px;
 }
 header .rapper_form_header {
   display: flex;
   align-items: center;
 }
 
-header .button_login_header {
-  background: #fff100;
-  height: 40px;
-  font-family: "Oswald", sans-serif;
-  appearance: none;
-  border-radius: 20px;
-  width: 110px;
-  text-align: center;
-  font-weight: bold;
-  border: none;
-  font-size: 14px;
-  margin-left: 10px;
-}
 header .button_upload_header {
   background: #1e5ccc;
   height: 40px;

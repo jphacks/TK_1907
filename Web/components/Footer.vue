@@ -26,7 +26,7 @@
 </template>
 
 
-<style>
+<style scoped>
 footer {
   background: #000;
   padding: 60px 0 60px;
