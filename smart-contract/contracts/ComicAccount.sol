@@ -3,7 +3,7 @@ pragma solidity 0.5.12;
 contract ComicAccount  {
 
   bool public initialized = false;
-  uint256 public signerNum = 0;
+  address public payable uploader;
   event Initialized();
 
   constructor() public {}
@@ -14,7 +14,7 @@ contract ComicAccount  {
     emit Funded(address(this).balance);
   }
 
-  function initialize(address[] memory _owners, uint256 _signerNum) public {
+  function initialize(uploader address payable) public {
     require(!initialized, "This contract has already been initialized.");
 
     address zeroAddress = address(0);

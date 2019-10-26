@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#
+# Paths
+#
+NODE_DIR=./node_modules
+GANACHE_CLI=${NODE_DIR}/.bin/ganache-cli
+TRUFFLE=${NODE_DIR}/.bin/truffle
+
+#
+# testrpc options
+#
+
+SECRET="execute secret powder segment fit until flame echo steel foot virtual fiscal"
+GANACHE_PORT=${GANACHE_PORT:-8545}
+GAS_LIMIT=47E7C4
+
+function kill_ganache {
+  if [ -e tmp/ganache.pid ]; then
+    ganache_pid=$(cat tmp/ganache.pid)
+    echo "Killing running ganache process with PID ${ganache_pid}"
+    kill $ganache_pid && rm tmp/ganache.pid
+  fi
+}
+
+kill_ganache
+${GANACHE_CLI} --port ${GANACHE_PORT} -a 50 --mnemonic "${SECRET}" >> tmp/ganache.log 2>&1 &
+echo $! > tmp/ganache.pid
+${TRUFFLE} test
+kill_ganache
