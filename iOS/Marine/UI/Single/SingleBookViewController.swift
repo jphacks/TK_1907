@@ -19,12 +19,17 @@ final class SingleBookViewController: UIViewController, StoryboardInstantiate {
     static var storyboardName: StoryboardName = .single
     var disposeBag: DisposeBag = DisposeBag()
 
+    struct Const {
+        static let headerHeight: CGFloat = 260
+    }
+
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.register(UINib(nibName: "ChapterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ChapterCell")
+            collectionView.contentInset.top = Const.headerHeight
         }
     }
 
