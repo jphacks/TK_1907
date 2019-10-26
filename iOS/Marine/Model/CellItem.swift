@@ -20,11 +20,14 @@ enum CellItem: IdentifiableType, Equatable {
         switch self {
         case let .book(book):
             return book.identity
+        case let .chapter(chapter):
+            return chapter.identity
         case .header:
             return "HomeHeader"
         }
     }
     case book(Book)
+    case chapter(Chapter)
     case header
 }
 

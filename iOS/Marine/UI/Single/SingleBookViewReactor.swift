@@ -16,7 +16,7 @@ import SwinjectAutoregistration
 final class SingleBookViewReactor: Reactor {
 
     var initialState: State
-    let bookService: BookService
+    let chapterService: ChapterService
 
     enum Action {
         case load
@@ -36,82 +36,29 @@ final class SingleBookViewReactor: Reactor {
 
     init(book: Book) {
         initialState = State(isLoading: false, book: book, chapterSection: .init(model: .chapters, items: []))
-        self.bookService = BookService()
+        self.chapterService = ChapterService()
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .load:
-            return postService.fetch(postId: currentState.postId)
+            return chapterService.fetch(bookId: currentState.book.identity)
                 .compactMap { result in
-                    Mutation.setPost(result)
+                    Mutation.setChapters(result.chapters, lastSnapshot: result.lastSnapshot, hasNext: result.hasNext)
                 }
-                .flatMap { fetchPost -> Observable<Mutation> in
-                    if case let Mutation.setPost(post) = fetchPost {
-                        var fetchUser: Observable<Mutation> {
-                            return self.userService.fetch(userId: post.userId).map (Mutation.setUser)
-                        }
-                        return .concat([
-                        .just(.setLoading(isLoading: true)),
-                        Observable.just(.setPost(post)),
-                        fetchUser,
-                        .just(.setLoading(isLoading: false))
-                        ])
-                    } else {
-                        return .empty()
-                    }
-                }
-        case .blockUser:
-            guard let post = currentState.post else { return .empty() }
-            blockService.blockUser(post: post)
-            return .empty()
-        case .deletePost:
-            guard let post = currentState.post else { return .empty() }
-            return postService.delete(post: post).map { _ in
-                .empty
-            }
-        }
-    }
-
-    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        let postEventMutation = self.postService.event
-            .flatMap { [weak self] event -> Observable<Mutation> in
-                self?.mutate(postEvent: event) ?? .empty()
-        }
-        return Observable.of(mutation, postEventMutation).merge()
-    }
-
-    private func mutate(postEvent: PostEvent) -> Observable<Mutation> {
-        switch postEvent {
-        case let .delete(post):
-            guard post.postId == currentState.postId else { return .empty() }
-            return .just(.setIsPostRemoved)
-        case let .update(post):
-            return .just(.reloadRow(post.0))
-        default:
-            return .empty()
         }
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case let .setPost(post):
-            let postTableViewCellReactor = PostTableViewCellReactor(post: post, isLiked: likeService.checkIsLiked(post: post), parent: self.parent)
-            newState.post = post
-            newState.postSection.items = [CellItem.post(postTableViewCellReactor)]
-        case let .setUser(user):
-            newState.userSection.items = [CellItem.user(user)]
-        case let .setLoading(isLoading):
+        case let .setChapters(chapters, lastSnapshot: lastSnapshot, hasNext: hasNext):
+            newState.chapterSection.items = chapters.map(CellItem.chapter)
+            // TODO Update lastSnapshot and hasNext if pagination is needed
+        case let .setFirstLoading(isLoading: isLoading):
             newState.isLoading = isLoading
-        case .setIsPostRemoved:
-            newState.isPostRemoved = true
-        case let .reloadRow(post):
-            guard let parent = parent as? TimelineViewController else { return newState }
-            guard let row = currentState.postSection.items.getPostRow(post: post) else { return newState }
-            parent.tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .fade)
-        case .empty:
-            return newState
+        case let .setLoading(isLoading: isLoading):
+            newState.isLoading = isLoading
         }
         return newState
     }
