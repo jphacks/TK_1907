@@ -22,7 +22,11 @@ final class SingleBookViewController: UIViewController, StoryboardInstantiate {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var bookTitleLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.register(UINib(nibName: "ChapterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ChapterCell")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +76,10 @@ extension SingleBookViewController: StoryboardView {
     private func createDataSource(reactor: SingleBookViewReactor) -> RxCollectionViewSectionedAnimatedDataSource<CustomSection> {
         return RxCollectionViewSectionedAnimatedDataSource<CustomSection>.init(animationConfiguration: AnimationConfiguration(insertAnimation: .fade, reloadAnimation: .fade, deleteAnimation: .fade), configureCell: { [weak self] dataSource, table, indexPath, item in
             guard let self = self else { return UICollectionViewCell() }
-            if case let CellItem.book(book) = item {
-                guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
-                cell.bookTitleLabel.text = book.title
-                if let url = URL(string: book.thumbnail) {
+            if case let CellItem.chapter(chapter) = item {
+                guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "ChapterCell", for: indexPath) as? ChapterCollectionViewCell else { return UICollectionViewCell() }
+                cell.chapterTitleLabel.text = chapter.title
+                if let url = URL(string: chapter.thumbnail) {
                     cell.thumbnailImageView.af_setImage(
                         withURL: url,
                         placeholderImage: nil,
@@ -83,11 +87,7 @@ extension SingleBookViewController: StoryboardView {
                     )
                 }
                 return cell
-            } else if case CellItem.header = item {
-                guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "HomeHeaderCell", for: indexPath) as? HomeHeaderCollectionViewCell else { return UICollectionViewCell() }
-                return cell
             }
-
             return UICollectionViewCell()
         })
     }
