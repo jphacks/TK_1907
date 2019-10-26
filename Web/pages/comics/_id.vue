@@ -1,74 +1,88 @@
 <template>
-<div>
-
-<!-- header -->
-<header>
-  <div class="wrapper_contents_header">
-    <h1 class="logo_header">
-      <a href="/">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="SANCHOロゴ">
-      </a>
-    </h1>
-    <address-upload/>
-  </div>
-</header>
-
-<!-- detail -->
-<section id="detail">
-  <div class="wrapper_contents_detail">
-    <div class="thumbnail_book_detail">
-      <img :src="'https://ipfs.io/ipfs/'+ comic.imageHashes[0]">
-    </div>
-    <div class="info_detail">
-      <h2 class="title_book_detail">{{ comic.title }}</h2>
-      <p class="description_book_detail">黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!</p>
-      <div class="wrapper_form_header">
-      <input class="input_key_header" type="" name="" placeholder="Enter address here." v-model="address">
-      <button class="button_upload_header" @click="vote">Vote</button>
-      <button class="withdraw" @click="withdraw">Withdraw</button>
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- archives -->
-<section id="archives">
-  <ul class="wrapper_contents_archives">
-    <li class="each_book_archives" v-for="(hash, index) in comic.imageHashes" :key="index">
-      <article class="thumbnail_archives">
-        <img :src="'https://ipfs.io/ipfs/'+ hash">
-      </article>
-    </li>
-  </ul>
-</section>
-
-<!-- footer -->
-<footer>
-  <div class="wrapper_contents_footer">
-    <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
-    <h2 class="logo_footer">
-      <a href="">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像">
-      </a>
-    </h2>
-    <div class="wrapper_right_footer">
-      <ul class="sns_footer">
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-twitter"></i>
+  <div>
+    <!-- header -->
+    <header>
+      <div class="wrapper_contents_header">
+        <h1 class="logo_header">
+          <a href="/">
+            <img
+              src="~/assets/logo_header.png"
+              title="SANCHO"
+              alt="SANCHOロゴ"
+            />
           </a>
-        </li>
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
+        </h1>
+        <address-upload />
+      </div>
+    </header>
+
+    <!-- detail -->
+    <section id="detail">
+      <div class="wrapper_contents_detail">
+        <div class="thumbnail_book_detail">
+          <img :src="'https://ipfs.io/ipfs/' + comic.imageHashes[0]" />
+        </div>
+        <div class="info_detail">
+          <h2 class="title_book_detail">{{ comic.title }}</h2>
+          <p class="description_book_detail">
+            黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!
+          </p>
+          <div class="wrapper_form_header">
+            <input
+              class="input_key_header"
+              type=""
+              name=""
+              placeholder="Enter address here."
+              v-model="address"
+            />
+            <button class="button_upload_header" @click="vote">Vote</button>
+            <button class="withdraw" @click="withdraw">Withdraw</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- archives -->
+    <section id="archives">
+      <ul class="wrapper_contents_archives">
+        <li
+          class="each_book_archives"
+          v-for="(hash, index) in comic.imageHashes"
+          :key="index"
+        >
+          <article class="thumbnail_archives">
+            <img :src="'https://ipfs.io/ipfs/' + hash" />
+          </article>
         </li>
       </ul>
-    </div>
-  </div>
-</footer>
+    </section>
 
-</div>
+    <!-- footer -->
+    <footer>
+      <div class="wrapper_contents_footer">
+        <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
+        <h2 class="logo_footer">
+          <a href="">
+            <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像" />
+          </a>
+        </h2>
+        <div class="wrapper_right_footer">
+          <ul class="sns_footer">
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 
 

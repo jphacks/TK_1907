@@ -1,47 +1,49 @@
 <template>
-<div>
-
-<!-- header -->
-<header>
-  <div class="wrapper_contents_header">
-    <h1 class="logo_header">
-      <a href="/">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="SANCHOロゴ">
-      </a>
-    </h1>
-    <address-upload/>
-  </div>
-</header>
-
-<file-upload/>
-
-<!-- footer -->
-<footer>
-  <div class="wrapper_contents_footer">
-    <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
-    <h2 class="logo_footer">
-      <a href="">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像">
-      </a>
-    </h2>
-    <div class="wrapper_right_footer">
-      <ul class="sns_footer">
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-twitter"></i>
+  <div>
+    <!-- header -->
+    <header>
+      <div class="wrapper_contents_header">
+        <h1 class="logo_header">
+          <a href="/">
+            <img
+              src="~/assets/logo_header.png"
+              title="SANCHO"
+              alt="SANCHOロゴ"
+            />
           </a>
-        </li>
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</footer>
+        </h1>
+        <address-upload />
+      </div>
+    </header>
 
-</div>
+    <file-upload />
+
+    <!-- footer -->
+    <footer>
+      <div class="wrapper_contents_footer">
+        <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
+        <h2 class="logo_footer">
+          <a href="">
+            <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像" />
+          </a>
+        </h2>
+        <div class="wrapper_right_footer">
+          <ul class="sns_footer">
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 
 

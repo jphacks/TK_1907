@@ -1,7 +1,13 @@
 <template>
   <div id="login">
     <div class="wrapper_form">
-      <input class="input_key" type="" name="" placeholder="Enter your private key here." v-model="privateKey">
+      <input
+        class="input_key"
+        type=""
+        name=""
+        placeholder="Enter your private key here."
+        v-model="privateKey"
+      />
       <button class="button_go" @click="login">GO</button>
     </div>
   </div>

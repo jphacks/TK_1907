@@ -7,7 +7,9 @@
       <span class="subtitle_balance_header">Address:</span>
       <span class="balance_header">{{ address }}</span>
     </div>
-    <button class="button_go_header upload_add" @click="goUpload">Upload</button>
+    <button class="button_go_header upload_add" @click="goUpload">
+      Upload
+    </button>
   </div>
 </template>
 

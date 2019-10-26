@@ -156,7 +156,7 @@ header .balance_header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-image: url("~/assets/background_top.jpg");
+  background-image: url("~assets/background_top.jpg");
   height: 340px;
   padding-top: 60px;
 }

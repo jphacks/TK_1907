@@ -1,10 +1,14 @@
 <template>
   <section id="archives">
     <ul class="wrapper_contents_archives">
-      <li class="each_book_archives" v-for="(comic, index) in $store.state.comics" :key="index">
+      <li
+        class="each_book_archives"
+        v-for="(comic, index) in $store.state.comics"
+        :key="index"
+      >
         <article class="thumbnail_archives">
           <div @click="goDetail(comic.hash)">
-            <img :src="'https://ipfs.io/ipfs/'+ comic.imageHashes[0]">
+            <img :src="'https://ipfs.io/ipfs/' + comic.imageHashes[0]" />
           </div>
         </article>
       </li>
@@ -30,10 +34,10 @@ async function getComics(shash) {
 }
 
 export default {
-  async beforeCreate() {
-    let comics = await getComics(this.$store.state.scriptHash);
-    this.$store.commit("setComics", comics);
-  },
+  // async beforeCreate() {
+  //   let comics = await getComics(this.$store.state.scriptHash);
+  //   this.$store.commit("setComics", comics);
+  // },
   methods: {
     goDetail(hash) {
       this.$router.push("/comics/" + hash);

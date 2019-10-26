@@ -1,89 +1,128 @@
 <template>
-<div>
-
-<!-- header -->
-<header>
-  <div class="wrapper_contents_header">
-    <h1 class="logo_header">
-      <a href="/">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="SANCHOロゴ">
-      </a>
-    </h1>
-  </div>
-</header>
-
-<!-- top -->
-<section id="top">
-  <div class="wrapper_contents_top">
-    <h2 class="catch_top">
-      <img src="~/assets/catch_top.png" title="SANCHO" alt="SANCHO - 読みたい漫画がここにある">
-    </h2>
-    <p class="description_top">Next Gen Completely Transparent & Fair Comic Platform</p>
-    <login/>
-  </div>
-</section>
-
-<!-- comics -->
-<comics/>
-
-<!-- introduction -->
-<section id="introduction">
-  <h2 class="title_introduction">
-    <img src="~/assets/title_introduction.png" title="What is SANCHO" alt="テキスト画像" />
-  </h2>
-  <ul class="wrapper_contents_introduction">
-    <li class="each_ex_introduction">
-      <article>
-        <div class="icon_introduction"><img src="~/assets/no_money.png" title="for free" alt="テキスト画像" /></div>
-        <h3 class="each_title_introduction">Enjoy your favorite <br />comic for free!</h3>
-        <p class="description_introduction">We can see out favorite manga anytime, anywhere, for free</p>
-      </article>
-    </li>
-    <li class="each_ex_introduction">
-      <article>
-        <div class="icon_introduction"><img src="~/assets/author.png" title="author" alt="テキスト画像" /></div>
-        <h3 class="each_title_introduction">Contribute, get money!</h3>
-        <p class="description_introduction">
-Gives the author the profit that it was originally unable to obtain due to the pirated illegal upload site</p>
-      </article>
-    </li>
-    <li class="each_ex_introduction">
-      <article>
-        <div class="icon_introduction"><img src="~/assets/decentralization.png" title="decentralize" alt="テキスト画像" /></div>
-        <h3 class="each_title_introduction">Transparent management!</h3>
-        <p class="description_introduction">Completely non-centralized application that did not have a centrally managed server</p>
-      </article>
-    </li>
-  </ul>
-</section>
-
-<!-- footer -->
-<footer>
-  <div class="wrapper_contents_footer">
-    <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
-    <h2 class="logo_footer">
-      <a href="">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像">
-      </a>
-    </h2>
-    <div class="wrapper_right_footer">
-      <ul class="sns_footer">
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-twitter"></i>
+  <div>
+    <!-- header -->
+    <header>
+      <div class="wrapper_contents_header">
+        <h1 class="logo_header">
+          <a href="/">
+            <img
+              src="~/assets/logo_header.png"
+              title="SANCHO"
+              alt="SANCHOロゴ"
+            />
           </a>
+        </h1>
+      </div>
+    </header>
+
+    <!-- top -->
+    <section id="top">
+      <div class="wrapper_contents_top">
+        <h2 class="catch_top">
+          <img
+            src="~/assets/catch_top.png"
+            title="SANCHO"
+            alt="SANCHO - 読みたい漫画がここにある"
+          />
+        </h2>
+        <p class="description_top">
+          Next Gen Completely Transparent & Fair Comic Platform
+        </p>
+        <login />
+      </div>
+    </section>
+
+    <!-- comics -->
+    <comics />
+
+    <!-- introduction -->
+    <section id="introduction">
+      <h2 class="title_introduction">
+        <img
+          src="~/assets/title_introduction.png"
+          title="What is SANCHO"
+          alt="テキスト画像"
+        />
+      </h2>
+      <ul class="wrapper_contents_introduction">
+        <li class="each_ex_introduction">
+          <article>
+            <div class="icon_introduction">
+              <img
+                src="~/assets/no_money.png"
+                title="for free"
+                alt="テキスト画像"
+              />
+            </div>
+            <h3 class="each_title_introduction">
+              Enjoy your favorite <br />comic for free!
+            </h3>
+            <p class="description_introduction">
+              We can see out favorite manga anytime, anywhere, for free
+            </p>
+          </article>
         </li>
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
+        <li class="each_ex_introduction">
+          <article>
+            <div class="icon_introduction">
+              <img
+                src="~/assets/author.png"
+                title="author"
+                alt="テキスト画像"
+              />
+            </div>
+            <h3 class="each_title_introduction">Contribute, get money!</h3>
+            <p class="description_introduction">
+              Gives the author the profit that it was originally unable to
+              obtain due to the pirated illegal upload site
+            </p>
+          </article>
+        </li>
+        <li class="each_ex_introduction">
+          <article>
+            <div class="icon_introduction">
+              <img
+                src="~/assets/decentralization.png"
+                title="decentralize"
+                alt="テキスト画像"
+              />
+            </div>
+            <h3 class="each_title_introduction">Transparent management!</h3>
+            <p class="description_introduction">
+              Completely non-centralized application that did not have a
+              centrally managed server
+            </p>
+          </article>
         </li>
       </ul>
-    </div>
-  </div>
-</footer>
+    </section>
 
-</div>
+    <!-- footer -->
+    <footer>
+      <div class="wrapper_contents_footer">
+        <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
+        <h2 class="logo_footer">
+          <a href="">
+            <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像" />
+          </a>
+        </h2>
+        <div class="wrapper_right_footer">
+          <ul class="sns_footer">
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 
 
@@ -171,7 +210,7 @@ header .button_upload_header {
 
 /* top */
 #top {
-  background-image: url("~/assets/background_top.jpg");
+  background-image: url("~assets/background_top.jpg");
   width: 100%;
   background-attachment: fixed;
   position: relative;
