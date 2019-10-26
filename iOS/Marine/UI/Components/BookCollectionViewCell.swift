@@ -8,7 +8,10 @@
 
 import UIKit
 
-class BookCollectionViewCell: UICollectionViewCell {
+final class BookCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var bookTitleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
