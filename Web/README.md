@@ -1,4 +1,4 @@
-# sancho
+# Marine
 
 > Nuxt.js project
 

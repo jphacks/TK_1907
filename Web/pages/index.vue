@@ -6,8 +6,8 @@
         <h2 class="catch_top">
           <img
             src="~/assets/catch_top.png"
-            title="SANCHO"
-            alt="SANCHO - 読みたい漫画がここにある"
+            title="Marine"
+            alt="Marine - 読みたい漫画がここにある"
           />
         </h2>
         <p class="description_top">
@@ -24,7 +24,7 @@
       <h2 class="title_introduction">
         <img
           src="~/assets/title_introduction.png"
-          title="What is SANCHO"
+          title="What is Marine"
           alt="テキスト画像"
         />
       </h2>
