@@ -221,37 +221,4 @@ export default {
   margin-top: 40px;
 }
 
-/* archives */
-#archives {
-  padding: 0px 0 160px;
-}
-#archives .wrapper_contents_archives {
-  letter-spacing: -0.4em;
-  width: 800px;
-  margin: 0 auto;
-}
-#archives .each_book_archives {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 45px;
-  border-radius: 4px;
-  letter-spacing: normal;
-  display: inline-block;
-  vertical-align: top;
-}
-#archives .each_book_archives:nth-of-type(5n) {
-  margin-right: 0%;
-  margin-bottom: 4%;
-}
-#archives .thumbnail_archives {
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 480px;
-  background-color: #f5f5f5;
-}
-#archives .thumbnail_archives > a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
 </style>

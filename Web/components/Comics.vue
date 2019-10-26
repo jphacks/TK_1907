@@ -32,3 +32,39 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+#archives {
+  padding: 100px 0vw;
+  width: 100vw;
+  overflow-x: scroll;
+}
+#auchives .wrapper_contents_archives {
+  width: 800px;
+  padding: 0;
+  margin: 0 auto;
+}
+#archives .each_book_archives {
+  overflow: hidden;
+  margin-bottom: 45px;
+  margin-right: 5vw;
+  border-radius: 4px;
+  letter-spacing: normal;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5vw;
+  width: 20vw;
+  height: 28vw;
+  box-shadow: 5px 5px 5px #f5f5f5;
+}
+#archives .thumbnail_archives {
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+}
+#archives .thumbnail_archives > div > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+</style>
