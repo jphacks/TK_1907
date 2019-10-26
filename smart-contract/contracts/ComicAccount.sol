@@ -90,4 +90,8 @@ contract ComicAccount  {
       msg.sender.transfer(amount);
     }
   }
+
+  function getCandidatesLength() public view returns (uint256) {
+    return candidates.length;
+  }
 }

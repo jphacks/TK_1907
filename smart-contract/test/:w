@@ -1,7 +1,6 @@
 const MarineCore = artifacts.require("MarineCore");
 const ComicAccount = artifacts.require("ComicAccount");
 const ethabi = require("ethereumjs-abi");
-const BN = require('bn.js');
 const {
   vmExceptionTextRevertWithReason,
   vmExceptionTextRevert,
@@ -108,8 +107,8 @@ contract.only("02_TestComicAccount", async (accounts) => {
 
   it.only("can accept ether", async () => {
     try {
-      await comicAccount.beCandidate({from: accounts[1]});
-      await comicAccount.vote(accounts[1], {from: accounts[2]});
+      await comicAccount.beCandidate();
+      await comicAccount.vote(accounts[0], {from: accounts[1]});
 
       await web3.eth.sendTransaction({
         from: accounts[0],
@@ -118,15 +117,15 @@ contract.only("02_TestComicAccount", async (accounts) => {
         gas: "200000",
       });
 
-      const beforeBalance = await web3.eth.getBalance(accounts[1]);
+      const beforeBalance = await web3.eth.getBalance(accounts[0]);
       const creatorBalance = await comicAccount.balanceOf(1); // creator
 
-      await comicAccount.withdraw({from:accounts[1]});
-      const afterBalance = await web3.eth.getBalance(accounts[1]);
+      await comicAccount.withdraw();
+      const afterBalance = await web3.eth.getBalance(accounts[0]);
       console.log(beforeBalance.toString());
       console.log(afterBalance.toString());
       console.log(creatorBalance.toString());
-      console.log((new BN(beforeBalance, 10)).add(creatorBalance).toString())
+      console.log(beforeBalance.add(creatorBalance).toString())
     } catch(e) {
       console.log(e.message)
       assert(false, "Unexpected error in constructor")
