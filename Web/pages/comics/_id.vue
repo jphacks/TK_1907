@@ -47,8 +47,8 @@
   <div class="wrapper_contents_footer">
     <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
     <h2 class="logo_footer">
-      <a href="//ginco.io" target="_blank">
-        <img src="~/assets/logo_header.png" title="Ginco" alt="ロゴ画像">
+      <a href="">
+        <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像">
       </a>
     </h2>
     <div class="wrapper_right_footer">
