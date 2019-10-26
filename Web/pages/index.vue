@@ -23,6 +23,9 @@
   </div>
 </section>
 
+<!-- comics -->
+<comics/>
+
 <!-- introduction -->
 <section id="introduction">
   <h2 class="title_introduction">
@@ -86,7 +89,8 @@ Gives the author the profit that it was originally unable to obtain due to the p
 <script>
 export default {
   components: {
-    Login: () => import("~/components/Login.vue")
+    Login: () => import("~/components/Login.vue"),
+    Comics: () => import("~/components/Comics.vue")
   }
 };
 </script>
@@ -106,9 +110,6 @@ header .logo_header {
   width: 120px;
 }
 header .logo_header a {
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-  -webkit-justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -119,9 +120,6 @@ header .logo_header img {
 }
 header .wrapper_contents_header {
   width: 1300px;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: space-between;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,14 +127,11 @@ header .wrapper_contents_header {
   padding: 11px 0;
 }
 header .rapper_form_header {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
 }
 header .input_key_header {
   border: none;
-  -webkit-appearance: none;
   border-radius: 4px;
   appearance: none;
   height: 41px;
@@ -148,7 +143,6 @@ header .button_go_header {
   background: #fff100;
   height: 40px;
   font-family: "Oswald", sans-serif;
-  -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
   width: 110px;
@@ -162,7 +156,6 @@ header .button_upload_header {
   background: #1e5ccc;
   height: 40px;
   font-family: "Oswald", sans-serif;
-  -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
   color: #fff;
@@ -181,9 +174,6 @@ header .button_upload_header {
   background-attachment: fixed;
   position: relative;
   height: 100vh;
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-  -webkit-justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -230,7 +220,6 @@ header .button_upload_header {
   margin-top: 20px;
 }
 #introduction .wrapper_contents_introduction {
-  display: -webkit-flex;
   display: flex;
   width: 980px;
   margin: 60px auto 90px;
@@ -273,16 +262,11 @@ footer .wrapper_contents_footer {
   position: relative;
   width: 980px;
   margin: 0 auto;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: space-between;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 footer .wrapper_right_footer {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
 }
@@ -303,8 +287,6 @@ footer .copyright {
   color: #555;
 }
 footer .sns_footer {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
 }
