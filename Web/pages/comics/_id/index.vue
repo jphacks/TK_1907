@@ -40,6 +40,7 @@
 <script>
 import firebase, { db } from "~/plugins/firebase";
 import { mapState, mapActions } from "vuex";
+import Web3 from 'web3';
 
 export default {
   components: {
@@ -48,13 +49,15 @@ export default {
   data() {
     return {
       comic: {},
-      address: ""
+      contractAddress: "",
+      address: "",
+      web3: null,
     };
   },
   middleware: "comics",
   asyncData(context) {
     var chapters = [];
-    db.collection("Books")
+    return db.collection("Books")
       .doc(`${context.route.params.id}`)
       .collection("Chapters")
       .get()
@@ -67,9 +70,19 @@ export default {
           };
           chapters = [...chapters, chap];
         });
-        return { comic: chapters };
+        return { comic: chapters, contractAddress: context.route.params.id };
       });
   },
+  web3: null,
+  mounted: async function() {
+    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+      const provider = window['ethereum'] || window.web3.currentProvider
+      console.log(provider)
+      const web3 = new Web3(provider)
+      this.web3 = web3;
+    }
+  },
+  // middleware: "web3",
   computed: mapState(["comics"]),
   methods: {
     ...mapActions(["login"]),
@@ -106,37 +119,37 @@ export default {
         .collection("Candidates")
         .add({ ...this.$store.state.user });
     },
-    vote() {
-      let account = new wallet.Account(this.$store.state.privateKey);
-      Neon.doInvoke({
-        net: "http://127.0.0.1:30333",
-        script: Neon.create.script({
-          scriptHash: this.$store.state.scriptHash, // Scripthash for the contract
-          operation: "vote", // name of operation to perform.
-          args: [
-            u.str2hexstring(this.$route.params.id),
-            u.str2hexstring(account.address)
-          ]
-        }),
-        account: account,
-        gas: 1
-      })
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+    async vote() {
+			// TODO 投票先を取得する
+      const accounts = await this.web3.eth.getAccounts()
+      console.log(accounts)
+      try {
+        await web3.eth.sendTransaction({
+          from: accounts[0],
+          to: this.contractAddress,
+          gas: "1000000",
+          data: "0x6dd7d8ea", // vote
+        });
+      } catch(e) {
+        console.log(e);
+      }
     },
-    withdraw() {
-      Neon.doInvoke({
-        net: "http://127.0.0.1:30333",
-        script: Neon.create.script({
-          scriptHash: this.$store.state.scriptHash, // Scripthash for the contract
-          operation: "withdraw", // name of operation to perform.
-          args: [u.str2hexstring(this.$route.params.id)]
-        }),
-        account: new wallet.Account(this.$store.state.privateKey),
-        gas: 1
-      })
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+    async withdraw() {
+      console.log(this.contractAddress)
+      console.log(this.web3)
+      console.log(this.comic)
+      const accounts = await this.web3.eth.getAccounts()
+      console.log(accounts)
+      try {
+        await web3.eth.sendTransaction({
+          from: accounts[0],
+          to: this.contractAddress,
+          gas: "1000000",
+          data: "0x3ccfd60b", // withdraw
+        });
+      } catch(e) {
+        console.log(e);
+      }
     }
   }
 };
