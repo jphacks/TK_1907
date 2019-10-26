@@ -74,14 +74,14 @@ export default {
     ...mapActions(["login"]),
     async loginTwitter() {
       var provider = new firebase.auth.TwitterAuthProvider();
-      firebase
+      await firebase
         .auth()
         .signInWithPopup(provider)
         .then(result => {
           this.login({
             name: result.user.displayName,
             photo: result.user.photoURL,
-            id: result.user.screenName
+            uid: result.user.uid
           });
           // this.$router.push("/upload");
         })
@@ -99,6 +99,11 @@ export default {
     },
     async candidate() {
       await this.loginTwitter();
+      await db
+        .collection("Books")
+        .doc(`${this.$route.params.id}`)
+        .collection("Candidates")
+        .add({ ...this.$store.state.user });
     },
     vote() {
       let account = new wallet.Account(this.$store.state.privateKey);
@@ -220,5 +225,4 @@ export default {
   text-align: center;
   margin-top: 40px;
 }
-
 </style>
