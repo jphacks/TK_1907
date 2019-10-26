@@ -10,32 +10,17 @@ import Foundation
 import RxDataSources
 
 enum CellItem: IdentifiableType, Equatable {
+    typealias Identity = String
 
     static func == (lhs: CellItem, rhs: CellItem) -> Bool {
         return lhs.identity == rhs.identity
     }
 
-    typealias Identity = String
     var identity: Identity {
         switch self {
-        case let .post(post):
-            return post.identity
-        case let .accountTableViewCellReactor(accountTableViewCellReactor):
-            return accountTableViewCellReactor.identity
-        case let .topic(topic):
-            return topic.identity
-        case let .notification(notification):
-            return notification.identity
-        case let .like(like):
-            return like.identity
-        case let .user(user):
-            return user.identity
+        case let .book(book):
+            return book.identity
         }
     }
-    case item(PostTableViewCellReactor)
-    case accountTableViewCellReactor(AccountTableViewCellReactor)
-    case topic(Topic)
-    case notification(PoemyNotification)
-    case like(Like)
-    case user(User)
+    case book(Book)
 }
