@@ -89,13 +89,15 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 			return err
 		}
 		if _, err := bookRef.Set(context.Background(), struct {
-			PV        int64
-			Thumbnail string
-			Title     string
+			PV               int64
+			WrappedThumbnail string
+			Thumbnail        string
+			Title            string
 		}{
-			PV:        0,
-			Thumbnail: pages[0].StorageURL,
-			Title:     title,
+			PV:               0,
+			WrappedThumbnail: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%s/%d", contractAddr, chapter, 0),
+			Thumbnail:        pages[0].StorageURL,
+			Title:            title,
 		}); err != nil {
 			return errors.WithStack(err)
 		}
@@ -113,13 +115,15 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 			return err
 		}
 		if _, err := chapterRef.Set(context.Background(), struct {
-			ChapterNumber int64
-			Thumbnail     string
-			Title         string
+			ChapterNumber    int64
+			WrappedThumbnail string
+			Thumbnail        string
+			Title            string
 		}{
-			ChapterNumber: chapterNum,
-			Thumbnail:     pages[0].StorageURL,
-			Title:         fmt.Sprintf("%d巻 %s", chapterNum, title),
+			ChapterNumber:    chapterNum,
+			WrappedThumbnail: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%s/%d", contractAddr, chapter, 0),
+			Thumbnail:        pages[0].StorageURL,
+			Title:            fmt.Sprintf("%d巻 %s", chapterNum, title),
 		}); err != nil {
 			return errors.WithStack(err)
 		}

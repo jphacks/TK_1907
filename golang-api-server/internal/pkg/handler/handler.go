@@ -161,15 +161,30 @@ func GetImage(db database.Database, s storage.Storage) echo.HandlerFunc {
 			return err
 		}
 
-		imageBytes, err := s.GetImage(title, chapterNum, pageNum)
-		if err != nil {
-			logger.Error("error occuered in GetImage", zap.Error(err))
-			return err
-		}
-
-		if err := db.IncreasePV(bookId); err != nil {
-			logger.Error("error occuered in IncreasePV", zap.Error(err))
-			return err
+		var imageBytes []byte
+		switch pageNum {
+		case 0:
+			imageBytes, err = s.GetImage(title, chapterNum, 1)
+			if err != nil {
+				logger.Error("error occuered in GetImage", zap.Error(err))
+				return err
+			}
+		case 1:
+			imageBytes, err = s.GetImage(title, chapterNum, pageNum)
+			if err != nil {
+				logger.Error("error occuered in GetImage", zap.Error(err))
+				return err
+			}
+			if err := db.IncreasePV(bookId); err != nil {
+				logger.Error("error occuered in IncreasePV", zap.Error(err))
+				return err
+			}
+		default:
+			imageBytes, err = s.GetImage(title, chapterNum, pageNum)
+			if err != nil {
+				logger.Error("error occuered in GetImage", zap.Error(err))
+				return err
+			}
 		}
 
 		return c.Blob(http.StatusOK, "image/jpeg", imageBytes)
