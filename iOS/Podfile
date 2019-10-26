@@ -47,6 +47,7 @@ def install_pods
     pod 'OneSignal', '>= 2.11.0', '< 3.0'
     pod 'CropViewController'
     pod 'FaveButton'
+    pod 'WaterfallLayout', '~> 0.1'
 
     # LICENSE
     pod 'AcknowList'

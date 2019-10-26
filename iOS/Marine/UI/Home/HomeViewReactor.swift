@@ -41,7 +41,7 @@ final class HomeViewReactor: Reactor {
     }
 
     init() {
-        initialState = State(isFirstLoading: false, isLoading: false, headerSection: .init(model: .homeHeader, items: []), booksSection: .init(model: .books, items: []), hasNext: true, lastSnapshot: nil)
+        initialState = State(isFirstLoading: false, isLoading: false, headerSection: .init(model: .homeHeader, items: [CellItem.header]), booksSection: .init(model: .books, items: []), hasNext: true, lastSnapshot: nil)
         self.bookService = BookService()
     }
 

@@ -11,6 +11,7 @@ import ReactorKit
 import RxDataSources
 import RxSwift
 import UIKit
+import WaterfallLayout
 
 final class HomeViewController: UIViewController {
 
@@ -18,8 +19,15 @@ final class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
+            let layout = WaterfallLayout()
+            layout.delegate = self
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 12)
+            layout.minimumLineSpacing = 8.0
+            layout.minimumInteritemSpacing = 8.0
+            layout.headerHeight = 12
+            collectionView.collectionViewLayout = layout
             collectionView.register(UINib(nibName: "BookCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BookCell")
-            setUpCollectionViewLayout()
+            collectionView.register(UINib(nibName: "HomeHeaderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeHeaderCell")
         }
     }
 
@@ -85,13 +93,23 @@ extension HomeViewController: StoryboardView {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
-    private func setUpCollectionViewLayout() {
-        let layout = UICollectionViewFlowLayout()
-        let fullWidthWithoutBorder = UIScreen.main.bounds.width - 2
-        layout.itemSize = CGSize(width: fullWidthWithoutBorder / 2, height: fullWidthWithoutBorder * (105 / 148) + 42)
-        layout.minimumInteritemSpacing = 1
-        layout.minimumLineSpacing = 2
-        collectionView.collectionViewLayout = layout
+extension HomeViewController: WaterfallLayoutDelegate, UICollectionViewDelegate {
+    func collectionViewLayout(for section: Int) -> WaterfallLayout.Layout {
+        switch section {
+        case 0: return .flow(column: 1) // single column flow layout
+        case 1: return .waterfall(column: 2, distributionMethod: .balanced) // three waterfall layout
+        default: return .flow(column: 2)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout: WaterfallLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.section {
+        case 0:
+            return CGSize(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.width / 3.5)
+        case 1:
+            return CGSize(width: UIScreen.main.bounds.width / 2, height: (UIScreen.main.bounds.width / 2) * (148 / 105) + 60)
+        default:
+            return CGSize(width: UIScreen.main.bounds.width / 2, height: (UIScreen.main.bounds.width / 2) * (148 / 105) + 42)
+        }
     }
 }
