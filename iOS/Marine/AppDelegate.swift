@@ -6,6 +6,7 @@
 //  Copyright © 2019 Imagine Kawabe. All rights reserved.
 //
 
+import Firebase
 import Lottie
 import UIKit
 
@@ -16,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var container: UIView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        FirebaseApp.configure()
+
         return true
     }
 

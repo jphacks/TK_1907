@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>23225479459-nmbheovsqmsjchfov4kganju8ugeuu98.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.23225479459-nmbheovsqmsjchfov4kganju8ugeuu98</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBIvtwq0_Y_AxOdfvAFIG_a029HCFyymDk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>23225479459</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>me.imjn.marine</string>
+	<key>PROJECT_ID</key>
+	<string>marine-dev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>marine-dev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:23225479459:ios:d117ec35376156151fdc96</string>
+	<key>DATABASE_URL</key>
+	<string>https://marine-dev.firebaseio.com</string>
+</dict>
+</plist>

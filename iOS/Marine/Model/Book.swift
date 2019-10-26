@@ -30,14 +30,18 @@ class Book: Identifiable {
     typealias Identity = String
     var identity: Identity = UUID().uuidString
     var title: String
+    var thumbnail: String
 
-    init(title: String) {
+    init(title: String, thumbnail: String) {
         self.title = title
+        self.thumbnail = thumbnail
     }
 
     init?(document: DocumentSnapshot) {
         guard let dictionary = document.data() as? [String : Any],
-            let title = dictionary["Title"] as? String else { return nil }
+            let title = dictionary["Title"] as? String,
+            let thumbnail = dictionary["Thumbnail"] as? String else { return nil }
         self.title = title
+        self.thumbnail = thumbnail
     }
 }
