@@ -17,19 +17,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="474" height="136"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6qx-j4-BdA">
-                        <rect key="frame" x="20" y="10" width="96" height="117"/>
-                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6qx-j4-BdA">
+                        <rect key="frame" x="20" y="8" width="87.5" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="iwu-e2-Xw1"/>
+                            <constraint firstAttribute="width" secondItem="6qx-j4-BdA" secondAttribute="height" multiplier="105:144" id="xNt-SQ-Y5j"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZz-rb-bl6">
-                        <rect key="frame" x="129" y="58" width="325" height="21"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZz-rb-bl6">
+                        <rect key="frame" x="119.5" y="60" width="334.5" height="16"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="16"/>
                         <color key="textColor" name="MarineBlack"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gI1-Jc-NH5">
+                        <rect key="frame" x="0.0" y="135" width="474" height="1"/>
+                        <color key="backgroundColor" name="MarineBackground"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="mCF-Gb-hpV"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="gI1-Jc-NH5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3MO-lq-Q3M"/>
+                <constraint firstItem="6qx-j4-BdA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="C7e-UY-8jp"/>
+                <constraint firstItem="pZz-rb-bl6" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="N8X-v3-E0W"/>
+                <constraint firstAttribute="bottom" secondItem="gI1-Jc-NH5" secondAttribute="bottom" id="P96-rH-v1h"/>
+                <constraint firstAttribute="trailing" secondItem="pZz-rb-bl6" secondAttribute="trailing" constant="20" id="dqi-xe-wrD"/>
+                <constraint firstAttribute="bottom" secondItem="6qx-j4-BdA" secondAttribute="bottom" constant="8" id="f2p-tQ-SbC"/>
+                <constraint firstAttribute="trailing" secondItem="gI1-Jc-NH5" secondAttribute="trailing" id="mac-zN-5aY"/>
+                <constraint firstItem="6qx-j4-BdA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="rv3-Cb-O4w"/>
+                <constraint firstItem="pZz-rb-bl6" firstAttribute="leading" secondItem="6qx-j4-BdA" secondAttribute="trailing" constant="12" id="wXD-ra-BXB"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="474" height="136"/>
             <connections>
@@ -40,6 +60,9 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="MarineBackground">
+            <color red="0.90196078431372551" green="0.90980392156862744" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="MarineBlack">
             <color red="0.19607843137254902" green="0.18823529411764706" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

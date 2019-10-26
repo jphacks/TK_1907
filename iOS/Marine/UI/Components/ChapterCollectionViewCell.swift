@@ -10,7 +10,12 @@ import UIKit
 
 class ChapterCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var thumbnailImageView: UIImageView! {
+        didSet {
+            thumbnailImageView.layer.cornerRadius = 8
+        }
+    }
+
     @IBOutlet weak var chapterTitleLabel: UILabel!
 
     override func awakeFromNib() {
