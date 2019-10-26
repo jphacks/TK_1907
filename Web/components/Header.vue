@@ -6,7 +6,7 @@
           <img src="~/assets/logo_header.png" title="Marine" alt="Marineロゴ" />
         </a>
       </h1>
-      <LinkButton to="upload" title="upload" />
+      <LinkButton to="/upload" title="upload" />
     </div>
   </header>
 </template>

@@ -12,15 +12,8 @@
             黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!
           </p>
           <div class="wrapper_form_header">
-            <input
-              class="input_key_header"
-              type=""
-              name=""
-              placeholder="Enter address here."
-              v-model="address"
-            />
-            <button class="button_upload_header" @click="vote">Vote</button>
-            <button class="withdraw" @click="withdraw">Withdraw</button>
+            <Button @click="vote" title="投票する" />
+            <Button @click="candidate" title="ログインして立候補する" />
           </div>
         </div>
       </div>
@@ -45,10 +38,13 @@
 
 
 <script>
-import { db } from "~/plugins/firebase";
-import { mapState } from "vuex";
+import firebase, { db } from "~/plugins/firebase";
+import { mapState, mapActions } from "vuex";
 
 export default {
+  components: {
+    Button: () => import("~/components/atoms/Button")
+  },
   data() {
     return {
       comic: {},
@@ -75,6 +71,35 @@ export default {
   },
   computed: mapState(["comics"]),
   methods: {
+    ...mapActions(["login"]),
+    async loginTwitter() {
+      var provider = new firebase.auth.TwitterAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(result => {
+          this.login({
+            name: result.user.displayName,
+            photo: result.user.photoURL,
+            id: result.user.screenName
+          });
+          // this.$router.push("/upload");
+        })
+        .catch(error => {
+          console.error(error);
+          // TODO: display error message
+          // this.error = { ...error };
+          // {
+          //   code,
+          //   message,
+          //   email, // The email of the user's account used.
+          //   credential, // The firebase.auth.AuthCredential type that was used.
+          // }
+        });
+    },
+    async candidate() {
+      await this.loginTwitter();
+    },
     vote() {
       let account = new wallet.Account(this.$store.state.privateKey);
       Neon.doInvoke({
@@ -196,37 +221,4 @@ export default {
   margin-top: 40px;
 }
 
-/* archives */
-#archives {
-  padding: 0px 0 160px;
-}
-#archives .wrapper_contents_archives {
-  letter-spacing: -0.4em;
-  width: 800px;
-  margin: 0 auto;
-}
-#archives .each_book_archives {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 45px;
-  border-radius: 4px;
-  letter-spacing: normal;
-  display: inline-block;
-  vertical-align: top;
-}
-#archives .each_book_archives:nth-of-type(5n) {
-  margin-right: 0%;
-  margin-bottom: 4%;
-}
-#archives .thumbnail_archives {
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 480px;
-  background-color: #f5f5f5;
-}
-#archives .thumbnail_archives > a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
 </style>

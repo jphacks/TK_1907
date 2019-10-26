@@ -1,24 +1,24 @@
 import firebase, { db } from "~/plugins/firebase";
 
 export const state = () => ({
-  token: "",
-  secret: "",
-  user: null,
+  user: {
+    name: "",
+    photo: "",
+    id: "@"
+  },
   isLogin: false,
   comics: []
 });
 
 export const mutations = {
-  login(state, token, secret, user) {
-    state.token = token;
-    state.secret = secret;
-    state.user = user;
+  login(state, user) {
+    state.user = { ...user };
     state.isLogin = true;
   },
   logout(state) {
     state.token = "";
     state.secret = "";
-    state.user = null;
+    state.user = {};
     state.isLogin = false;
   },
   setComics(state, comics) {
@@ -30,8 +30,8 @@ export const mutations = {
 };
 
 export const actions = {
-  login({ commit }, token, secret, user) {
-    commit("login", token, secret, user);
+  login({ commit }, user) {
+    commit("login", user);
   },
   async logout({ commit }) {
     await firebase

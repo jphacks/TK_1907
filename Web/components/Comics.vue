@@ -3,7 +3,7 @@
     <ul class="wrapper_contents_archives">
       <li
         class="each_book_archives"
-        v-for="(comic, index) in $store.state.comics"
+        v-for="(comic, index) in comics"
         :key="index"
       >
         <article class="thumbnail_archives">
@@ -18,25 +18,13 @@
 
 
 <script>
-
-// async function getComics(shash) {
-//   const props = {
-//     scriptHash: shash, // Scripthash for the contract
-//     operation: "getData", // name of operation to perform.
-//     args: [] // any optional arguments to pass in. If null, use empty array.
-//   };
-//   let script = Neon.create.script(props);
-//   let res = await rpc.Query.invokeScript(Neon.create.script(props)).execute(
-//     "http://localhost:30333"
-//   );
-//   return JSON.parse("[" + u.hexstring2str(res.result.stack[0].value) + "]");
-// }
-
 export default {
-  // async beforeCreate() {
-  //   let comics = await getComics(this.$store.state.scriptHash);
-  //   this.$store.commit("setComics", comics);
-  // },
+  props: {
+    comics: {
+      type: Array,
+      require: true
+    }
+  },
   methods: {
     goDetail(id) {
       this.$router.push("/comics/" + id);
@@ -44,3 +32,39 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+#archives {
+  padding: 100px 0vw;
+  width: 100vw;
+  overflow-x: scroll;
+}
+#auchives .wrapper_contents_archives {
+  width: 800px;
+  padding: 0;
+  margin: 0 auto;
+}
+#archives .each_book_archives {
+  overflow: hidden;
+  margin-bottom: 45px;
+  margin-right: 5vw;
+  border-radius: 4px;
+  letter-spacing: normal;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5vw;
+  width: 20vw;
+  height: 28vw;
+  box-shadow: 5px 5px 5px #f5f5f5;
+}
+#archives .thumbnail_archives {
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+}
+#archives .thumbnail_archives > div > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+</style>
