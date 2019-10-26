@@ -3,7 +3,7 @@
     <div class="wrapper_contents_header">
       <h1 class="logo_header">
         <a href="/">
-          <img src="~/assets/logo_header.png" title="SANCHO" alt="SANCHOロゴ" />
+          <img src="~/assets/logo_header.png" title="Marine" alt="Marineロゴ" />
         </a>
       </h1>
       <LinkButton to="upload" title="upload" />
