@@ -30,22 +30,26 @@ final class SingleBookViewReactor: Reactor {
 
     struct State {
         var isLoading: Bool
+        var isFirstLoading: Bool
         var book: Book
         var chapterSection: CustomSection
     }
 
     init(book: Book) {
-        initialState = State(isLoading: false, book: book, chapterSection: .init(model: .chapters, items: []))
+        initialState = State(isLoading: false, isFirstLoading: false, book: book, chapterSection: .init(model: .chapters, items: []))
         self.chapterService = ChapterService()
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .load:
-            return chapterService.fetch(bookId: currentState.book.identity)
+            let setLoading = Observable.just(Mutation.setFirstLoading(isLoading: true))
+            let unsetLoading = Observable.just(Mutation.setFirstLoading(isLoading: false))
+            let loadChapters = chapterService.fetch(bookId: currentState.book.identity)
                 .compactMap { result in
                     Mutation.setChapters(result.chapters, lastSnapshot: result.lastSnapshot, hasNext: result.hasNext)
                 }
+            return .concat(setLoading, loadChapters, unsetLoading)
         }
     }
 
@@ -56,7 +60,7 @@ final class SingleBookViewReactor: Reactor {
             newState.chapterSection.items = chapters.map(CellItem.chapter)
             // TODO Update lastSnapshot and hasNext if pagination is needed
         case let .setFirstLoading(isLoading: isLoading):
-            newState.isLoading = isLoading
+            newState.isFirstLoading = isLoading
         case let .setLoading(isLoading: isLoading):
             newState.isLoading = isLoading
         }

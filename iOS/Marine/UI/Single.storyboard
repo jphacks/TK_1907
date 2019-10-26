@@ -98,6 +98,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="hru-BJ-mHS" id="a9y-sZ-CKx"/>
                         <outlet property="bookTitleLabel" destination="iOS-R2-txc" id="mIm-dK-01e"/>
+                        <outlet property="collectionView" destination="dMG-DL-QbR" id="aGO-Mr-qCn"/>
                         <outlet property="thumbnailImageView" destination="PYf-4M-ssI" id="o5d-H1-LlJ"/>
                     </connections>
                 </viewController>
