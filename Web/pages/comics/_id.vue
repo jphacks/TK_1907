@@ -24,8 +24,8 @@
       <p class="description_book_detail">黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!</p>
       <div class="wrapper_form_header">
       <input class="input_key_header" type="" name="" placeholder="Enter address here." v-model="address">
-      <button class="button_upload_header" v-on:click="vote">Vote</button>
-      <button class="withdraw" v-on:click="withdraw">Withdraw</button>
+      <button class="button_upload_header" @click="vote">Vote</button>
+      <button class="withdraw" @click="withdraw">Withdraw</button>
     </div>
     </div>
   </div>

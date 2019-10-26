@@ -3,7 +3,7 @@
     <ul class="wrapper_contents_archives">
       <li class="each_book_archives" v-for="(comic, index) in $store.state.comics" :key="index">
         <article class="thumbnail_archives">
-          <div v-on:click="goDetail(comic.hash)">
+          <div @click="goDetail(comic.hash)">
             <img :src="'https://ipfs.io/ipfs/'+ comic.imageHashes[0]">
           </div>
         </article>

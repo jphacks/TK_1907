@@ -6,7 +6,7 @@
           <h2 class="title_book_detail">Upload manga files</h2>
           <p class="description_book_detail">Upload your manga files below.</p>
           <div class="wrapper_form_header">
-          <input class="button_upload_header" type="file" v-on:change="onFileChange" multiple>
+          <input class="button_upload_header" type="file" @change="onFileChange" multiple>
         </div>
         </div>
       </div>
