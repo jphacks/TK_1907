@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"sort"
+	"strconv"
 	"time"
 
 	"google.golang.org/grpc/codes"
@@ -66,14 +67,40 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 		}
 	}
 
+	chapterNum, err := strconv.ParseInt(chapter, 10, 64)
+	if err != nil {
+		return err
+	}
+
+	chapterRef := f.client.Doc(fmt.Sprintf("Books/%s/Chapters/%d", contractAddr, chapterNum))
+	_, err = chapterRef.Get(context.Background())
+	if err != nil {
+		if status.Code(err) != codes.NotFound {
+			return err
+		}
+		if _, err := chapterRef.Set(context.Background(), struct {
+			ChapterNumber int64
+			Thumbnail     string
+			Title         string
+		}{
+			ChapterNumber: chapterNum,
+			Thumbnail:     pages[0].StorageURL,
+			Title:         fmt.Sprintf("%d巻 %s", chapterNum, title),
+		}); err != nil {
+			return errors.WithStack(err)
+		}
+	}
+
 	for _, chunk := range chunk(pages, batchLimit) {
 		batch := f.client.Batch()
 		for _, page := range chunk {
 			txRef := f.client.Doc(fmt.Sprintf("Books/%s/Chapters/%s/Pages/%d", contractAddr, chapter, page.(database.PageInfo).Page))
 			batch.Set(txRef, struct {
-				URL string
+				PageNumber int64
+				URL        string
 			}{
-				URL: page.(database.PageInfo).StorageURL,
+				PageNumber: page.(database.PageInfo).Page,
+				URL:        page.(database.PageInfo).StorageURL,
 			})
 		}
 

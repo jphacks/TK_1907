@@ -3,3 +3,9 @@ go-build-amd64:
 
 dev:
 	go run ./cmd/v1/main.go 2>&1 | pz
+
+docker-build:
+	docker build -f build/api-server/Dockerfile -t asia.gcr.io/marine-dev/api-server .
+
+docker-push:
+	docker push asia.gcr.io/marine-dev/api-server:latest

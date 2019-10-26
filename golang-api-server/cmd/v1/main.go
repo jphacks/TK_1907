@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"os"
 	"os/signal"
 	"runtime"
@@ -53,7 +54,7 @@ func main() {
 	e := router.Init(db, s)
 
 	go func() {
-		if err := e.Start(":8080"); err != nil {
+		if err := e.Start(fmt.Sprintf(":%s", os.Getenv("PORT"))); err != nil {
 			logger.Panic("Error", zap.Error(err))
 		}
 	}()
