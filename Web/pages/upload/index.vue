@@ -53,16 +53,13 @@ export default {
   components: {
     AddressUpload,
     FileUpload
-  },
-  data() {
-    return {};
-  },
-  beforeCreate() {
-    if (!this.$store.state.isLogin) {
-      this.$router.push("/");
-    }
-  },
-  methods: {}
+  }
+  // TODO: サーバと繋がったらコメント外す
+  // beforeCreate() {
+  //   if (!this.$store.state.isLogin) {
+  //     this.$router.push("/");
+  //   }
+  // },
 };
 </script>
 

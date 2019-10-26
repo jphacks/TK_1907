@@ -90,7 +90,7 @@ export default {
     AddressUpload,
   },
   created() {
-    for (var i = 0; i < this.$store.state.comics.length; i++) {
+    for (let i = 0; i < this.$store.state.comics.length; i++) {
       if (this.$route.params.id === this.$store.state.comics[i]["hash"]) {
           this.comic = this.$store.state.comics[i]
           break
