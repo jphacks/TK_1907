@@ -1,0 +1,174 @@
+/* font */
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/font/NotoSansCJKjp-Regular.otf');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/font/NotoSansCJKjp-Medium.otf');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/font/NotoSansCJKjp-Bold.otf');
+    font-weight: bold;
+    font-display: swap;
+}
+
+/* reset style */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td,input,select,textarea,button{
+	margin:0;
+	padding:0;
+}
+a,a:link,a:visited,a:hover,a:active{
+	text-decoration:none;
+	outline:none;
+}
+ul,li{
+	list-style:none;
+}
+figure {
+	margin: 0;
+}
+table{
+	border-collapse:collapse;
+	border-spacing:0;
+}
+caption,th{
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight:inherit;
+}
+/* clearfix */
+.clearfix:after{
+	content:" ";
+	display:block;
+	clear:both;
+}
+/* all,html,body,layout */
+*{
+	color: #000;
+	font-size: 1.4rem;
+	box-sizing:border-box;
+	letter-spacing:0.4px;
+	line-height:1.6;
+	border-radius:0;
+}
+html{
+	font-size:10px;
+	background:#FFF;
+	height:100%;
+}
+body{
+	font-family: Avenir, "Helvetica Neue", Helvetica, Arial, Roboto, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	min-height: 100vh;
+	display:flex;
+	display:-webkit-flex;
+	flex-direction: column;
+	-webkit-flex-direction: column;
+}
+main {
+}
+
+/* input系 */
+input[type="search"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+textarea,
+button{
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+}
+input,select,textarea,button{
+	font-family:inherit;
+	font-weight:inherit;
+	outline: none;
+	border:1px solid #333;
+	background-color:#FFF;
+}
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="file"],
+input[type="image"],
+input[type="number"],
+input[type="range"],
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+select,
+textarea {
+	display: block;
+}
+input[type="color"],
+input[type="file"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button{
+	cursor:pointer;
+}
+input[type="color"],
+input[type="file"],
+input[type="image"]{
+	border:none;
+	background-color:transparent;
+}
+select{
+	text-indent:0.01px;
+	text-overflow:'';
+	background-image: url(./under_arrow.svg);
+	background-position: 100% center;
+	background-repeat: no-repeat;
+	padding: 0 20px 0 10px;
+}
+select::-ms-expand{
+	display:none;
+}
+textarea{
+	overflow:auto;
+	display: block;
+	resize:vertical;
+}
+/* 画像・動画系 */
+img,canvas,iframe,video,svg{
+	border:0;
+	max-width:100%;
+	display:block;
+}
+/* スマホ用 */
+@media screen and (max-width: 768px) {
+	*{
+		font-size:1.3rem;
+	}
+	input,select,textarea{
+		font-size:1.6rem;
+	}
+	input[type="checkbox"]:checked{
+		background-color: #3B99FC;
+	}
+	input[type="radio"]{
+		border-radius: 100%;
+	}
+	input[type="radio"]:checked{
+		background-color: #3B99FC;
+		border-radius: 100%;
+	}
+}
