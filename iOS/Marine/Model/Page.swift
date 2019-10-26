@@ -30,25 +30,21 @@ class Page: Identifiable {
 
     typealias Identity = String
     var identity: Identity
-    var title: String
-    var thumbnail: String
+    var imageUrlString: String
 
-    init(identifier: String, title: String, thumbnail: String) {
+    init(identifier: String, imageUrlString: String) {
         self.identity = identifier
-        self.title = title
-        self.thumbnail = thumbnail
+        self.imageUrlString = imageUrlString
     }
 
     init?(document: DocumentSnapshot) {
         guard let dictionary = document.data() as? [String : Any],
-            let title = dictionary["Title"] as? String,
-            let thumbnail = dictionary["Thumbnail"] as? String else { return nil }
+            let url = dictionary["URL"] as? String else { return nil }
         self.identity = document.documentID
-        self.title = title
-        if let encodedUrl = thumbnail.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed) {
-            self.thumbnail = encodedUrl
+        if let encodedUrl = url.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed) {
+            self.imageUrlString = encodedUrl
         } else {
-            self.thumbnail = ""
+            self.imageUrlString = ""
         }
     }
 }
