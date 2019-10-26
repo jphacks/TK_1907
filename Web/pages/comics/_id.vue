@@ -51,6 +51,7 @@ export default {
       address: ""
     };
   },
+  middleware: 'comics',
   asyncData(context) {
     var chapters = [];
     db.collection("Books")
