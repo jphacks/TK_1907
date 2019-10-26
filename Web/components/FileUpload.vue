@@ -60,6 +60,7 @@
 
 <script>
 import { Steps, Step, Button } from "view-design";
+import Web3 from 'web3';
 
 const apiEndPoint = "https://api-server-o57wjya6va-an.a.run.app/uploadMedia";
 
@@ -73,6 +74,7 @@ export default {
         chapter: 1,
         summary: ""
       },
+      web3: null,
       sender: "0x00192fb10df37c9fb26829eb2cc623cd1bf599e8",
       nonce: 0,
       file: undefined,
@@ -100,6 +102,18 @@ export default {
       }
     };
   },
+  asyncData(context) {
+    return { contractAddress: context.route.params.id };
+  },
+  mounted: async function() {
+    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+      const provider = window['ethereum'] || window.web3.currentProvider
+      const web3 = new Web3(provider)
+      const accounts = await web3.eth.getAccounts();
+      this.web3 = web3;
+      this.sender = accounts[0];
+    }
+  },
   methods: {
     next() {
       if (this.current == 3) {
@@ -108,8 +122,20 @@ export default {
         this.current += 1;
       }
     },
-    upload() {
+    async upload() {
       this.loading = true;
+      const salt = this.web3.eth.abi.encodeParameter('uint256', this.nonce).slice(2);
+      try {
+        await web3.eth.sendTransaction({
+          from: this.sender,
+          //to: this.contractAddress,
+          to: "0x803e9aD57c90d48FA9F9e3F11dEd6970B9c52D09",
+          gas: "1000000",
+          data: "0xacb1250d" + salt, // createComicAccount
+        });
+      } catch(e) {
+        console.log(e);
+      }
       const params = new FormData();
       params.append("file", this.file);
       params.append("title", this.formValidate.title);

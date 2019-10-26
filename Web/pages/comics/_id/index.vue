@@ -10,7 +10,7 @@
           <h2 class="title_book_detail">{{ comics[0].title }}</h2>
           <h2 class="balance_detail"> 総残高 {{ balance }} ETH </h2>
           <p class="description_book_detail">
-          <!--{{ comics[0].description }}-->
+        {{ comics[0].summary }}
           </p>
           <div class="wrapper_form_header">
             <Button @click="vote" title="投票する" />
@@ -20,21 +20,6 @@
         </div>
       </div>
     </section>
-
-    <!-- archives -->
-    <!-- <section id="archives">
-      <ul class="wrapper_contents_archives">
-        <li
-          class="each_book_archives"
-          v-for="(hash, index) in comic"
-          :key="index"
-        >
-          <article class="thumbnail_archives">
-            <img :src="'https://ipfs.io/ipfs/' + hash" />
-          </article>
-        </li>
-      </ul>
-    </section> -->
   </div>
 </template>
 
