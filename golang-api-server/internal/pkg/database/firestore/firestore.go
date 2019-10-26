@@ -78,7 +78,7 @@ func (f *Firestore) IncreasePV(contractAddr string) error {
 }
 
 // SetPages ...
-func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []database.PageInfo) error {
+func (f *Firestore) SetPages(contractAddr, title, chapter, summary string, pages []database.PageInfo) error {
 	sort.Slice(pages, func(i, j int) bool {
 		return pages[i].Page < pages[j].Page
 	})
@@ -93,11 +93,13 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 			WrappedThumbnail string
 			Thumbnail        string
 			Title            string
+			Summary          string
 		}{
 			PV:               0,
 			WrappedThumbnail: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%s/%d", contractAddr, chapter, 0),
 			Thumbnail:        pages[0].StorageURL,
 			Title:            title,
+			Summary:          summary,
 		}); err != nil {
 			return errors.WithStack(err)
 		}

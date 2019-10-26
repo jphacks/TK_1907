@@ -4,7 +4,7 @@ ENV GO111MODULE on
 
 COPY . /go/src/tmp
 WORKDIR /go/src/tmp
-RUN make go-build-amd64
+# RUN make go-build-amd64
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates \

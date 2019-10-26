@@ -8,7 +8,7 @@ import (
 type Database interface {
 	GetTitle(contractAddr string) (string, error)
 	IncreasePV(contractAddr string) error
-	SetPages(contractAddr, title, chapter string, pages []PageInfo) error
+	SetPages(contractAddr, title, chapter, summary string, pages []PageInfo) error
 }
 
 // Config ...
