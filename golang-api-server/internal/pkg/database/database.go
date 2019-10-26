@@ -6,6 +6,8 @@ import (
 
 // Database ...
 type Database interface {
+	GetTitle(contractAddr string) (string, error)
+	IncreasePV(contractAddr string) error
 	SetPages(contractAddr, title, chapter string, pages []PageInfo) error
 }
 
@@ -19,4 +21,11 @@ type Config struct {
 type PageInfo struct {
 	Page       int64
 	StorageURL string
+}
+
+// Book ...
+type Book struct {
+	PV        int64
+	Thumbnail string
+	Title     string
 }

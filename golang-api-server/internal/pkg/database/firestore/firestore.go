@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"sort"
+	"strconv"
 	"time"
 
 	"google.golang.org/grpc/codes"
@@ -19,7 +20,13 @@ import (
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/database"
 )
 
-const batchLimit = 500
+const (
+	batchLimit = 500
+)
+
+var (
+	increment = firestore.Increment(1)
+)
 
 // New ...
 func New(cfg database.Config) (database.Database, error) {
@@ -42,6 +49,34 @@ type Firestore struct {
 	config database.Config
 }
 
+// GetTitle ...
+func (f *Firestore) GetTitle(contractAddr string) (string, error) {
+	bookRef := f.client.Doc(fmt.Sprintf("Books/%s", contractAddr))
+	docSnap, err := bookRef.Get(context.Background())
+	if err != nil {
+		if status.Code(err) != codes.NotFound {
+			return "", err
+		}
+	}
+	var book database.Book
+	if err := docSnap.DataTo(&book); err != nil {
+		return "", err
+	}
+
+	return book.Title, nil
+}
+
+// IncreasePV ...
+func (f *Firestore) IncreasePV(contractAddr string) error {
+	bookRef := f.client.Doc(fmt.Sprintf("Books/%s", contractAddr))
+	if _, err := bookRef.Update(context.Background(), []firestore.Update{
+		{Path: "PV", Value: firestore.Increment(1)},
+	}); err != nil {
+		return err
+	}
+	return nil
+}
+
 // SetPages ...
 func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []database.PageInfo) error {
 	sort.Slice(pages, func(i, j int) bool {
@@ -54,13 +89,41 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 			return err
 		}
 		if _, err := bookRef.Set(context.Background(), struct {
-			PV        int64
-			Thumbnail string
-			Title     string
+			PV               int64
+			WrappedThumbnail string
+			Thumbnail        string
+			Title            string
 		}{
-			PV:        0,
-			Thumbnail: pages[0].StorageURL,
-			Title:     title,
+			PV:               0,
+			WrappedThumbnail: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%s/%d", contractAddr, chapter, 0),
+			Thumbnail:        pages[0].StorageURL,
+			Title:            title,
+		}); err != nil {
+			return errors.WithStack(err)
+		}
+	}
+
+	chapterNum, err := strconv.ParseInt(chapter, 10, 64)
+	if err != nil {
+		return err
+	}
+
+	chapterRef := f.client.Doc(fmt.Sprintf("Books/%s/Chapters/%d", contractAddr, chapterNum))
+	_, err = chapterRef.Get(context.Background())
+	if err != nil {
+		if status.Code(err) != codes.NotFound {
+			return err
+		}
+		if _, err := chapterRef.Set(context.Background(), struct {
+			ChapterNumber    int64
+			WrappedThumbnail string
+			Thumbnail        string
+			Title            string
+		}{
+			ChapterNumber:    chapterNum,
+			WrappedThumbnail: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%s/%d", contractAddr, chapter, 0),
+			Thumbnail:        pages[0].StorageURL,
+			Title:            fmt.Sprintf("%d巻 %s", chapterNum, title),
 		}); err != nil {
 			return errors.WithStack(err)
 		}
@@ -71,9 +134,13 @@ func (f *Firestore) SetPages(contractAddr, title, chapter string, pages []databa
 		for _, page := range chunk {
 			txRef := f.client.Doc(fmt.Sprintf("Books/%s/Chapters/%s/Pages/%d", contractAddr, chapter, page.(database.PageInfo).Page))
 			batch.Set(txRef, struct {
-				URL string
+				PageNumber int64
+				URL        string
+				WrappedURL string
 			}{
-				URL: page.(database.PageInfo).StorageURL,
+				PageNumber: page.(database.PageInfo).Page,
+				URL:        page.(database.PageInfo).StorageURL,
+				WrappedURL: fmt.Sprintf("https://api-server-o57wjya6va-an.a.run.app/getImage/%s/%d/%d", contractAddr, chapterNum, page.(database.PageInfo).Page),
 			})
 		}
 

@@ -10,5 +10,7 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates \
     && apk add --no-cache libc6-compat
 COPY --from=build /go/src/tmp/exe .
+RUN mkdir configs
+COPY --from=build /go/src/tmp/configs/config.toml ./configs
 RUN ls -al
 ENTRYPOINT ["./exe"]

@@ -13,6 +13,7 @@ func Init(db database.Database, s storage.Storage) *echo.Echo {
 	e := echo.New()
 
 	e.GET("/health", handler.HealthCheck())
+	e.GET("/getImage/:addr/:chapter/:page", handler.GetImage(db, s))
 	e.POST("/uploadMedia", handler.UploadImage(db, s))
 
 	return e

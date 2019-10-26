@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"regexp"
 	"strconv"
 
@@ -68,4 +69,20 @@ func (c *CloudStorage) UploadImage(file *zip.File, title, chapter, contractAddr 
 		return "", 0, err
 	}
 	return fmt.Sprintf("https://storage.googleapis.com/%s/%s", c.config.StorageBucket, bucketFileName), sn, nil
+}
+
+// GetImage ...
+func (c *CloudStorage) GetImage(title string, chapter, page int64) ([]byte, error) {
+	bucketFileName := fmt.Sprintf("%s_%d_%d.jpeg", title, chapter, page)
+	rc, err := c.bucket.Object(bucketFileName).NewReader(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	defer rc.Close()
+
+	slurp, err := ioutil.ReadAll(rc)
+	if err != nil {
+		return nil, err
+	}
+	return slurp, nil
 }

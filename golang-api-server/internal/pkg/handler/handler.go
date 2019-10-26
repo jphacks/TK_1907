@@ -5,6 +5,7 @@ import (
 	"context"
 	"net/http"
 	"path/filepath"
+	"strconv"
 
 	"github.com/jphacks/TK_1907/golang-api-server/internal/pkg/database"
 
@@ -128,5 +129,64 @@ func UploadImage(db database.Database, s storage.Storage) echo.HandlerFunc {
 			return err
 		}
 		return c.JSON(http.StatusOK, "")
+	}
+}
+
+// GetImage ...
+func GetImage(db database.Database, s storage.Storage) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		bookId := c.Param("addr")
+		chapter := c.Param("chapter")
+		page := c.Param("page")
+		if bookId == "" ||
+			chapter == "" ||
+			page == "" {
+			err := xerrors.New("invalid argument")
+			logger.Error("Invalid Argument", zap.Error(err), zap.String("addr", bookId), zap.String("chapter", chapter), zap.String("page", page))
+			return err
+		}
+
+		chapterNum, err := strconv.ParseInt(chapter, 10, 64)
+		if err != nil {
+			return err
+		}
+		pageNum, err := strconv.ParseInt(page, 10, 64)
+		if err != nil {
+			return err
+		}
+
+		title, err := db.GetTitle(bookId)
+		if err != nil {
+			logger.Error("error occuered in GetTitle", zap.Error(err))
+			return err
+		}
+
+		var imageBytes []byte
+		switch pageNum {
+		case 0:
+			imageBytes, err = s.GetImage(title, chapterNum, 1)
+			if err != nil {
+				logger.Error("error occuered in GetImage", zap.Error(err))
+				return err
+			}
+		case 1:
+			imageBytes, err = s.GetImage(title, chapterNum, pageNum)
+			if err != nil {
+				logger.Error("error occuered in GetImage", zap.Error(err))
+				return err
+			}
+			if err := db.IncreasePV(bookId); err != nil {
+				logger.Error("error occuered in IncreasePV", zap.Error(err))
+				return err
+			}
+		default:
+			imageBytes, err = s.GetImage(title, chapterNum, pageNum)
+			if err != nil {
+				logger.Error("error occuered in GetImage", zap.Error(err))
+				return err
+			}
+		}
+
+		return c.Blob(http.StatusOK, "image/jpeg", imageBytes)
 	}
 }
