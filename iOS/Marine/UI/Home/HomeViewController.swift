@@ -13,7 +13,7 @@ import RxSwift
 import UIKit
 import WaterfallLayout
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, BookPresentable {
 
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -35,7 +35,14 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         self.reactor = HomeViewReactor()
+        setUpNavigation()
 
+    }
+
+    private func setUpNavigation() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 }
 
@@ -51,7 +58,7 @@ extension HomeViewController: StoryboardView {
         collectionView.rx.modelSelected(CellItem.self)
             .subscribe(onNext: { cellItem in
                 if case let CellItem.book(book) = cellItem {
-                    
+                    self.showBook(book: book)
                 }
             })
             .disposed(by: disposeBag)

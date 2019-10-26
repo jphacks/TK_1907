@@ -33,6 +33,16 @@ final class SingleBookViewController: UIViewController, StoryboardInstantiate {
 
         // Do any additional setup after loading the view.
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "MarineBlack")
+    }
 }
 
 extension SingleBookViewController: StoryboardView {
