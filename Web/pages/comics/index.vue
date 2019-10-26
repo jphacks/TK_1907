@@ -91,9 +91,6 @@ header .logo_header {
   width: 120px;
 }
 header .logo_header a {
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-  -webkit-justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,9 +101,6 @@ header .logo_header img {
 }
 header .wrapper_contents_header {
   width: 1300px;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: space-between;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,8 +108,6 @@ header .wrapper_contents_header {
   padding: 10px 0;
 }
 header .rapper_form_header {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
 }
@@ -123,7 +115,6 @@ header .button_go_header {
   background: #fff100;
   height: 40px;
   font-family: "Oswald", sans-serif;
-  -webkit-appearance: none;
   appearance: none;
   border-radius: 20px;
   width: 150px;
@@ -136,8 +127,6 @@ header .button_go_header {
 header .wrapper_balance_header {
   width: auto;
   border-bottom: solid 2px #fff;
-  display: -webkit-flex;
-  -webkti-align-items: center;
   display: flex;
   align-items: center;
   margin-right: 20px;
@@ -145,8 +134,6 @@ header .wrapper_balance_header {
   margin-left: auto;
 }
 header .wrapper_form_header {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
   width: 600px;
@@ -235,16 +222,11 @@ footer .wrapper_contents_footer {
   position: relative;
   width: 980px;
   margin: 0 auto;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: space-between;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 footer .wrapper_right_footer {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
 }
@@ -265,8 +247,6 @@ footer .copyright {
   color: #555;
 }
 footer .sns_footer {
-  display: -webkit-flex;
-  -webkit-align-items: center;
   display: flex;
   align-items: center;
 }

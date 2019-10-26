@@ -12,35 +12,32 @@
   </section>
 </template>
 
+
 <script>
-import Neon, {api, rpc, wallet, u} from '@cityofzion/neon-js'
+import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
 async function getComics(shash) {
   const props = {
     scriptHash: shash, // Scripthash for the contract
-    operation: 'getData', // name of operation to perform.
+    operation: "getData", // name of operation to perform.
     args: [] // any optional arguments to pass in. If null, use empty array.
-  }
-  let script = Neon.create.script(props)
-  let res = await rpc.Query.invokeScript(Neon.create.script(props)).execute('http://localhost:30333')
-  return JSON.parse('[' + u.hexstring2str(res.result.stack[0].value) + ']')
+  };
+  let script = Neon.create.script(props);
+  let res = await rpc.Query.invokeScript(Neon.create.script(props)).execute(
+    "http://localhost:30333"
+  );
+  return JSON.parse("[" + u.hexstring2str(res.result.stack[0].value) + "]");
 }
 
 export default {
-  components: {},
-  beforeCreate: async function() {
-    let comics = await getComics(this.$store.state.scriptHash)
-    this.$store.commit('setComics', comics)
+  async beforeCreate() {
+    let comics = await getComics(this.$store.state.scriptHash);
+    this.$store.commit("setComics", comics);
   },
-  data() {
-    return {
-    }
-  },
-  methods :{
+  methods: {
     goDetail(hash) {
-      this.$router.push('/comics/' + hash)
+      this.$router.push("/comics/" + hash);
     }
   }
 };
-
 </script>

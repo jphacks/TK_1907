@@ -86,6 +86,7 @@ Gives the author the profit that it was originally unable to obtain due to the p
 </div>
 </template>
 
+
 <script>
 export default {
   components: {
@@ -94,6 +95,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 @charset "UTF-8";

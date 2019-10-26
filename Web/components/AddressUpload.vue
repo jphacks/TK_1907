@@ -11,27 +11,28 @@
   </div>
 </template>
 
+
 <script>
-import Neon, {api, rpc, wallet, u} from '@cityofzion/neon-js'
+import Neon, { api, rpc, wallet, u } from "@cityofzion/neon-js";
 
 export default {
-  components: {},
-  created: function() {
+  created() {
     const account = new wallet.Account(this.$store.state.privateKey);
     this.address = account.address;
   },
   data() {
     return {
       address: ""
-    }
+    };
   },
-  methods :{
+  methods: {
     goUpload(hash) {
-      this.$router.push('/upload')
+      this.$router.push("/upload");
     }
   }
 };
 </script>
+
 
 <style>
 .blank_header {
@@ -41,8 +42,7 @@ export default {
 .upload_add {
   background: #fff100;
   height: 40px;
-  font-family: 'Oswald', sans-serif;
-  -webkit-appearance: none;
+  font-family: "Oswald", sans-serif;
   appearance: none;
   border-radius: 20px;
   width: 100px;
