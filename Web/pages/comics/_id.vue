@@ -1,21 +1,5 @@
 <template>
   <div>
-    <!-- header -->
-    <header>
-      <div class="wrapper_contents_header">
-        <h1 class="logo_header">
-          <a href="/">
-            <img
-              src="~/assets/logo_header.png"
-              title="SANCHO"
-              alt="SANCHOロゴ"
-            />
-          </a>
-        </h1>
-        <address-upload />
-      </div>
-    </header>
-
     <!-- detail -->
     <section id="detail">
       <div class="wrapper_contents_detail">
@@ -99,9 +83,6 @@ const privateNet = new rpc.Network(config);
 Neon.add.network(privateNet);
 
 export default {
-  components: {
-    AddressUpload: () => import("~/components/AddressUpload.vue")
-  },
   created() {
     for (let i = 0; i < this.$store.state.comics.length; i++) {
       if (this.$route.params.id === this.$store.state.comics[i]["hash"]) {
@@ -156,77 +137,6 @@ export default {
 
 <style>
 @charset "UTF-8";
-
-/* header */
-header {
-  z-index: 9999;
-  position: fixed;
-  width: 100%;
-  background: #000;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-}
-header .logo_header {
-  width: 120px;
-}
-header .logo_header a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-header .logo_header img {
-  width: 100%;
-  height: auto;
-}
-header .wrapper_contents_header {
-  width: 1300px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px auto;
-  padding: 10px 0;
-}
-header .rapper_form_header {
-  display: flex;
-  align-items: center;
-}
-header .button_go_header {
-  background: #fff100;
-  height: 40px;
-  font-family: "Oswald", sans-serif;
-  appearance: none;
-  border-radius: 20px;
-  width: 120px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  margin-left: 10px;
-}
-header .wrapper_balance_header {
-  width: auto;
-  border-bottom: solid 2px #fff;
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-  padding-bottom: 2px;
-  margin-left: auto;
-}
-header .wrapper_form_header {
-  display: flex;
-  align-items: center;
-  width: 600px;
-  margin-left: auto;
-}
-header .subtitle_balance_header {
-  color: #fff;
-  font-size: 15px;
-  margin-right: 10px;
-}
-header .balance_header {
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-}
 
 /* detail */
 #detail {

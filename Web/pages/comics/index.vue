@@ -1,64 +1,53 @@
 <template>
-<div>
+  <div>
+    <!-- top -->
+    <section id="top">
+      <div class="wrapper_contents_top">
+        <h2 class="title_top_archives">
+          <img
+            src="~/assets/title_top_archives.png"
+            title="Comics"
+            alt="テキスト画像"
+          />
+        </h2>
+      </div>
+    </section>
 
-<!-- header -->
-<header>
-  <div class="wrapper_contents_header">
-    <h1 class="logo_header">
-      <a href="/">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="SANCHOロゴ">
-      </a>
-    </h1>
-    <address-upload/>
-  </div>
-</header>
+    <!-- comics -->
+    <comics />
 
-<!-- top -->
-<section id="top">
-  <div class="wrapper_contents_top">
-    <h2 class="title_top_archives">
-      <img src="~/assets/title_top_archives.png" title="Comics" alt="テキスト画像">
-    </h2>
-  </div>
-</section>
-
-<!-- comics -->
-<comics/>
-
-<!-- footer -->
-<footer>
-  <div class="wrapper_contents_footer">
-    <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
-    <h2 class="logo_footer">
-      <a href="">
-        <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像">
-      </a>
-    </h2>
-    <div class="wrapper_right_footer">
-      <ul class="sns_footer">
-        <li class="each_sns">
+    <!-- footer -->
+    <footer>
+      <div class="wrapper_contents_footer">
+        <span class="copyright">©2018 SANCHO All Rights Reserved.</span>
+        <h2 class="logo_footer">
           <a href="">
-            <i class="fab fa-twitter"></i>
+            <img src="~/assets/logo_header.png" title="SANCHO" alt="ロゴ画像" />
           </a>
-        </li>
-        <li class="each_sns">
-          <a href="">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
+        </h2>
+        <div class="wrapper_right_footer">
+          <ul class="sns_footer">
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="each_sns">
+              <a href="">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
   </div>
-</footer>
-
-</div>
 </template>
 
 
 <script>
 export default {
   components: {
-    AddressUpload: () => import("~/components/AddressUpload.vue"),
     Comics: () => import("~/components/Comics.vue")
   },
   // TODO: サーバと繋がったらコメント外す
@@ -78,77 +67,6 @@ export default {
 
 <style>
 @charset "UTF-8";
-
-/* header */
-header {
-  z-index: 9999;
-  position: fixed;
-  width: 100%;
-  background: #000;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-}
-header .logo_header {
-  width: 120px;
-}
-header .logo_header a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-header .logo_header img {
-  width: 100%;
-  height: auto;
-}
-header .wrapper_contents_header {
-  width: 1300px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px auto;
-  padding: 10px 0;
-}
-header .rapper_form_header {
-  display: flex;
-  align-items: center;
-}
-header .button_go_header {
-  background: #fff100;
-  height: 40px;
-  font-family: "Oswald", sans-serif;
-  appearance: none;
-  border-radius: 20px;
-  width: 150px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  margin-left: 10px;
-}
-header .wrapper_balance_header {
-  width: auto;
-  border-bottom: solid 2px #fff;
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-  padding-bottom: 2px;
-  margin-left: auto;
-}
-header .wrapper_form_header {
-  display: flex;
-  align-items: center;
-  width: 600px;
-  margin-left: auto;
-}
-header .subtitle_balance_header {
-  color: #fff;
-  font-size: 14px;
-  margin-right: 10px;
-}
-header .balance_header {
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-}
 
 /* top */
 #top {
