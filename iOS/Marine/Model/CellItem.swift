@@ -24,3 +24,18 @@ enum CellItem: IdentifiableType, Equatable {
     }
     case book(Book)
 }
+
+typealias CustomSection = AnimatableSectionModel<SectionID, CellItem>
+
+protocol Identifiable: IdentifiableType, Equatable {
+    associatedtype Identifier: Equatable
+    var identity: Identifier { get }
+}
+
+enum SectionID: String, IdentifiableType {
+    case homeHeader
+    case books
+    var identity: String {
+        return self.rawValue
+    }
+}
