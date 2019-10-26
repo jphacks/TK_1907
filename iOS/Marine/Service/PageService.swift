@@ -17,7 +17,7 @@ final class PageService {
 
     func fetch(bookId: String, chapterId: String) -> Observable<PageQueryResult> {
         let baseRef =  Firestore.firestore().collection("Books").document(bookId).collection("Chapters").document(chapterId).collection("Pages")
-        return baseRef.limit(to: PageService.pagesPerPage).rx.getDocuments()
+        return baseRef.rx.getDocuments()
         .map({ querySnapshot in
             return PageQueryResult(querySnapshot: querySnapshot)
         })

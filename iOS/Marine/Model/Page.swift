@@ -39,7 +39,7 @@ class Page: Identifiable {
 
     init?(document: DocumentSnapshot) {
         guard let dictionary = document.data() as? [String : Any],
-            let url = dictionary["URL"] as? String else { return nil }
+            let url = dictionary["WrappedURL"] as? String else { return nil }
         self.identity = document.documentID
         if let encodedUrl = url.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed) {
             self.imageUrlString = encodedUrl
