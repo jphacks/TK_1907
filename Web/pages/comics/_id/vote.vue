@@ -8,9 +8,7 @@
       </div>
       <div class="info_detail">
         <h2 class="title_book_detail">{{ comic.Title }}</h2>
-        <p class="description_book_detail">
-          {{ comic.Summary }}
-        </p>
+        <p class="description_book_detail">{{ comic.Summary }}</p>
       </div>
     </div>
     <Candidates :candidates="candidates" />
@@ -20,7 +18,7 @@
 
 <script>
 import { db } from "~/plugins/firebase";
-import Web3 from 'web3';
+import Web3 from "web3";
 
 export default {
   components: {
@@ -33,7 +31,7 @@ export default {
       comic: {},
       web3: {},
       address: "",
-      contractAddress: "",
+      contractAddress: ""
     };
   },
   async asyncData(context) {
@@ -44,12 +42,12 @@ export default {
       .get()
       .then(querySnapShot => {
         var candids = [];
-        querySnapShot.forEach(async (candidate) => {
+        querySnapShot.forEach(async candidate => {
           let c = {
             address: candidate.id,
             uid: candidate.data().uid,
             name: candidate.data().name,
-            photo: candidate.data().photo,
+            photo: candidate.data().photo
           };
           candids = [...candids, c];
         });
@@ -62,18 +60,25 @@ export default {
       .then(documentSnapShot => {
         return documentSnapShot.data();
       });
-    return { candidates: candidates, comic: comic, contractAddress: context.route.params.id };
+    return {
+      candidates: candidates,
+      comic: comic,
+      contractAddress: context.route.params.id
+    };
   },
   mounted: async function() {
-    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
-      const provider = window['ethereum'] || window.web3.currentProvider
-      console.log(provider)
-      const web3 = new Web3(provider)
+    if (
+      typeof window.ethereum !== "undefined" ||
+      typeof window.web3 !== "undefined"
+    ) {
+      const provider = window["ethereum"] || window.web3.currentProvider;
+      console.log(provider);
+      const web3 = new Web3(provider);
       this.web3 = web3;
       const accounts = await web3.eth.getAccounts();
       this.address = accounts[0];
     }
-  },
+  }
 };
 </script>
 
