@@ -43,7 +43,7 @@ export default {
       .collection("Candidates")
       .get()
       .then(querySnapShot => {
-        var candy = [];
+        var candids = [];
         querySnapShot.forEach(async (candidate) => {
           let c = {
             address: candidate.id,
@@ -51,9 +51,9 @@ export default {
             name: candidate.data().name,
             photo: candidate.data().photo,
           };
-          candy = [...candy, c];
+          candids = [...candids, c];
         });
-        return { candidates: candy };
+        return candids;
       });
     const comic = await db
       .collection("Books")
@@ -62,7 +62,7 @@ export default {
       .then(documentSnapShot => {
         return documentSnapShot.data();
       });
-    return { ...candidates, comic: comic, contractAddress: context.route.params.id };
+    return { candidates: candidates, comic: comic, contractAddress: context.route.params.id };
   },
   mounted: async function() {
     if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
@@ -72,34 +72,8 @@ export default {
       this.web3 = web3;
       const accounts = await web3.eth.getAccounts();
       this.address = accounts[0];
-      for(let i = 0; i < this.candidates.length; i++) {
-        const acquiredVotes = await this.web3.eth.call({
-          from: this.address,
-          to: this.contractAddress,
-          data: "0x093825ec" + this.candidates[i].address.slice(2), // acquiredVotes
-        });
-        this.candidates[i].acquiredVotes = parseInt(acquiredVotes, 10);
-      }
-      console.log(this.candidates)
     }
   },
-  methods: {
-    async vote(address) {
-      const accounts = await this.web3.eth.getAccounts()
-      console.log(accounts)
-      try {
-        await web3.eth.sendTransaction({
-          from: this.address,
-          to: this.contractAddress,
-          gas: "1000000",
-          data: "0x6dd7d8ea" + address.slice(2), // vote
-        });
-      } catch(e) {
-        console.log(e);
-      }
-      return address;
-    }
-  }
 };
 </script>
 
