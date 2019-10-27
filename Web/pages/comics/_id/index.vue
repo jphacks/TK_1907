@@ -121,6 +121,16 @@ export default {
         .collection("Candidates")
         .doc(this.address)
         .set({ ...this.$store.state.user });
+      try {
+        await web3.eth.sendTransaction({
+          from: this.address,
+          to: this.contractAddress,
+          gas: "1000000",
+          data: "0x301fa53d" // beCandidate
+        });
+      } catch (e) {
+        console.log(e);
+      }
     },
     async withdraw() {
       console.log(this.contractAddress);
