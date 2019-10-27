@@ -8,12 +8,13 @@
         </div>
         <div class="info_detail">
           <h2 class="title_book_detail">{{ comics[0].title }}</h2>
-          <h2 class="balance_detail"> 総残高 {{ balance }} ETH </h2>
-          <p class="description_book_detail">
-        {{ comics[0].summary }}
-          </p>
+          <h2 class="balance_detail">総残高 {{ balance }} ETH</h2>
+          <p class="description_book_detail">{{ comics[0].summary }}</p>
           <div class="wrapper_form_header">
-            <Button @click="vote" title="投票する" />
+            <Button
+              @click="() => $router.push(`/comics/${$route.params.id}/vote`)"
+              title="投票する"
+            />
             <Button @click="candidate" title="立候補する" />
             <Button @click="withdraw" title="引き出す" />
           </div>
@@ -27,7 +28,7 @@
 <script>
 import firebase, { db } from "~/plugins/firebase";
 import { mapState, mapActions } from "vuex";
-import Web3 from 'web3';
+import Web3 from "web3";
 
 export default {
   components: {
@@ -39,13 +40,14 @@ export default {
       contractAddress: "",
       address: "",
       web3: null,
-      balance: 0,
+      balance: 0
     };
   },
   middleware: "comics",
   asyncData(context) {
     var chapters = [];
-    return db.collection("Books")
+    return db
+      .collection("Books")
       .doc(`${context.route.params.id}`)
       .collection("Chapters")
       .get()
@@ -62,10 +64,13 @@ export default {
       });
   },
   mounted: async function() {
-    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
-      const provider = window['ethereum'] || window.web3.currentProvider
-      console.log(provider)
-      const web3 = new Web3(provider)
+    if (
+      typeof window.ethereum !== "undefined" ||
+      typeof window.web3 !== "undefined"
+    ) {
+      const provider = window["ethereum"] || window.web3.currentProvider;
+      console.log(provider);
+      const web3 = new Web3(provider);
       this.web3 = web3;
       const accounts = await web3.eth.getAccounts();
       this.address = accounts[0];
@@ -88,7 +93,7 @@ export default {
             name: result.user.displayName,
             photo: result.user.photoURL,
             uid: result.user.uid,
-            address: this.address,
+            address: this.address
           });
           // this.$router.push("/upload");
         })
@@ -105,7 +110,7 @@ export default {
         });
     },
     async candidate() {
-      console.log(this.address)
+      console.log(this.address);
       await this.loginTwitter();
       await db
         .collection("Books")
@@ -114,22 +119,20 @@ export default {
         .doc(this.address)
         .set({ ...this.$store.state.user });
     },
-    async vote() {
-    },
     async withdraw() {
-      console.log(this.contractAddress)
-      console.log(this.web3)
-      console.log(this.comic)
-      const accounts = await this.web3.eth.getAccounts()
-      console.log(accounts)
+      console.log(this.contractAddress);
+      console.log(this.web3);
+      console.log(this.comic);
+      const accounts = await this.web3.eth.getAccounts();
+      console.log(accounts);
       try {
         await web3.eth.sendTransaction({
           from: accounts[0],
           to: this.contractAddress,
           gas: "1000000",
-          data: "0x3ccfd60b", // withdraw
+          data: "0x3ccfd60b" // withdraw
         });
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
     }
