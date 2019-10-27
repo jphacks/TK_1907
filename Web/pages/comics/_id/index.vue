@@ -4,12 +4,12 @@
     <section id="detail">
       <div class="wrapper_contents_detail">
         <div class="thumbnail_book_detail">
-          <img :src="comic[0].thumbnail" />
+          <img :src="comic.thumbnail" />
         </div>
         <div class="info_detail">
-          <h2 class="title_book_detail">{{ comic[0].title }}</h2>
+          <h2 class="title_book_detail">{{ comic.title }}</h2>
           <h2 class="balance_detail">総残高 {{ balance }} ETH</h2>
-          <p class="description_book_detail">{{ comic[0].summary }}</p>
+          <p class="description_book_detail">{{ comic.summary }}</p>
           <div class="wrapper_form_header">
             <Button
               @click="() => $router.push(`/comics/${$route.params.id}/vote`)"
@@ -60,10 +60,10 @@ export default {
     //       };
     //       chapters = [...chapters, chap];
     //     });
-    const chapters = context.store.state.comics.filter(
-      comic => comic.id === context.route.params.id
+    const comic = context.store.state.comics.filter(
+      c => c.id === context.route.params.id
     );
-    return { comic: chapters, contractAddress: context.route.params.id };
+    return { comic: comic[0], contractAddress: context.route.params.id };
     // });
   },
   mounted: async function() {
