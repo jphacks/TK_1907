@@ -22,6 +22,9 @@
 import { db } from "~/plugins/firebase";
 
 export default {
+  head() {
+    return { title: "votes uploader" };
+  },
   components: {
     Button: () => import("~/components/atoms/Button"),
     Candidates: () => import("~/components/Candidates")

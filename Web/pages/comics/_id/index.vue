@@ -42,6 +42,9 @@ import firebase, { db } from "~/plugins/firebase";
 import { mapState, mapActions } from "vuex";
 
 export default {
+  head() {
+    return { title: "admin" };
+  },
   components: {
     Button: () => import("~/components/atoms/Button")
   },

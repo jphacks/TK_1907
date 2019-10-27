@@ -87,6 +87,9 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  head() {
+    return { title: "Top Page" };
+  },
   components: {
     Comics: () => import("~/components/Comics.vue")
   },

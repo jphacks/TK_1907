@@ -3,7 +3,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s - marine",
+    titleTemplate: "Marine - %s",
     meta: [{
         charset: "utf-8"
       },
@@ -14,7 +14,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Nuxt.js project"
+        content: "読みたい漫画がここにある"
       }
     ],
     link: [{

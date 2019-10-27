@@ -7,7 +7,12 @@
 
 <script>
 export default {
-  components: { FileUpload: () => import("~/components/FileUpload.vue") }
+  head() {
+    return { title: "Manga Upload" };
+  },
+  components: {
+    FileUpload: () => import("~/components/FileUpload.vue")
+  }
 };
 </script>
 
