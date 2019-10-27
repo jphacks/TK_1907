@@ -44,13 +44,12 @@ export default {
       .get()
       .then(querySnapShot => {
         var candy = [];
-        querySnapShot.forEach(candidate => {
-          console.log(candidate)
+        querySnapShot.forEach(async (candidate) => {
           let c = {
+            address: candidate.id,
             uid: candidate.data().uid,
             name: candidate.data().name,
-            photo: candidate.data().photo
-            //acquiredVotes: 
+            photo: candidate.data().photo,
           };
           candy = [...candy, c];
         });
@@ -73,6 +72,15 @@ export default {
       this.web3 = web3;
       const accounts = await web3.eth.getAccounts();
       this.address = accounts[0];
+      for(let i = 0; i < this.candidates.length; i++) {
+        const acquiredVotes = await this.web3.eth.call({
+          from: this.address,
+          to: this.contractAddress,
+          data: "0x093825ec" + this.candidates[i].address.slice(2), // acquiredVotes
+        });
+        this.candidates[i].acquiredVotes = parseInt(acquiredVotes, 10);
+      }
+      console.log(this.candidates)
     }
   },
   methods: {
