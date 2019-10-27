@@ -4,15 +4,9 @@
     <section id="top">
       <div class="wrapper_contents_top">
         <h2 class="catch_top">
-          <img
-            src="~/assets/catch_top.png"
-            title="Marine"
-            alt="Marine - 読みたい漫画がここにある"
-          />
+          <img src="~/assets/catch_top.png" title="Marine" alt="Marine - 読みたい漫画がここにある" />
         </h2>
-        <p class="description_top">
-          Next Gen Highly Transparent & Fair Comic Platform
-        </p>
+        <p class="description_top">Next Gen Highly Transparent & Fair Comic Platform</p>
       </div>
     </section>
 
@@ -22,38 +16,27 @@
     <!-- introduction -->
     <section id="introduction">
       <h2 class="title_introduction">
-        <img
-          src="~/assets/title_introduction.png"
-          title="What is Marine"
-          alt="テキスト画像"
-        />
+        <img src="~/assets/title_introduction.png" title="What is Marine" alt="テキスト画像" />
       </h2>
       <ul class="wrapper_contents_introduction">
         <li class="each_ex_introduction">
           <article>
             <div class="icon_introduction">
-              <img
-                src="~/assets/no_money.png"
-                title="for free"
-                alt="テキスト画像"
-              />
+              <img src="~/assets/no_money.png" title="for free" alt="テキスト画像" />
             </div>
             <h3 class="each_title_introduction">
-              Enjoy your favorite <br />comic for free!
+              Enjoy your favorite
+              <br />comic for free!
             </h3>
-            <p class="description_introduction">
-              We can see out favorite manga anytime, anywhere, for free
-            </p>
+            <p
+              class="description_introduction"
+            >We can see out favorite manga anytime, anywhere, for free</p>
           </article>
         </li>
         <li class="each_ex_introduction">
           <article>
             <div class="icon_introduction">
-              <img
-                src="~/assets/author.png"
-                title="author"
-                alt="テキスト画像"
-              />
+              <img src="~/assets/author.png" title="author" alt="テキスト画像" />
             </div>
             <h3 class="each_title_introduction">Contribute, get money!</h3>
             <p class="description_introduction">
@@ -65,11 +48,7 @@
         <li class="each_ex_introduction">
           <article>
             <div class="icon_introduction">
-              <img
-                src="~/assets/decentralization.png"
-                title="decentralize"
-                alt="テキスト画像"
-              />
+              <img src="~/assets/decentralization.png" title="decentralize" alt="テキスト画像" />
             </div>
             <h3 class="each_title_introduction">Transparent management!</h3>
             <p class="description_introduction">
@@ -97,6 +76,10 @@ export default {
 
 <style>
 @charset "UTF-8";
+
+body {
+  font-family: "NotoSansCJK";
+}
 
 /* top */
 #top {
