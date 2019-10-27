@@ -12,6 +12,7 @@ export default async function({ store }) {
           id: contractAddress.id,
           title: contractAddress.data().Title,
           thumbnail: contractAddress.data().Thumbnail,
+          summary: contractAddress.data().Summary,
           pv: contractAddress.data().PV
         };
         dbcomics = [...dbcomics, comic];
