@@ -8,31 +8,18 @@
         </div>
         <div class="info_detail">
           <h2 class="title_book_detail">{{ comics[0].title }}</h2>
+          <h2 class="balance_detail"> 総残高 {{ balance }} ETH </h2>
           <p class="description_book_detail">
-            黒崎一護・15歳・ユウレイの見える男。その特異な体質のわりに安穏とした日々を送っていた一護だが、突如、自らを死神と名乗る少女と遭遇、「虚」と呼ばれる悪霊に襲われる。次々と倒れる家族を前に一護は!
+        {{ comics[0].summary }}
           </p>
           <div class="wrapper_form_header">
             <Button @click="vote" title="投票する" />
-            <Button @click="candidate" title="ログインして立候補する" />
+            <Button @click="candidate" title="立候補する" />
+            <Button @click="withdraw" title="引き出す" />
           </div>
         </div>
       </div>
     </section>
-
-    <!-- archives -->
-    <!-- <section id="archives">
-      <ul class="wrapper_contents_archives">
-        <li
-          class="each_book_archives"
-          v-for="(hash, index) in comic"
-          :key="index"
-        >
-          <article class="thumbnail_archives">
-            <img :src="'https://ipfs.io/ipfs/' + hash" />
-          </article>
-        </li>
-      </ul>
-    </section> -->
   </div>
 </template>
 
@@ -40,6 +27,7 @@
 <script>
 import firebase, { db } from "~/plugins/firebase";
 import { mapState, mapActions } from "vuex";
+import Web3 from 'web3';
 
 export default {
   components: {
@@ -48,13 +36,16 @@ export default {
   data() {
     return {
       comic: {},
-      address: ""
+      contractAddress: "",
+      address: "",
+      web3: null,
+      balance: 0,
     };
   },
   middleware: "comics",
   asyncData(context) {
     var chapters = [];
-    db.collection("Books")
+    return db.collection("Books")
       .doc(`${context.route.params.id}`)
       .collection("Chapters")
       .get()
@@ -67,9 +58,23 @@ export default {
           };
           chapters = [...chapters, chap];
         });
-        return { comic: chapters };
+        return { comic: chapters, contractAddress: context.route.params.id };
       });
   },
+  mounted: async function() {
+    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+      const provider = window['ethereum'] || window.web3.currentProvider
+      console.log(provider)
+      const web3 = new Web3(provider)
+      this.web3 = web3;
+      const accounts = await web3.eth.getAccounts();
+      this.address = accounts[0];
+      const balance = await web3.eth.getBalance(this.contractAddress);
+      const balanceInEther = web3.utils.fromWei(balance, "ether");
+      this.balance = balanceInEther;
+    }
+  },
+  // middleware: "web3",
   computed: mapState(["comics"]),
   methods: {
     ...mapActions(["login"]),
@@ -82,7 +87,8 @@ export default {
           this.login({
             name: result.user.displayName,
             photo: result.user.photoURL,
-            uid: result.user.uid
+            uid: result.user.uid,
+            address: this.address,
           });
           // this.$router.push("/upload");
         })
@@ -99,44 +105,33 @@ export default {
         });
     },
     async candidate() {
+      console.log(this.address)
       await this.loginTwitter();
       await db
         .collection("Books")
         .doc(`${this.$route.params.id}`)
         .collection("Candidates")
-        .add({ ...this.$store.state.user });
+        .doc(this.address)
+        .set({ ...this.$store.state.user });
     },
-    vote() {
-      let account = new wallet.Account(this.$store.state.privateKey);
-      Neon.doInvoke({
-        net: "http://127.0.0.1:30333",
-        script: Neon.create.script({
-          scriptHash: this.$store.state.scriptHash, // Scripthash for the contract
-          operation: "vote", // name of operation to perform.
-          args: [
-            u.str2hexstring(this.$route.params.id),
-            u.str2hexstring(account.address)
-          ]
-        }),
-        account: account,
-        gas: 1
-      })
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+    async vote() {
     },
-    withdraw() {
-      Neon.doInvoke({
-        net: "http://127.0.0.1:30333",
-        script: Neon.create.script({
-          scriptHash: this.$store.state.scriptHash, // Scripthash for the contract
-          operation: "withdraw", // name of operation to perform.
-          args: [u.str2hexstring(this.$route.params.id)]
-        }),
-        account: new wallet.Account(this.$store.state.privateKey),
-        gas: 1
-      })
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+    async withdraw() {
+      console.log(this.contractAddress)
+      console.log(this.web3)
+      console.log(this.comic)
+      const accounts = await this.web3.eth.getAccounts()
+      console.log(accounts)
+      try {
+        await web3.eth.sendTransaction({
+          from: accounts[0],
+          to: this.contractAddress,
+          gas: "1000000",
+          data: "0x3ccfd60b", // withdraw
+        });
+      } catch(e) {
+        console.log(e);
+      }
     }
   }
 };
@@ -178,12 +173,17 @@ export default {
 #detail .title_book_detail {
   font-size: 28px;
 }
+#detail .balance_detail {
+  font-size: 20px;
+  text-align: center;
+}
 #detail .description_book_detail {
   font-size: 14px;
   color: #888;
   margin-top: 16px;
 }
 #detail .rapper_form_header {
+  margin-left: 50px;
   display: flex;
   align-items: center;
 }

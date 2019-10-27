@@ -7,7 +7,8 @@ export const state = () => ({
     id: "@"
   },
   isLogin: false,
-  comics: []
+  comics: [],
+  web3: null
 });
 
 export const mutations = {
@@ -26,6 +27,9 @@ export const mutations = {
   },
   addComic(state, comic) {
     state.comics = [...state.comics, comic];
+  },
+  setWeb3(state, web3) {
+    state.web3 = web3;
   }
 };
 
@@ -50,5 +54,8 @@ export const actions = {
   },
   addComic({ commit }, comic) {
     commit("addComic", comic);
+  },
+  setWeb3({ commit }, web3) {
+    commit("setWeb3", web3);
   }
 };

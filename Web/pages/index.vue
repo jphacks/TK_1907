@@ -11,7 +11,7 @@
           />
         </h2>
         <p class="description_top">
-          Next Gen Completely Transparent & Fair Comic Platform
+          Next Gen Highly Transparent & Fair Comic Platform
         </p>
       </div>
     </section>
@@ -94,7 +94,6 @@ export default {
   computed: mapState(["comics"])
 };
 </script>
-
 
 <style>
 @charset "UTF-8";
