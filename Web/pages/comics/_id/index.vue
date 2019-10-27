@@ -11,7 +11,10 @@
           <h2 class="balance_detail">総残高 {{ balance }} ETH</h2>
           <p class="description_book_detail">{{ comic.summary }}</p>
           <div class="wrapper_form_header">
-            <Button @click="() => $router.push(`/comics/${$route.params.id}/vote`)" title="投票する" />
+            <Button
+              @click="() => $router.push(`/comics/${$route.params.id}/vote`)"
+              title="投票する"
+            />
             <Button @click="candidate" title="立候補する" />
             <Button @click="withdraw" title="引き出す" />
           </div>
@@ -166,6 +169,7 @@ export default {
 #detail {
   width: 100%;
   height: 550px;
+  min-height: Calc(100vh - 144px);
   padding-top: 60px;
   flex-direction: column;
   display: flex;
