@@ -1,10 +1,5 @@
 <template>
-  <nuxt-link
-    :to="to"
-    class="link_button"
-    @click.prevent="$emit('click-prevent')"
-    >{{ title }}</nuxt-link
-  >
+  <nuxt-link :to="to" class="link_button" @click.prevent="$emit('click-prevent')">{{ title }}</nuxt-link>
 </template>
 
 
@@ -30,11 +25,12 @@ export default {
   background: #fff100;
   border: none;
   border-radius: 20px;
-  font-family: "Oswald", sans-serif;
-  font-size: 18px;
+  font-family: "AnjaEliane", "Oswald", sans-serif;
+  font-size: 16px;
   font-weight: bold;
+  color: black;
   height: 40px;
-  line-height: 1;
+  /* line-height: 1; */
   margin-left: 10px;
   padding: 10px;
   text-align: center;
