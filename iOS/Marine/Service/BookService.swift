@@ -17,7 +17,7 @@ final class BookService {
 
     func fetch() -> Observable<BookQueryResult> {
         let baseRef =  Firestore.firestore().collection("Books")
-        return baseRef.limit(to: BookService.booksPerPage).rx.getDocuments()
+        return baseRef.rx.getDocuments()
         .map({ querySnapshot in
             return BookQueryResult(querySnapshot: querySnapshot)
         })

@@ -12,7 +12,6 @@
 		1102EAA72363ECA300845DC2 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1102EAA62363ECA300845DC2 /* CellItem.swift */; };
 		1102EAAA2363F0F000845DC2 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1102EAA82363F0F000845DC2 /* BookCollectionViewCell.swift */; };
 		1102EAAB2363F0F000845DC2 /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAA92363F0F000845DC2 /* BookCollectionViewCell.xib */; };
-		1102EAAF2363F8C100845DC2 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAAE2363F8C100845DC2 /* loading.json */; };
 		1102EAB12363F96B00845DC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAB02363F96B00845DC2 /* GoogleService-Info.plist */; };
 		1102EAB3236403C400845DC2 /* Anja Eliane accent002.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1102EAB2236403C400845DC2 /* Anja Eliane accent002.ttf */; };
 		1102EAB823641A2100845DC2 /* HomeHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1102EAB623641A2100845DC2 /* HomeHeaderCollectionViewCell.swift */; };
@@ -21,6 +20,7 @@
 		1135D22923649B3F00D50753 /* PageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1135D22823649B3F00D50753 /* PageService.swift */; };
 		1141FAE32363E5340031DC24 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1141FAE22363E5340031DC24 /* HomeViewController.swift */; };
 		1141FAE52363E5490031DC24 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1141FAE42363E5490031DC24 /* HomeViewReactor.swift */; };
+		114A2D5923651A580059A787 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 114A2D5823651A580059A787 /* loading.json */; };
 		114B924A2363D579007DE4A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B92492363D579007DE4A4 /* AppDelegate.swift */; };
 		114B924C2363D579007DE4A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B924B2363D579007DE4A4 /* SceneDelegate.swift */; };
 		114B92512363D579007DE4A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 114B924F2363D579007DE4A4 /* Main.storyboard */; };
@@ -45,7 +45,6 @@
 		1102EAA62363ECA300845DC2 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
 		1102EAA82363F0F000845DC2 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		1102EAA92363F0F000845DC2 /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
-		1102EAAE2363F8C100845DC2 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		1102EAB02363F96B00845DC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1102EAB2236403C400845DC2 /* Anja Eliane accent002.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anja Eliane accent002.ttf"; sourceTree = "<group>"; };
 		1102EAB623641A2100845DC2 /* HomeHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		1135D22823649B3F00D50753 /* PageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageService.swift; sourceTree = "<group>"; };
 		1141FAE22363E5340031DC24 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1141FAE42363E5490031DC24 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
+		114A2D5823651A580059A787 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		114B92462363D579007DE4A4 /* Marine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		114B92492363D579007DE4A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		114B924B2363D579007DE4A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,11 +190,11 @@
 				114B924B2363D579007DE4A4 /* SceneDelegate.swift */,
 				114B92542363D57A007DE4A4 /* LaunchScreen.storyboard */,
 				114B92522363D57A007DE4A4 /* Assets.xcassets */,
-				1102EAAE2363F8C100845DC2 /* loading.json */,
 				114B92572363D57A007DE4A4 /* Info.plist */,
 				1102EAB02363F96B00845DC2 /* GoogleService-Info.plist */,
 				1102EAB2236403C400845DC2 /* Anja Eliane accent002.ttf */,
 				11AA8CCA23644CE100666218 /* Storyboard+Instantiate.swift */,
+				114A2D5823651A580059A787 /* loading.json */,
 			);
 			path = Marine;
 			sourceTree = "<group>";
@@ -288,12 +288,12 @@
 				11AA8CC423643FC300666218 /* Single.storyboard in Resources */,
 				1102EAB12363F96B00845DC2 /* GoogleService-Info.plist in Resources */,
 				1102EAAB2363F0F000845DC2 /* BookCollectionViewCell.xib in Resources */,
+				114A2D5923651A580059A787 /* loading.json in Resources */,
 				11AA8CD52364565600666218 /* ChapterCollectionViewCell.xib in Resources */,
 				1102EAB3236403C400845DC2 /* Anja Eliane accent002.ttf in Resources */,
 				1102EAB923641A2100845DC2 /* HomeHeaderCollectionViewCell.xib in Resources */,
 				114B92532363D57A007DE4A4 /* Assets.xcassets in Resources */,
 				114B92512363D579007DE4A4 /* Main.storyboard in Resources */,
-				1102EAAF2363F8C100845DC2 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,7 +42,7 @@ class Chapter: Identifiable {
     init?(document: DocumentSnapshot) {
         guard let dictionary = document.data() as? [String : Any],
             let title = dictionary["Title"] as? String,
-            let thumbnail = dictionary["Thumbnail"] as? String else { return nil }
+            let thumbnail = dictionary["WrappedThumbnail"] as? String else { return nil }
         self.identity = document.documentID
         self.title = title
         if let encodedUrl = thumbnail.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed) {
