@@ -21,6 +21,7 @@
                         <rect key="frame" x="20" y="8" width="87.5" height="120"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="120" id="iwu-e2-Xw1"/>
+                            <constraint firstAttribute="width" constant="87.5" id="pI1-xo-Bgh"/>
                             <constraint firstAttribute="width" secondItem="6qx-j4-BdA" secondAttribute="height" multiplier="105:144" id="xNt-SQ-Y5j"/>
                         </constraints>
                     </imageView>
@@ -56,7 +57,7 @@
                 <outlet property="chapterTitleLabel" destination="pZz-rb-bl6" id="3sE-mZ-tid"/>
                 <outlet property="thumbnailImageView" destination="6qx-j4-BdA" id="6U5-02-YEd"/>
             </connections>
-            <point key="canvasLocation" x="444.92753623188412" y="181.47321428571428"/>
+            <point key="canvasLocation" x="412" y="141"/>
         </collectionViewCell>
     </objects>
     <resources>

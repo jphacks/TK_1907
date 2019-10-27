@@ -28,8 +28,15 @@ final class SingleBookViewController: UIViewController, StoryboardInstantiate {
     @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
+            let layout = WaterfallLayout()
+            layout.delegate = self
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 12)
+            layout.minimumLineSpacing = 8.0
+            layout.minimumInteritemSpacing = 8.0
+            layout.headerHeight = 12
             collectionView.register(UINib(nibName: "ChapterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ChapterCell")
             collectionView.contentInset.top = Const.headerHeight
+            collectionView.collectionViewLayout = layout
         }
     }
 
@@ -63,7 +70,7 @@ extension SingleBookViewController: StoryboardView {
                     let viewerViewController = ViewerViewController.instantiate()
                     viewerViewController.bookId = reactor.currentState.book.identity
                     viewerViewController.chapterId = chapter.identity
-                    viewerViewController.modalTransitionStyle = .partialCurl
+                    viewerViewController.modalTransitionStyle = .crossDissolve                          
                     viewerViewController.modalPresentationStyle = .fullScreen
                     self.present(viewerViewController, animated: true, completion: nil)
                 }
@@ -130,7 +137,7 @@ extension SingleBookViewController: StoryboardView {
     }
 }
 
-extension SingleBookViewController: UICollectionViewDelegate {
+extension SingleBookViewController: WaterfallLayoutDelegate, UICollectionViewDelegate {
     func collectionViewLayout(for section: Int) -> WaterfallLayout.Layout {
         return .flow(column: 1)
     }
