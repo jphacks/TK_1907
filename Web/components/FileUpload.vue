@@ -23,12 +23,24 @@
           </div>
         </div>
         <div class="info_detail" v-else-if="current === 1">
-          <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+          <Form
+            ref="formValidate"
+            :model="formValidate"
+            :rules="ruleValidate"
+            :label-width="80"
+          >
             <FormItem label="タイトル" prop="title">
-              <Input v-model="formValidate.title" placeholder="例) ブラックジャックによろしく"></Input>
+              <Input
+                v-model="formValidate.title"
+                placeholder="例) ブラックジャックによろしく"
+              />
             </FormItem>
             <FormItem label="巻数" prop="chapter">
-              <InputNumber v-model="formValidate.chapter" :editable="false" :min="1"></InputNumber>
+              <InputNumber
+                v-model="formValidate.chapter"
+                :editable="false"
+                :min="1"
+              ></InputNumber>
             </FormItem>
             <FormItem label="概要" prop="summary">
               <Input
@@ -41,15 +53,22 @@
               />
             </FormItem>
             <FormItem style="float: right;">
-              <Button type="primary" @click="handleSubmit('formValidate')">Next</Button>
+              <Button type="primary" @click="handleSubmit('formValidate')"
+                >Next</Button
+              >
               <Button @click="handleReset('formValidate')">Reset</Button>
             </FormItem>
           </Form>
         </div>
         <div class="info_detail" v-else>
-          <Button type="primary" size="large" :loading="loading" @click="upload">
+          <Button
+            type="primary"
+            size="large"
+            :loading="loading"
+            @click="upload"
+          >
             <span v-if="!loading">Upload</span>
-            <span v-else>Uploading...</span>
+            <LoadingSpiner v-else />
           </Button>
         </div>
       </div>
@@ -60,11 +79,14 @@
 
 <script>
 import { Steps, Step, Button } from "view-design";
-import Web3 from 'web3';
+import Web3 from "web3";
 
 const apiEndPoint = "https://api-server-o57wjya6va-an.a.run.app/uploadMedia";
 
 export default {
+  components: {
+    LoadingSpiner: () => import("./atoms/LoadingSpiner")
+  },
   data() {
     return {
       current: 0,
@@ -106,14 +128,17 @@ export default {
     return { contractAddress: context.route.params.id };
   },
   mounted: async function() {
-    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
-      const provider = window['ethereum'] || window.web3.currentProvider
-      const web3 = new Web3(provider)
+    if (
+      typeof window.ethereum !== "undefined" ||
+      typeof window.web3 !== "undefined"
+    ) {
+      const provider = window["ethereum"] || window.web3.currentProvider;
+      const web3 = new Web3(provider);
       const accounts = await web3.eth.getAccounts();
       this.web3 = web3;
       this.sender = accounts[0];
       const nonce = await web3.eth.getTransactionCount(accounts[0]);
-      console.log("nonce: ", nonce)
+      console.log("nonce: ", nonce);
       this.nonce = nonce;
     }
   },
@@ -127,16 +152,18 @@ export default {
     },
     async upload() {
       this.loading = true;
-      const salt = this.web3.eth.abi.encodeParameter('uint256', this.nonce).slice(2);
+      const salt = this.web3.eth.abi
+        .encodeParameter("uint256", this.nonce)
+        .slice(2);
       try {
         await web3.eth.sendTransaction({
           from: this.sender,
           //to: this.contractAddress,
           to: "0x803e9aD57c90d48FA9F9e3F11dEd6970B9c52D09",
           gas: "3000000",
-          data: "0xacb1250d" + salt, // createComicAccount
+          data: "0xacb1250d" + salt // createComicAccount
         });
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
       const params = new FormData();
@@ -190,6 +217,7 @@ export default {
 
 <style>
 .button_upload_header {
+  cursor: pointer;
   display: flex;
   justify-content: center;
 }
