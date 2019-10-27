@@ -112,6 +112,9 @@ export default {
       const accounts = await web3.eth.getAccounts();
       this.web3 = web3;
       this.sender = accounts[0];
+      const nonce = await web3.eth.getTransactionCount(accounts[0]);
+      console.log("nonce: ", nonce)
+      this.nonce = nonce;
     }
   },
   methods: {
@@ -130,7 +133,7 @@ export default {
           from: this.sender,
           //to: this.contractAddress,
           to: "0x803e9aD57c90d48FA9F9e3F11dEd6970B9c52D09",
-          gas: "1000000",
+          gas: "3000000",
           data: "0xacb1250d" + salt, // createComicAccount
         });
       } catch(e) {
