@@ -23,7 +23,10 @@ export const mutations = {
     state.isLogin = false;
   },
   setComics(state, comics) {
-    state.comics = comics;
+    state.comics = [];
+    comics.forEach(element => {
+      state.comics = [...state.comics, element];
+    });
   },
   addComic(state, comic) {
     state.comics = [...state.comics, comic];
