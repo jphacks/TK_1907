@@ -33,6 +33,7 @@ export default {
   display: block;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 #detail .upload_steps {
   width: 100%;
