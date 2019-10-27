@@ -61,13 +61,14 @@ export default {
         return { comic: chapters, contractAddress: context.route.params.id };
       });
   },
-  web3: null,
   mounted: async function() {
     if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
       const provider = window['ethereum'] || window.web3.currentProvider
       console.log(provider)
       const web3 = new Web3(provider)
       this.web3 = web3;
+      const accounts = await web3.eth.getAccounts();
+      this.address = accounts[0];
       const balance = await web3.eth.getBalance(this.contractAddress);
       const balanceInEther = web3.utils.fromWei(balance, "ether");
       this.balance = balanceInEther;
@@ -86,7 +87,8 @@ export default {
           this.login({
             name: result.user.displayName,
             photo: result.user.photoURL,
-            uid: result.user.uid
+            uid: result.user.uid,
+            address: this.address,
           });
           // this.$router.push("/upload");
         })
@@ -103,27 +105,16 @@ export default {
         });
     },
     async candidate() {
+      console.log(this.address)
       await this.loginTwitter();
       await db
         .collection("Books")
         .doc(`${this.$route.params.id}`)
         .collection("Candidates")
-        .add({ ...this.$store.state.user });
+        .doc(this.address)
+        .set({ ...this.$store.state.user });
     },
     async vote() {
-			// TODO 投票先を取得する
-      const accounts = await this.web3.eth.getAccounts()
-      console.log(accounts)
-      try {
-        await web3.eth.sendTransaction({
-          from: accounts[0],
-          to: this.contractAddress,
-          gas: "1000000",
-          data: "0x6dd7d8ea", // vote
-        });
-      } catch(e) {
-        console.log(e);
-      }
     },
     async withdraw() {
       console.log(this.contractAddress)

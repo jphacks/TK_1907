@@ -9,7 +9,8 @@
         <article class="user_icon_acounts">
           <span class="user_name_acounts">{{ candidate.name }}</span>
           <UserIcon :src="candidate.photo" />
-          <Button @click="$emit('vote', candidate.id)" title="投票する" />
+          <span class="user_name_acounts"> 得票数 {{ candidate.acquiredVotes }}</span>
+          <Button @click="$emit('vote', candidate.address)" title="投票する" />
         </article>
       </li>
     </ul>
