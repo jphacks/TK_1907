@@ -23,24 +23,12 @@
           </div>
         </div>
         <div class="info_detail" v-else-if="current === 1">
-          <Form
-            ref="formValidate"
-            :model="formValidate"
-            :rules="ruleValidate"
-            :label-width="80"
-          >
+          <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
             <FormItem label="タイトル" prop="title">
-              <Input
-                v-model="formValidate.title"
-                placeholder="例) ブラックジャックによろしく"
-              />
+              <Input v-model="formValidate.title" placeholder="例) ブラックジャックによろしく" />
             </FormItem>
             <FormItem label="巻数" prop="chapter">
-              <InputNumber
-                v-model="formValidate.chapter"
-                :editable="false"
-                :min="1"
-              ></InputNumber>
+              <InputNumber v-model="formValidate.chapter" :editable="false" :min="1"></InputNumber>
             </FormItem>
             <FormItem label="概要" prop="summary">
               <Input
@@ -53,20 +41,13 @@
               />
             </FormItem>
             <FormItem style="float: right;">
-              <Button type="primary" @click="handleSubmit('formValidate')"
-                >Next</Button
-              >
+              <Button type="primary" @click="handleSubmit('formValidate')">Next</Button>
               <Button @click="handleReset('formValidate')">Reset</Button>
             </FormItem>
           </Form>
         </div>
         <div class="info_detail" v-else>
-          <Button
-            type="primary"
-            size="large"
-            :loading="loading"
-            @click="upload"
-          >
+          <Button type="primary" size="large" :loading="loading" @click="upload">
             <span v-if="!loading">Upload</span>
             <LoadingSpiner v-else />
           </Button>
@@ -183,7 +164,8 @@ export default {
           console.log("response data", response);
           this.loading = false;
           this.$Modal.success({
-            title: "アップロード成功"
+            title: "アップロード成功",
+            okText: "閉じる"
           });
         })
         .catch(error => {
