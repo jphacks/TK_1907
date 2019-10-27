@@ -90,7 +90,7 @@ div .detail {
   flex-direction: center;
 }
 .detail .thumbnail_book_detail {
-  height: 500px;
+  width: max-content;
   margin-right: 100px;
 }
 img {
