@@ -71,6 +71,9 @@ export default {
     src: '~plugins/iview.js',
     ssr: true
   }],
+  css: [{
+    src: '~assets/css/styles.scss'
+  }],
   modules: [
     // Simple usage
     "nuxt-buefy",

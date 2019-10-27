@@ -69,6 +69,9 @@ export default {
 }
 #detail .wrapper_form_header {
   margin-top: 40px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 /* archives */
