@@ -4,11 +4,7 @@
     <section id="top">
       <div class="wrapper_contents_top">
         <h2 class="title_top_archives">
-          <img
-            src="~/assets/title_top_archives.png"
-            title="Comics"
-            alt="テキスト画像"
-          />
+          <img src="~/assets/title_top_archives.png" title="Comics" alt="テキスト画像" />
         </h2>
       </div>
     </section>
@@ -77,7 +73,7 @@ export default {
   border-radius: 4px;
   letter-spacing: normal;
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 #archives .each_book_archives:nth-of-type(5n) {
   margin-right: 0%;

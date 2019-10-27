@@ -11,8 +11,14 @@
     </section>
 
     <!-- comics -->
-    <Comics :comics="comics" />
+    <section id="comic">
+      <h2 class="title_comiclist">
+        <img src="~/assets/comic_list.png" title="Comic List" alt="テキスト画像" />
+      </h2>
+      <Comics :comics="comics" />
+    </section>
 
+    <Divider />
     <!-- introduction -->
     <section id="introduction">
       <h2 class="title_introduction">
@@ -110,6 +116,15 @@ body {
   color: #fff;
   text-align: center;
   font-family: "Oswald", sans-serif;
+}
+
+/* introduction */
+#comic {
+  padding: 120px 0;
+}
+#comic .title_comiclist {
+  width: 400px;
+  margin: 0 auto;
 }
 
 /* introduction */
