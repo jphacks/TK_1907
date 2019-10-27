@@ -1,6 +1,6 @@
 # Marine
 
-[![Product Name](image.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uKJiJ7WYx6Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## 製品概要
 ### 著作権 X Tech
@@ -35,6 +35,11 @@ SNS認証によりログインしたユーザーが，作品の著作者とし�
 
 ## 開発内容・開発技術
 ### 活用した技術
+
+#### iOS
+
+iOSではRxSwiftやReactorKitなどを使用したFluxアーキテクチャを採用し、ステートフルな実装を頑張りました。
+
 #### API・データ
 
 * 
