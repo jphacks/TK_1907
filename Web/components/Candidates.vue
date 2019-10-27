@@ -69,6 +69,10 @@ export default {
             "0x6dd7d8ea" +
             this.web3.eth.abi.encodeParameter("address", address).slice(2) // vote
         });
+        this.$Modal.success({
+          title: "投票に成功しました",
+          okText: "閉じる"
+        });
       } catch (e) {
         console.log(e);
       }

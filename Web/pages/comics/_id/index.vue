@@ -146,6 +146,10 @@ export default {
           gas: "1000000",
           data: "0x3ccfd60b" // withdraw
         });
+        this.$Modal.success({
+          title: "引き出しに成功しました",
+          okText: "閉じる"
+        });
       } catch (e) {
         console.log(e);
       }
