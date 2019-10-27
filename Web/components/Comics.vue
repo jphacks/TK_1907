@@ -1,11 +1,7 @@
 <template>
   <section id="archives">
     <ul class="wrapper_contents_archives">
-      <li
-        class="each_book_archives"
-        v-for="(comic, index) in comics"
-        :key="index"
-      >
+      <li class="each_book_archives" v-for="(comic, index) in comics" :key="index">
         <article class="thumbnail_archives">
           <div @click="goDetail(comic.id)">
             <img :src="comic.thumbnail" />
@@ -48,14 +44,14 @@ export default {
 #archives .each_book_archives {
   overflow: hidden;
   margin-bottom: 45px;
-  margin-right: 5vw;
   border-radius: 4px;
   letter-spacing: normal;
   display: inline-block;
   vertical-align: top;
-  margin-right: 5vw;
-  width: 20vw;
-  height: 28vw;
+  margin-right: 2.5vw;
+  margin-left: 2.5vw;
+  width: 9vw;
+  height: 13vw;
   box-shadow: 5px 5px 5px #f5f5f5;
 }
 #archives .thumbnail_archives {
