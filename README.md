@@ -52,7 +52,7 @@
 
 #### デプロイ済みプロダクト
 MarineのCoreコントラクト: https://ropsten.etherscan.io/address/0x803e9ad57c90d48fa9f9e3f11ded6970b9c52d09
-Web UI: https://marine-dev.firebaseapp.com/
+Web UI: https://marine-dev.firebaseapp.com/ (立候補や投票には[Metamask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=ja)というEthereumのwalletが必要です)
 
 #### 抱負
 
