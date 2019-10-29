@@ -128,7 +128,7 @@ Golang
 ### 独自開発技術（Hack Dayで開発したもの）
 #### 2日間に開発した独自の機能・技術
 - Blockchain
-    - Ethereumのスマートコントラクトによる収益分配
+    - [Ethereumのスマートコントラクトによる収益分配](https://github.com/jphacks/TK_1907/commit/9df139745b7fd24f7b27645d5efd573db638cd12)
     - Ethereumのスマートコントラクトによる漫画収益受付口座の作成
 - Backend
     - 作品のアップロードAPI(zipで受け取った漫画データ、漫画収益受付口座の情報をDBに格納)
