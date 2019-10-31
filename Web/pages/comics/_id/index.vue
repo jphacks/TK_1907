@@ -11,10 +11,7 @@
           <h2 class="balance_detail">総残高 {{ balance }} ETH</h2>
           <p class="description_book_detail">{{ comic.summary }}</p>
           <div class="wrapper_form_header">
-            <Button
-              @click="() => $router.push(`/comics/${$route.params.id}/vote`)"
-              title="投票する"
-            />
+            <Button @click="() => $router.push(`/comics/${$route.params.id}/vote`)" title="投票する" />
             <Button @click="candidate" title="立候補する" />
             <Button @click="withdraw" title="引き出す" />
           </div>
@@ -114,47 +111,71 @@ export default {
     },
     async candidate() {
       console.log(this.address);
-      await this.loginTwitter();
-      await db
-        .collection("Books")
-        .doc(`${this.$route.params.id}`)
-        .collection("Candidates")
-        .doc(this.address)
-        .set({ ...this.$store.state.user });
-      try {
-        await web3.eth.sendTransaction({
-          from: this.address,
-          to: this.contractAddress,
-          gas: "1000000",
-          data: "0x301fa53d" // beCandidate
+      if (
+        typeof window.ethereum !== "undefined" ||
+        typeof window.web3 !== "undefined"
+      ) {
+        await this.loginTwitter();
+        if (this.$store.state.user !== undefined) {
+          await db
+            .collection("Books")
+            .doc(`${this.$route.params.id}`)
+            .collection("Candidates")
+            .doc(this.address)
+            .set({ ...this.$store.state.user });
+          try {
+            await web3.eth.sendTransaction({
+              from: this.address,
+              to: this.contractAddress,
+              gas: "1000000",
+              data: "0x301fa53d" // beCandidate
+            });
+          } catch (e) {
+            console.log(e);
+          }
+          this.$Modal.success({
+            title: "立候補に成功しました",
+            okText: "閉じる"
+          });
+        }
+      } else {
+        this.$Modal.error({
+          title: "お使いの環境では立候補機能はご利用できません",
+          content: "立候補機能を利用するにはMetamaskのインストールが必要です",
+          okText: "閉じる"
         });
-      } catch (e) {
-        console.log(e);
       }
-      this.$Modal.success({
-        title: "立候補に成功しました",
-        okText: "閉じる"
-      });
     },
     async withdraw() {
       console.log(this.contractAddress);
       console.log(this.web3);
       console.log(this.comic);
-      const accounts = await this.web3.eth.getAccounts();
-      console.log(accounts);
-      try {
-        await web3.eth.sendTransaction({
-          from: accounts[0],
-          to: this.contractAddress,
-          gas: "1000000",
-          data: "0x3ccfd60b" // withdraw
-        });
-        this.$Modal.success({
-          title: "引き出しに成功しました",
+      if (
+        typeof window.ethereum !== "undefined" ||
+        typeof window.web3 !== "undefined"
+      ) {
+        const accounts = await this.web3.eth.getAccounts();
+        console.log(accounts);
+        try {
+          await web3.eth.sendTransaction({
+            from: accounts[0],
+            to: this.contractAddress,
+            gas: "1000000",
+            data: "0x3ccfd60b" // withdraw
+          });
+          this.$Modal.success({
+            title: "引き出しに成功しました",
+            okText: "閉じる"
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        this.$Modal.error({
+          title: "お使いの環境では引き出し機能はご利用できません",
+          content: "引き出し機能を利用するにはMetamaskのインストールが必要です",
           okText: "閉じる"
         });
-      } catch (e) {
-        console.log(e);
       }
     }
   }
@@ -165,90 +186,275 @@ export default {
 <style>
 @charset "UTF-8";
 
-/* detail */
-#detail {
-  width: 100%;
-  height: 550px;
-  min-height: Calc(100vh - 144px);
-  padding-top: 60px;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
+@media screen and (max-width: 639px) {
+  /* detail */
+  #detail {
+    width: 100%;
+    height: 100%;
+    min-height: Calc(100vh - 144px);
+    padding-top: 60px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+  }
+  #detail .wrapper_contents_detail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100vw;
+  }
+  #detail .thumbnail_book_detail {
+    width: 240px;
+    border-radius: 4px;
+    height: 320px;
+    overflow: hidden;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    background: #f5f5f5;
+    margin-top: 10vh;
+  }
+  #detail .info_detail {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #detail .title_book_detail {
+    font-size: 28px;
+    text-align: center;
+  }
+  #detail .balance_detail {
+    font-size: 20px;
+    text-align: center;
+  }
+  #detail .description_book_detail {
+    font-size: 14px;
+    color: #888;
+    margin-top: 16px;
+    text-align: center;
+  }
+  #detail .wrapper_form_header button {
+    margin: 2vh auto;
+  }
+  #detail .input_key_header {
+    border: none;
+    border-radius: 4px;
+    appearance: none;
+    height: 41px;
+    font-size: 13px;
+    padding: 4px 10px;
+    background: #fff;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+    width: 350px;
+  }
+  #detail .button_upload_header {
+    background: #1e5ccc;
+    height: 40px;
+    font-family: "Oswald", sans-serif;
+    appearance: none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    width: 110px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    margin-left: 20px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  #detail .wrapper_form_header {
+    margin: 50px auto;
+  }
+  .withdraw {
+    border: solid 1px #ccc;
+    color: #aaa;
+    padding: 11px 0;
+    font-size: 15px;
+    font-family: "Oswald", sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 40px;
+  }
 }
-#detail .wrapper_contents_detail {
-  display: flex;
-  margin: 0 auto;
-  width: 800px;
+
+@media only screen and (min-width: 640px) and (max-width: 1023px) {
+  /* detail */
+  #detail {
+    width: 100%;
+    height: 550px;
+    min-height: Calc(100vh - 144px);
+    padding-top: 60px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+  }
+  #detail .wrapper_contents_detail {
+    display: flex;
+    margin: 0 auto;
+    width: 800px;
+  }
+  #detail .thumbnail_book_detail {
+    width: 240px;
+    border-radius: 4px;
+    height: 320px;
+    overflow: hidden;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    background: #f5f5f5;
+  }
+  #detail .info_detail {
+    width: 60%;
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #detail .title_book_detail {
+    font-size: 28px;
+  }
+  #detail .balance_detail {
+    font-size: 20px;
+    text-align: center;
+  }
+  #detail .description_book_detail {
+    font-size: 14px;
+    color: #888;
+    margin-top: 16px;
+  }
+  #detail .rapper_form_header {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+  }
+  #detail .input_key_header {
+    border: none;
+    border-radius: 4px;
+    appearance: none;
+    height: 41px;
+    font-size: 13px;
+    padding: 4px 10px;
+    background: #fff;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+    width: 350px;
+  }
+  #detail .button_upload_header {
+    background: #1e5ccc;
+    height: 40px;
+    font-family: "Oswald", sans-serif;
+    appearance: none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    width: 110px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    margin-left: 20px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  #detail .wrapper_form_header {
+    margin: 50px auto;
+  }
+  .withdraw {
+    border: solid 1px #ccc;
+    color: #aaa;
+    padding: 11px 0;
+    font-size: 15px;
+    font-family: "Oswald", sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 40px;
+  }
 }
-#detail .thumbnail_book_detail {
-  width: 240px;
-  border-radius: 4px;
-  height: 320px;
-  overflow: hidden;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
-  background: #f5f5f5;
-}
-#detail .info_detail {
-  width: 60%;
-  margin-left: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-#detail .title_book_detail {
-  font-size: 28px;
-}
-#detail .balance_detail {
-  font-size: 20px;
-  text-align: center;
-}
-#detail .description_book_detail {
-  font-size: 14px;
-  color: #888;
-  margin-top: 16px;
-}
-#detail .rapper_form_header {
-  margin-left: 50px;
-  display: flex;
-  align-items: center;
-}
-#detail .input_key_header {
-  border: none;
-  border-radius: 4px;
-  appearance: none;
-  height: 41px;
-  font-size: 13px;
-  padding: 4px 10px;
-  background: #fff;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
-  width: 350px;
-}
-#detail .button_upload_header {
-  background: #1e5ccc;
-  height: 40px;
-  font-family: "Oswald", sans-serif;
-  appearance: none;
-  border-radius: 20px;
-  color: #fff;
-  font-size: 14px;
-  width: 110px;
-  text-align: center;
-  font-weight: bold;
-  border: none;
-  margin-left: 20px;
-  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
-}
-#detail .wrapper_form_header {
-  margin-top: 50px;
-}
-.withdraw {
-  border: solid 1px #ccc;
-  color: #aaa;
-  padding: 11px 0;
-  font-size: 15px;
-  font-family: "Oswald", sans-serif;
-  border-radius: 4px;
-  text-align: center;
-  margin-top: 40px;
+
+@media screen and (min-width: 1024px) {
+  /* detail */
+  #detail {
+    width: 100%;
+    height: 550px;
+    min-height: Calc(100vh - 144px);
+    padding-top: 60px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+  }
+  #detail .wrapper_contents_detail {
+    display: flex;
+    margin: 0 auto;
+    width: 800px;
+  }
+  #detail .thumbnail_book_detail {
+    width: 240px;
+    border-radius: 4px;
+    height: 320px;
+    overflow: hidden;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    background: #f5f5f5;
+  }
+  #detail .info_detail {
+    width: 60%;
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #detail .title_book_detail {
+    font-size: 28px;
+  }
+  #detail .balance_detail {
+    font-size: 20px;
+    text-align: center;
+  }
+  #detail .description_book_detail {
+    font-size: 14px;
+    color: #888;
+    margin-top: 16px;
+  }
+  #detail .wrapper_form_header {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+  }
+  #detail .wrapper_form_header button {
+    margin: 0 1vw;
+  }
+  #detail .input_key_header {
+    border: none;
+    border-radius: 4px;
+    appearance: none;
+    height: 41px;
+    font-size: 13px;
+    padding: 4px 10px;
+    background: #fff;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+    width: 350px;
+  }
+  #detail .button_upload_header {
+    background: #1e5ccc;
+    height: 40px;
+    font-family: "Oswald", sans-serif;
+    appearance: none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    width: 110px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    margin-left: 20px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  #detail .wrapper_form_header {
+    margin: 50px auto;
+  }
+  .withdraw {
+    border: solid 1px #ccc;
+    color: #aaa;
+    padding: 11px 0;
+    font-size: 15px;
+    font-family: "Oswald", sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 40px;
+  }
 }
 </style>

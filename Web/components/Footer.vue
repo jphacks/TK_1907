@@ -2,11 +2,11 @@
   <footer>
     <div class="wrapper_contents_footer">
       <span class="copyright">©2019 Marine All Rights Reserved.</span>
-      <h2 class="logo_footer">
+      <!-- <h2 class="logo_footer">
         <a href>
           <img src="~/assets/logo_header.png" title="Marine" alt="ロゴ画像" />
         </a>
-      </h2>
+      </h2>-->
       <div class="wrapper_right_footer">
         <ul class="sns_footer">
           <li class="each_sns">
@@ -30,6 +30,7 @@
 footer {
   background: #000;
   padding: 60px 0 60px;
+  width: 100vw;
 }
 footer .logo_footer {
   width: 85px;
@@ -43,7 +44,7 @@ footer .logo_footer img {
 }
 footer .wrapper_contents_footer {
   position: relative;
-  width: 980px;
+  width: 100vw;
   margin: 0 auto;
   display: flex;
   align-items: center;

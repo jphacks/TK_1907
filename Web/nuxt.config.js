@@ -78,6 +78,7 @@ export default {
     // Simple usage
     "nuxt-buefy",
     "@nuxtjs/axios",
+    "@nuxtjs/device",
     [
       "nuxt-buefy",
       {
