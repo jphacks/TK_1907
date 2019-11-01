@@ -56,7 +56,7 @@ export default {
 header {
   z-index: 9999;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   background: #000;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
 }
@@ -73,6 +73,7 @@ header .logo_header img {
   height: auto;
 }
 header .wrapper_contents_header {
+  height: 7.5vh;
   width: 100vw;
   display: inline-flex;
   justify-content: space-between;

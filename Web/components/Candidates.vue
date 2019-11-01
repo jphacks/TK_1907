@@ -4,7 +4,9 @@
       <li v-for="(candidate, index) in candidates" :key="index" class="each_user_acounts">
         <article class="user_icon_acounts">
           <span class="user_name_acounts">{{ candidate.name }}</span>
-          <UserIcon :src="candidate.photo" />
+          <a :href="candidate.profile_url" target="_blank">
+            <UserIcon :src="candidate.photo" :link="candidate.profile_url" />
+          </a>
           <span class="user_name_acounts">得票数 {{ candidate.acquiredVotes }}</span>
           <Button @click="vote(candidate.address)" title="投票する" />
         </article>
@@ -51,6 +53,7 @@ export default {
           to: this.contractAddress,
           data: "0x093825ec" + this.candidates[i].address.slice(2) // acquiredVotes
         });
+        console.log(acquiredVotes);
         this.candidates[i].acquiredVotes = parseInt(acquiredVotes, 10);
         console.log(this.candidates[i]);
       }
@@ -84,30 +87,88 @@ export default {
 
 
 <style scoped>
-#acounts {
-  padding: 100px 0;
-  width: 100vw;
-  overflow-x: scroll;
+@media screen and (max-width: 639px) {
+  #acounts {
+    padding: 100px 0;
+    width: 100vw;
+    overflow-x: scroll;
+  }
+  #acounts .wrapper_contents_acounts {
+    padding: 0;
+    height: 100%;
+    display: flex;
+  }
+  .each_user_acounts {
+    height: 100%;
+    width: 200px;
+    margin: 0 0 30px;
+  }
+  .user_icon_acounts {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user_name_acounts {
+    text-align: center;
+  }
 }
-#acounts .wrapper_contents_acounts {
-  min-width: 800px;
-  padding: 0;
-  margin: 0 150px;
-  height: 100%;
-  display: flex;
+
+@media only screen and (min-width: 640px) and (max-width: 1023px) {
+  #acounts {
+    padding: 100px 0;
+    width: 100vw;
+    overflow-x: scroll;
+  }
+  #acounts .wrapper_contents_acounts {
+    min-width: 800px;
+    padding: 0;
+    margin: 0 150px;
+    height: 100%;
+    display: flex;
+  }
+  .each_user_acounts {
+    height: 100%;
+    width: 200px;
+    margin: 0 0 30px;
+  }
+  .user_icon_acounts {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user_name_acounts {
+    text-align: center;
+  }
 }
-.each_user_acounts {
-  height: 100%;
-  width: 200px;
-  margin: 0 0 30px;
-}
-.user_icon_acounts {
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.user_name_acounts {
-  text-align: center;
+
+@media screen and (min-width: 1024px) {
+  #acounts {
+    padding: 100px 0;
+    width: 100vw;
+    overflow-x: scroll;
+  }
+  #acounts .wrapper_contents_acounts {
+    min-width: 800px;
+    padding: 0;
+    margin: 0 150px;
+    height: 100%;
+    display: flex;
+  }
+  .each_user_acounts {
+    height: 100%;
+    width: 200px;
+    margin: 0 0 30px;
+  }
+  .user_icon_acounts {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user_name_acounts {
+    text-align: center;
+  }
 }
 </style>

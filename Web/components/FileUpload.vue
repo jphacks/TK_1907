@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <section id="detail">
+    <section id="detail" v-if="$device.isDesktop">
       <div class="wrapper_contents_detail">
         <div class="upload_steps">
           <Steps :current="current">
@@ -53,6 +53,15 @@
           </Button>
         </div>
       </div>
+    </section>
+    <section id="detail" v-else>
+      <Alert style="margin: 0 5vw;" type="warning" show-icon>
+        アップロードはサポートされていません
+        <template slot="desc">
+          PC版Marine以外からのアップロードはサポートされていません
+          <br />大変お手数をおかけしますが、PC版Marineから再度お試しください
+        </template>
+      </Alert>
     </section>
   </div>
 </template>
@@ -121,6 +130,16 @@ export default {
       const nonce = await web3.eth.getTransactionCount(accounts[0]);
       console.log("nonce: ", nonce);
       this.nonce = nonce;
+    } else {
+      this.$Modal.error({
+        title: "お使いの環境ではアップロード機能はご利用できません",
+        content:
+          "アップロード機能を利用するにはMetamaskのインストールが必要です",
+        okText: "閉じる",
+        onOk: () => {
+          this.$router.push("/");
+        }
+      });
     }
   },
   methods: {
@@ -191,6 +210,9 @@ export default {
     },
     handleReset(name) {
       this.$refs[name].resetFields();
+    },
+    goHome() {
+      this.$router.push("/");
     }
   }
 };
@@ -198,6 +220,102 @@ export default {
 
 
 <style>
+@charset "UTF-8";
+
+/* detail */
+#detail {
+  width: 100%;
+  height: 100vh;
+  padding-top: 60px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+#detail .wrapper_contents_detail {
+  margin: 0 auto;
+  width: 800px;
+}
+#detail .info_detail {
+  width: 100%;
+  padding-top: 60px;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+#detail .upload_steps {
+  width: 100%;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+}
+#detail .title_book_detail {
+  font-size: 40px;
+  text-align: center;
+}
+#detail .description_book_detail {
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  margin-top: 10px;
+}
+#detail .button_upload_header {
+  display: flex;
+  justify-content: center;
+  background: #1e5ccc;
+  display: block;
+  padding: 32px 0 32px 126px;
+  appearance: none;
+  border-radius: 100px;
+  color: #fff;
+  font-size: 14px;
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+}
+#detail .wrapper_form_header {
+  margin-top: 40px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* archives */
+#archives {
+  padding: 0px 0 80px;
+}
+#archives .wrapper_contents_archives {
+  letter-spacing: -0.4em;
+  width: 1000px;
+  margin: 0 auto;
+}
+#archives .each_book_archives {
+  width: 16.8%;
+  margin-right: 4%;
+  overflow: hidden;
+  margin-bottom: 40px;
+  border-radius: 4px;
+  letter-spacing: normal;
+  display: inline-block;
+  vertical-align: top;
+}
+#archives .each_book_archives:nth-of-type(5n) {
+  margin-right: 0%;
+}
+#archives .thumbnail_archives {
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 180px;
+  background-color: #f5f5f5;
+}
+#archives .thumbnail_archives > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .button_upload_header {
   cursor: pointer;
   display: flex;
