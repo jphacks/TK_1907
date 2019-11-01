@@ -93,6 +93,7 @@ export default {
             name: result.user.displayName,
             photo: result.user.photoURL.replace("_normal", ""),
             uid: result.user.uid,
+            screen_name: result.additionalUserInfo.username,
             address: this.address
           });
           // this.$router.push("/upload");

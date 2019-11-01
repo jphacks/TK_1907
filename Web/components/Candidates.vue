@@ -4,7 +4,9 @@
       <li v-for="(candidate, index) in candidates" :key="index" class="each_user_acounts">
         <article class="user_icon_acounts">
           <span class="user_name_acounts">{{ candidate.name }}</span>
-          <UserIcon :src="candidate.photo" />
+          <a :href="candidate.profile_url" target="_blank">
+            <UserIcon :src="candidate.photo" :link="candidate.profile_url" />
+          </a>
           <span class="user_name_acounts">得票数 {{ candidate.acquiredVotes }}</span>
           <Button @click="vote(candidate.address)" title="投票する" />
         </article>

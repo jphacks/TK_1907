@@ -48,6 +48,7 @@ export default {
             uid: candidate.data().uid,
             name: candidate.data().name,
             photo: candidate.data().photo,
+            profile_url: `https://twitter.com/${candidate.data().screen_name}`,
             acquiredVotes: 0
           };
           candids = [...candids, c];
