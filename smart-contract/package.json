@@ -14,7 +14,7 @@
     "ethereumjs-util": "^6.1.0",
     "ganache-cli": "^6.7.0",
     "openzeppelin-solidity": "^2.3.0",
-    "serve": "^6.4.1",
+    "serve": "^10.1.2",
     "truffle": "^5.0.38",
     "truffle-hdwallet-provider": "^1.0.11"
   },
